@@ -15,6 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* Grupo para o qual os users precisam de autenticação
+- Access to Landing Page
+    - Browse through produtcs based on filters (text, seller, location or tags), with custom order
+    - Access to product details and related content from any product name
+    - Access all products by a user from his detail page
+    - View user accounts using filters, sortable and paged lists
+    - Possibility of authentication with valid credentials
+    - Possibility of register
+*/
+    
+Route::group([['middleware' => 'auth'], function (){
+    // Autenticação
+}]);
+
+
 //Users
 Route::get('users', 'UserController@index');
 Route::get('users/create', [
@@ -34,7 +49,6 @@ Route::post('users/delete/{id}', [
 
 Route::get('users/show/{id}', ['as' => 'users.display-user',
     'uses' => 'UserController@getShow', ]);
-
 
 
 //Products
