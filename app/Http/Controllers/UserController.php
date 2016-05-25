@@ -26,7 +26,8 @@ class UserController extends Controller
 
     public function getCreate()
     {
-        return view('users.add');
+        $user = new User();
+        return view('users.add', compact('user'));
     }
 
     public function getEdit($id)
