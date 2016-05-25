@@ -15,7 +15,7 @@
         <input
             type="password" class="form-control"
             name="password" id="inputPassword"
-            value=""/>
+            value="{{$user->password}}"/>
     </div>
     <div class="form-group">
         <label for="inputPasswordConfirmation">Password confirmation</label>

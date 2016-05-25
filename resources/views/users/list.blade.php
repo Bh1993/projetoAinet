@@ -28,16 +28,10 @@
         <tr>
             <th>Email</th>
             <th>Name</th>
-            <th>location</th>
-            <th>profile_photo</th>
-            <th>profile_url</th>
-            <th>presentation</th>
-            <th>admin</th>
-            <th>blocked</th>
-            <th>sells_evals</th>
-            <th>sells_count</th>
-            <th>buys_evals</th>
-            <th>buys_count</th>
+            <th>Admin</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Updated At</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -45,18 +39,12 @@
     <tbody>
     @foreach ($users as $user)
         <tr>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->location }}</td>
-            <td>{{ $user->profile_photo }}</td>
-            <td>{{ $user->profile_url }}</td>
-            <td>{{ $user->presentation }}</td>
-            <td>{{ $user->admin }}</td>
-            <td>{{ $user->blocked }}</td>
-            <td>{{ $user->sells_evals }}</td>
-            <td>{{ $user->sells_count }}</td>
-            <td>{{ $user->buys_evals }}</td>
-            <td>{{ $user->buys_count }}</td>
+            <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
+            <td><a href="{{route('users.display-user', ['id' => $user->id])}}">{{ $user->name }}</td>
+            <td>{{ $user->getType() }}</td>
+            <td>{{ $user->getStatus() }}</td>
+            <td>{{ $user->created_at }}</td>
+            <td>{{ $user->updated_at }}</td>
             
             <td>
                 <a class="btn btn-xs btn-primary" href="{{route('users.edit', ['id' => $user->id])}}">Edit</a>
@@ -70,7 +58,7 @@
         </tr>
     @endforeach
     </table>
-    @include('layouts.pagination-users')
+    @include('layouts.pagination-users',['paginator'=>$users])
 @else
     <h2>No users found</h2>
 @endif

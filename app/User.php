@@ -26,25 +26,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function isAdministrator()
+    public function getType()
     {
-        return $this->admin == 1;
+        return $this->admin ? 'Admin' : 'Client';
     }
 
-    public function isClient()
+    public function getStatus()
     {
-        return $this->admin == 0;
+        return $this->blocked ? 'Blocked' : 'Unblocked';
     }
-
-     public function typeToStr()
-    {
-        switch ($this->type) {
-            case 0:
-                return 'Client';
-            case 1:
-                return 'Administrator';
-        }
-
-        return 'Unknown';
-    }
+    
 }

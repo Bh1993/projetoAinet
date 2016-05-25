@@ -9,9 +9,19 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
 
         return view('users.list', compact('users'));
+    }
+
+    public function getShow($id)
+    {
+        // get the nerd
+        $user = User::find($id);
+
+        // show the view and pass the nerd to it
+        return view('users.display-user', compact('user'));
+           
     }
 
     public function getCreate()
@@ -19,9 +29,11 @@ class UserController extends Controller
         return view('users.add');
     }
 
-    public function getEdit()
+    public function getEdit($id)
     {
-        return view('users.edit');
+        $user = User::find($id);
+        return view('users.edit', compact('user'));
+
     }
 
     public function postCreate(Request $request)
@@ -64,4 +76,6 @@ class UserController extends Controller
     {
         
     }
+
+
 }

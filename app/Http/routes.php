@@ -32,6 +32,11 @@ Route::post('users/delete/{id}', [
     'uses' => 'UserController@postDelete',
 ]);
 
+Route::get('users/show/{id}', ['as' => 'users.display-user',
+    'uses' => 'UserController@getShow', ]);
+
+
+
 //Products
 Route::get('products', 'ProductController@index');
 Route::get('products/create', [
