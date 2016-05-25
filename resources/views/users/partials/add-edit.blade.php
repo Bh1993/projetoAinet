@@ -1,18 +1,18 @@
  <div class="image">
         <img src="{{$user->profile_photo}}" alt="Mountain View" style="width:304px;height:228px;" >
     </div>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    
         <label>Select image to upload:</label>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <br>
         <input type="submit" class="btn btn-success" value="Upload Image" name="submit">
-    </form>
-    <br>
+   
+   
 <div class="form-group">
     <label for="inputFullname">Fullname</label>
     <input
         type="text" class="form-control"
-        name="fullname" id="inputFullname"
+        name="name" id="inputFullname"
         placeholder="Fullname" value="{{ $user->name }}" />
 </div>
 <div class="form-group">

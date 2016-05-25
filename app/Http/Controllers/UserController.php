@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -27,7 +28,9 @@ class UserController extends Controller
     public function getCreate()
     {
         $user = new User();
+        
         return view('users.add', compact('user'));
+
     }
 
     public function getEdit($id)
@@ -40,19 +43,18 @@ class UserController extends Controller
     public function postCreate(Request $request)
     {
         $this->validate($request, [
+            'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8',
-            //'location' => 'required|min:2',
-            //'profile_photo' => 'required',
-            //'profile_url' => '',
-            //'presentation' => 'required',
-            //'admin' => 'required',
-            //'blocked' => '',
-            //'sells_evals' => '',
-            //'sells_count' => '',
-            //'buys_evals' => '',
-            //'buys_count' => '',
+            'password' => 'required|min:6',
+            'location' => 'required',
+            
         ]);
+
+        $user = new User($request->all());
+
+        $user->save();
+        return redirect('users');
+       
     }
 
     public function postEdit(Request $request)

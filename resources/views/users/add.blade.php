@@ -24,7 +24,7 @@
             name="password_confirmation" id="inputPasswordConfirmation"/>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" name="ok">Add</button>
+        <button type="submit" class="btn btn-primary" name="save">Add</button>
         <a class="btn btn-default" href="{{url('users')}}">Cancel</a>
     </div>
 </form>

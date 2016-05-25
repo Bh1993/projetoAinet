@@ -13,7 +13,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password', 'location', 'profile_photo', 'profile_url', 
-        'presentation', 'admin', 'blocked', 'sells_evals', 'sells_count', 'buys_evals', 'buys_count',
+        'presentation',
 
     ];
 
