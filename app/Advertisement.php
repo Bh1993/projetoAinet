@@ -32,7 +32,7 @@ class Advertisement extends Model
         return $this->blocked ? 'Blocked' : 'Unblocked';
     }
 
-    
+   
 
 }
 

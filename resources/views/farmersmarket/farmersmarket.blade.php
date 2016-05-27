@@ -19,10 +19,10 @@
 </head>
 <body class="landing-page">
 @include('layouts.main-nav')
-@include('layouts.farmersmarket-carousell')
-@include('layouts.farmersmarket-users')
-@include('layouts.farmersmarket-products')
-@include('layouts.farmersmarket-market')
+@include('farmersmarket.farmersmarket-carousell')
+@include('farmersmarket.farmersmarket-users')
+@include('farmersmarket.farmersmarket-products')
+@include('farmersmarket.farmersmarket-market')
 @include('layouts.farmersmarket-footer')
 
 </body>

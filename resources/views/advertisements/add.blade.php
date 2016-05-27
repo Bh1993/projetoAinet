@@ -10,17 +10,6 @@
 <form action="{{url('advertisements/create')}}" method="post" class="form-group">
     {{ csrf_field() }}
 
-    <div class="image">
-        <img src="image.jpg" alt="Mountain View" style="width:304px;height:228px;">
-    </div>
-    
-        <label>Select image to upload:</label>
-        <input type="file" name="fileToUpload" id="fileToUpload">
-       
-        <input type="submit" class="btn btn-success" value="Upload Image" name="submit">
-  
-
-
 <div class="form-group">
     <label for="inputDescription">Description</label>
     <input
@@ -41,7 +30,7 @@
 <div class="form-group">
     <label for="inputEndDate">End Date</label>
     <input
-        type="endDate" class="form-control"
+        type="date" class="form-control"
         name="available_until" id="inputEndDate"
         placeholder="End Date"
         value="{{ $advertisement->available_until }}"/>
@@ -53,7 +42,7 @@
         type="price" class="form-control"
         name="price_cemts" id="inputPrice"
         placeholder="Price"
-        value="{{ $advertisement->price }}?>"/>
+        value="{{ $advertisement->price_cents }}"/>
 </div>
 
 <div class="form-group">
@@ -84,8 +73,8 @@
 </div>
 
 <div class="form-group">
-        <button type="submit" class="btn btn-success" name="ok">Add</button>
-        <button type="submit" class="btn btn-default" name="cancel">Cancel</button>
+        <button type="submit" class="btn btn-success" name="save">Add</button>
+        <button type="submit" class="btn btn-default" name="cancel" href="{{url('advertisements')}}" >Cancel</button>
     </div>
 </form>
 @endsection    

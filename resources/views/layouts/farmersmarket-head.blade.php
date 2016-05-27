@@ -2,7 +2,6 @@
 <html>
 <head>	
 	<meta charset="utf-8">
-	<title>@yield('title')</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
@@ -18,13 +17,3 @@
     <script src="js/respond.min.js"></script>
     <![endif]--> 
 </head>
-<body class="landing-page">
-@include('layouts.main-nav')
-@include('farmersmarket.farmersmarket-carousell')
-@include('farmersmarket.farmersmarket-users')
-@include('farmersmarket.farmersmarket-products')
-@include('farmersmarket.farmersmarket-market')
-@include('farmersmarket.farmersmarket-footer')
-
-</body>
-</html>

@@ -31,7 +31,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Description</th>
+            <th>Owner id</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Price</th>
@@ -43,11 +43,11 @@
      @foreach ($advertisements as $advertisement)
         <tr>
             <td> {{ $advertisement->name }} </td>
-            <td> {{ $advertisement->description }} </td>
-            <td> {{ $advertisement->startDate }} </td>
-            <td> {{ $advertisement->endDate }} </td>
-            <td> {{ $advertisement->price }} </td>
-            <td> {{ $advertisement->getSatus() }} </td>
+            <td> {{ $advertisement->owner_id }} </td>
+            <td> {{ $advertisement->available_on }} </td>
+            <td> {{ $advertisement->available_until }} </td>
+            <td> {{ $advertisement->price_cents }} </td>
+            <td> {{ $advertisement->getStatus() }} </td>
             
             
         <td>

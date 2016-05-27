@@ -106,11 +106,11 @@
 					</a>
 					<div class="collapse navbar-collapse navbar-right">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="">Home</a></li>
-							<li class="dropdown"><a href="{{}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
+							<li class="active"><a href="{{url('farmersmarket')}}">Home</a></li>
+							<li class="dropdown"><a href="{{url('users-view')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Top Rated</a></li>
-									<li><a href="#">Most Recent</a></li>
+									<li><a href="{{url('users-toprated')}}">Top Rated</a></li>
+									<li><a href="{{url('users-topsellers')}}">Best Sellers</a></li>
 								</ul>
 							</li>
 								

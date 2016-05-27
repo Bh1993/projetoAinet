@@ -12,8 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.farmersmarket');
+    return view('farmersmarket.farmersmarket');
 });
+
+Route::get('users-view', 'GuestController@getUsers');
+Route::get('farmersmarket', 'GuestController@getHome');
+Route::get('users-toprated', 'GuestController@getTopRatedUsers');
+Route::get('users-topsellers', 'GuestController@getTopSellers');
 
 
 //Users

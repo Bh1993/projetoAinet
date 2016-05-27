@@ -9,18 +9,6 @@
 
 <form action="{{url('advertisements.edit')}}" method="post" class="form-group">
     
-    <input type="hidden" name="advertisement_id" value="{{$advertisement->id}}" />
-    <div class="image">
-        <img src="image.jpg" alt="Mountain View" style="width:304px;height:228px;">
-    </div>
-    
-        <label>Select image to upload:</label>
-        <input type="file" name="fileToUpload" id="fileToUpload">
-       
-        <input type="submit" class="btn btn-success" value="Upload Image" name="submit">
-  
-
-
 <div class="form-group">
     <label for="inputDescription">Description</label>
     <input
@@ -41,7 +29,7 @@
 <div class="form-group">
     <label for="inputEndDate">End Date</label>
     <input
-        type="endDate" class="form-control"
+        type="date" class="form-control"
         name="available_until" id="inputEndDate"
         placeholder="End Date"
         value="{{ $advertisement->available_until }}"/>
@@ -53,7 +41,7 @@
         type="price" class="form-control"
         name="price_cents" id="inputPrice"
         placeholder="Price"
-        value="{{ $advertisement->price_cents }}?>"/>
+        value="{{ $advertisement->price_cents }}"/>
 </div>
 
 <div class="form-group">
@@ -81,6 +69,14 @@
         name="tags" id="inputTags"
         placeholder="Tags"
         value="{{ $advertisement->tags }}"/>
+</div>
+
+<div class="form-group">
+    <label for="inputTags">Status</label>
+    <input
+        type="text" class="form-control"
+        name="blocked" id="inputStatus"
+        value="{{ $advertisement->getStatus() }}"/>
 </div>
     <div class="form-group">
         <button type="submit" class="btn btn-success" name="ok">Save</button>

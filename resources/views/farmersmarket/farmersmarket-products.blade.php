@@ -6,7 +6,7 @@
             <br>
             <br>
             <div class="row">
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                         <img src="..." alt="...">
                         <div class="caption">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                     
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                         <img src="..." alt="...">
                         <div class="caption">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                         <img src="..." alt="...">
                         <div class="caption">
@@ -38,18 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                         <img src="..." alt="...">
                         <div class="caption">
@@ -60,7 +49,40 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail" style="border:0; padding:0">
+                        <img src="..." alt="...">
+                        <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>...</p>
+                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail" style="border:0; padding:0">
+                        <img src="..." alt="...">
+                        <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>...</p>
+                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail" style="border:0; padding:0">
+                        <img src="..." alt="...">
+                        <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>...</p>
+                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                         <img src="..." alt="...">
                         <div class="caption">

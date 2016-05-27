@@ -28,7 +28,7 @@ $factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
     'owner_id' => $faker->numberBetween($min = 14, $max = 60),
     'name' => $faker->name,
     'description' => $faker->text(),
-    'available_on' => $faker->date($format = 'Y-m-d', $max = 'available_until'),
+    'available_on' => $faker->date($format = 'Y-m-d', $max = 'now'),
     'available_until' => $faker->date($format = 'Y-m-d', $max = 'now'),
     'price_cents' => $faker->numberBetween($min = 10, $max = 200),
     'quantity' => $faker->randomNumber($nbDigits = NULL),
