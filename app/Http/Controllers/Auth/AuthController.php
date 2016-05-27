@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Product;
+
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -68,6 +68,54 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'location' => $data['location'],
+            'admin' => 0, // Verificar se aqui é 0 ou '0'
+            'blocked' => 0, // Verificar se aqui é 0 ou '0'
         ]);
     }
+    /*
+    protected function getLogin()
+    {
+        return view('login');
+    }
+    */
+   
+   protected function postLogin(Request $request)
+   {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|pass',
+        ]);
+
+        $user = Auth::user();
+
+        return redirect('/');
+   }
+
+   protected function getLogout()
+   {
+       Auth::logout();
+       return redirect('/');
+   }
+
+   protected function getRegister()
+   {
+       return view('register');
+   }
+
+   protected function postRegister(Request $request)
+   {
+       $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|min:6',
+
+        ]);
+
+        $user = $this->create($request->all());
+
+        $user->save();
+        return redirect('/');
+   }
 }

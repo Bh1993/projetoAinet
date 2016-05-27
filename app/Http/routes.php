@@ -11,6 +11,11 @@
 |
 */
 
+/*
+Route::group(['middleware' => 'auth'], function () {
+    Route::auth();
+}
+*/
 Route::get('/', function () {
     return view('farmersmarket.farmersmarket');
 });
@@ -21,8 +26,17 @@ Route::get('users-toprated', 'GuestController@getTopRatedUsers');
 Route::get('users-topsellers', 'GuestController@getTopSellers');
 
 
-//Users
+// Login & Register Group
+/*Route::group(['login' => 'auth'], function () {
+    Route::get('login', 'AuthController@getLogin');
+    Route::post('auth/login', 'Auth\AuthController@postLogin');
+    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+    
+    Route::get('auth/register', 'Auth\AuthController@getRegister');
+    Route::post('auth/register', 'Auth\AuthController@postRegister');
+}*/
 
+//Users
 Route::get('users', 'UserController@index');
 Route::get('users/create', [
     'as' => 'users.create',

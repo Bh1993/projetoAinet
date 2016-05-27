@@ -32,7 +32,14 @@ class Advertisement extends Model
         return $this->blocked ? 'Blocked' : 'Unblocked';
     }
 
+<<<<<<< HEAD
    
+=======
+    public function comments()
+    {
+        return $this->hasMany('App\Comment'); // Segundo a documentação
+    }
+>>>>>>> ffb7e22e56116429fe7d2c971622eba02da5ae6f
 
 }
 
