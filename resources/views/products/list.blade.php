@@ -30,46 +30,40 @@
     <table class="table table-striped">
     <thead>
         <tr>
+            <th>Name</th>
             <th>Description</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Price</th>
-            <th>Quantity</th>
-            <th>Media Content</th>
-            <th>Tags</th>
+            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
      @foreach ($products as $product)
         <tr>
-            <td> {{ $product->description }} </a></td>
+            <td> {{ $product->name }} </td>
+            <td> {{ $product->description }} </td>
             <td> {{ $product->startDate }} </td>
             <td> {{ $product->endDate }} </td>
             <td> {{ $product->price }} </td>
-            <td> {{ $product->quantity }} </td>
-            <td> {{ $product->mediaContent }} </td>
-            <td> {{ $product->tags }} </td>
+            <td> {{ $product->getSatus() }} </td>
             
-            <td>
-                <a
-                    href="{{route('products.edit', ['id' => $product->id])}}"
-                    class="btn btn-xs btn-primary">Edit</a>
+            
+        <td>
+                <a class="btn btn-xs btn-primary" href="{{route('products.edit', ['id' => $product->id])}}">Edit</a>
+                <form action="{{route('products.delete', ['id' => $product->id])}}" method="post" class="inline">
+                {{ csrf_field() }}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                    </div>
 
-                <form action="products-delete.php" method="post" class="inline">
-                    <input type="hidden"
-                        name="product_id"
-                        value="{{route('products.delete', ['id' => $product->id])}}">
-                    <button
-                        type="submit"
-                        class="btn btn-xs btn-danger">Delete</button>
                 </form>
-
             </td>
         </tr>
     @endforeach
     </table>
-    @extends('layouts.pagination')
+    @include('layouts.pagination-products',['paginator'=>$products]);
 
 @else
     <h2>No advertisements found</h2>

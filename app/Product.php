@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\Product as Authenticatable;
-
-class Product extends Authenticatable
+class Product 
 {
     /**
      * The attributes that are mass assignable.
@@ -13,7 +11,7 @@ class Product extends Authenticatable
      */
     protected $fillable = [
         'owner_id', 'name', 'description', 'available_on', 'available_until', 'price_cents', 
-        'trade_prefs', 'quantity', 'blocked', 'sells_evals', 'sells_count', 'buys_evals', 'buys_count',
+        'quantity',
 
     ];
 
@@ -25,6 +23,11 @@ class Product extends Authenticatable
     protected $hidden = [
         'owner_id', 
     ];
+
+    public function getStatus()
+    {
+        return $this->blocked ? 'Blocked' : 'Unblocked';
+    }
 
     
 

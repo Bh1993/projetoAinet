@@ -47,7 +47,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6',
             'location' => 'required',
-            
+
         ]);
 
         $user = new User($request->all());
@@ -60,24 +60,33 @@ class UserController extends Controller
     public function postEdit(Request $request)
     {
         $this->validate($request, [
+            'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8',
-            //'location' => 'required|min:2',
-            //'profile_photo' => 'required',
-            //'profile_url' => '',
-            //'presentation' => 'required',
-            //'admin' => 'required',
-            //'blocked' => '',
-            //'sells_evals' => '',
-            //'sells_count' => '',
-            //'buys_evals' => '',
-            //'buys_count' => '',
+            'location' => '',
+            'profile_url' => '',
+            'admin' => '',
+
         ]);
+
+        $user = User::find($request->id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->location = $request->location;
+        $user->profile_url = $request->profile_url;
+        $user->admin = $request->admin;
+
+        $user->save();
+        return redirect('users');
     }
 
-    public function postDelete(Request $request)
+    public function postDelete($id)
     {
-        
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('users');
+
     }
 
 

@@ -12,10 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.farmersmarket');
 });
 
+
 //Users
+
 Route::get('users', 'UserController@index');
 Route::get('users/create', [
     'as' => 'users.create',
@@ -23,10 +25,14 @@ Route::get('users/create', [
 ]);
 Route::post('users/create', 'UserController@postCreate');
 
-Route::get('users/edit/{id}', ['as' => 'users.edit',
+Route::get('users/edit/{id}', [
+    'as' => 'users.edit',
     'uses' => 'UserController@getEdit', ]);
 
-Route::post('users/edit/{id}', 'UserController@postEdit');
+Route::post('users/edit/{id}', [
+    'as' => 'users.edit',
+    'uses' => 'UserController@postEdit', ]);
+
 Route::post('users/delete/{id}', [
     'as' => 'users.delete',
     'uses' => 'UserController@postDelete',
@@ -38,17 +44,21 @@ Route::get('users/show/{id}', ['as' => 'users.display-user',
 
 
 //Products
+
 Route::get('products', 'ProductController@index');
+
 Route::get('products/create', [
     'as' => 'products.create',
     'uses' => 'ProductController@getCreate',
 ]);
 Route::post('products/create', 'ProductController@postCreate');
 
-Route::get('products/edit/{id}', ['as' => 'products.edit',
+Route::get('products/edit/{id}', [
+    'as' => 'products.edit',
     'uses' => 'ProductController@getEdit', ]);
 
 Route::post('products/edit/{id}', 'ProductController@postEdit');
+
 Route::post('products/delete/{id}', [
     'as' => 'products.delete',
     'uses' => 'ProductController@postDelete',
