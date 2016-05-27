@@ -10,8 +10,8 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-/*
-$factory->define(App\User::class, function(Faker\Generator $faker) {
+
+/*$factory->define(App\User::class, function(Faker\Generator $faker) {
     return [
     'name' => $faker->name,
     'email' => $faker->safeEmail,
@@ -21,11 +21,11 @@ $factory->define(App\User::class, function(Faker\Generator $faker) {
     'presentation' => $faker->text(),
     'remember_token' => str_random(10),
     ];
-});
-*/
+});*/
+
 $factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
     return [
-    'owner_id' => $faker->numberBetween($min = 14, $max = 60),
+    'owner_id' => $faker->numberBetween($min = 1, $max = 101),
     'name' => $faker->name,
     'description' => $faker->text(),
     'available_on' => $faker->date($format = 'Y-m-d', $max = 'available_until'),

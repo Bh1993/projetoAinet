@@ -12,9 +12,14 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function parent()
+    public function advertisement()
     {
-        return $this->belongsTo(parent); // TODO: Corrigir return
+        return $this->belongsTo('App\Advertisement'); // TODO: Corrigir return
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
     }
      
 }
