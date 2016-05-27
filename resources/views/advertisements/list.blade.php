@@ -5,7 +5,7 @@
 @section('content')
 
 <div>
-    <a class="btn btn-primary" href="{{route('products.create')}}">Add Advertisement</a>
+    <a class="btn btn-primary" href="{{route('advertisements.create')}}">Add Advertisement</a>
     <div class="pull-right"> 
        <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -26,50 +26,44 @@
     </div>
 </div>
 
-@if (count($products))
+@if (count($advertisements))
     <table class="table table-striped">
     <thead>
         <tr>
+            <th>Name</th>
             <th>Description</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Price</th>
-            <th>Quantity</th>
-            <th>Media Content</th>
-            <th>Tags</th>
+            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-     @foreach ($products as $product)
+     @foreach ($advertisements as $advertisement)
         <tr>
-            <td> {{ $product->description }} </a></td>
-            <td> {{ $product->startDate }} </td>
-            <td> {{ $product->endDate }} </td>
-            <td> {{ $product->price }} </td>
-            <td> {{ $product->quantity }} </td>
-            <td> {{ $product->mediaContent }} </td>
-            <td> {{ $product->tags }} </td>
+            <td> {{ $advertisement->name }} </td>
+            <td> {{ $advertisement->description }} </td>
+            <td> {{ $advertisement->startDate }} </td>
+            <td> {{ $advertisement->endDate }} </td>
+            <td> {{ $advertisement->price }} </td>
+            <td> {{ $advertisement->getSatus() }} </td>
             
-            <td>
-                <a
-                    href="{{route('products.edit', ['id' => $product->id])}}"
-                    class="btn btn-xs btn-primary">Edit</a>
+            
+        <td>
+                <a class="btn btn-xs btn-primary" href="{{route('advertisements.edit', ['id' => $advertisement->id])}}">Edit</a>
+                <form action="{{route('advertisements.delete', ['id' => $advertisement->id])}}" method="post" class="inline">
+                {{ csrf_field() }}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                    </div>
 
-                <form action="products-delete.php" method="post" class="inline">
-                    <input type="hidden"
-                        name="product_id"
-                        value="{{route('products.delete', ['id' => $product->id])}}">
-                    <button
-                        type="submit"
-                        class="btn btn-xs btn-danger">Delete</button>
                 </form>
-
             </td>
         </tr>
     @endforeach
     </table>
-    @extends('layouts.pagination')
+    @include('layouts.pagination-advertisements',['paginator'=>$advertisements]);
 
 @else
     <h2>No advertisements found</h2>

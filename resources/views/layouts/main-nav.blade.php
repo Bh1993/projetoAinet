@@ -107,54 +107,22 @@
 					<div class="collapse navbar-collapse navbar-right">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="">Home</a></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games</a>
+							<li class="dropdown"><a href="{{}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Most Recent</a></li>
-									<li><a href="#">Most Popular</a></li>
 									<li><a href="#">Top Rated</a></li>
+									<li><a href="#">Most Recent</a></li>
 								</ul>
 							</li>
 								
-							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Platforms</a>
+							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">PS4</a></li>
-									<li><a href="#">XBOX One</a></li>
-									<li><a href="#">PC</a></li>
-									<li><a href="#">Nintendo Wii</a></li>
-								</ul>
-							</li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Movies</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Most Recent</a></li>
-									<li><a href="#">Most Popular</a></li>
 									<li><a href="#">Top Rated</a></li>
-								</ul>
-							</li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News</a>
-								<ul class="dropdown-menu">
+									<li><a href="#">Best Sellers</a></li>
 									<li><a href="#">Most Recent</a></li>
-									<li><a href="#">Most Popular</a></li>
-									<li><a href="#">Top Rated</a></li>
+									<li><a href="#">Most Viewed</a></li>
 								</ul>
 							</li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Features</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else here</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="#">Separated link</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="#">One more separated link</a></li>
-								</ul>
-							</li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Videos</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Most Recent</a></li>
-									<li><a href="#">Most Popular</a></li>
-									<li><a href="#">Top Rated</a></li>
-								</ul>
-							</li>
+							<li><a href="">Market</a></li>
 							<li><a href="">About Us</a></li> 
 							<li><a href="">Contacts</a></li>                        
 						</ul>

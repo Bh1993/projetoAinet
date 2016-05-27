@@ -12,27 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.farmersmarket');
 });
-
-/* Grupo para o qual os users precisam de autenticação
-- Access to Landing Page
-    - Browse through produtcs based on filters (text, seller, location or tags), with custom order
-    - Access to product details and related content from any product name
-    - Access all products by a user from his detail page
-    - View user accounts using filters, sortable and paged lists
-    - Possibility of authentication with valid credentials
-    - Possibility of register
-
-
-Route::group([['middleware' => 'auth'], function (){
-    // Autenticação
-}]);
-
-*/
 
 
 //Users
+
 Route::get('users', 'UserController@index');
 Route::get('users/create', [
     'as' => 'users.create',
@@ -40,10 +25,14 @@ Route::get('users/create', [
 ]);
 Route::post('users/create', 'UserController@postCreate');
 
-Route::get('users/edit/{id}', ['as' => 'users.edit',
+Route::get('users/edit/{id}', [
+    'as' => 'users.edit',
     'uses' => 'UserController@getEdit', ]);
 
-Route::post('users/edit/{id}', 'UserController@postEdit');
+Route::post('users/edit/{id}', [
+    'as' => 'users.edit',
+    'uses' => 'UserController@postEdit', ]);
+
 Route::post('users/delete/{id}', [
     'as' => 'users.delete',
     'uses' => 'UserController@postDelete',
@@ -53,19 +42,24 @@ Route::get('users/show/{id}', ['as' => 'users.display-user',
     'uses' => 'UserController@getShow', ]);
 
 
-//Products
-Route::get('products', 'ProductController@index');
-Route::get('products/create', [
-    'as' => 'products.create',
-    'uses' => 'ProductController@getCreate',
+
+//advertisements
+
+Route::get('advertisements', 'AdvertisementController@index');
+
+Route::get('advertisements/create', [
+    'as' => 'advertisements.create',
+    'uses' => 'AdvertisementController@getCreate',
 ]);
-Route::post('products/create', 'ProductController@postCreate');
+Route::post('advertisements/create', 'AdvertisementController@postCreate');
 
-Route::get('products/edit/{id}', ['as' => 'products.edit',
-    'uses' => 'ProductController@getEdit', ]);
+Route::get('advertisements/edit/{id}', [
+    'as' => 'advertisements.edit',
+    'uses' => 'AdvertisementController@getEdit', ]);
 
-Route::post('products/edit/{id}', 'ProductController@postEdit');
-Route::post('products/delete/{id}', [
-    'as' => 'products.delete',
-    'uses' => 'ProductController@postDelete',
+Route::post('advertisements/edit/{id}', 'AdvertisementController@postEdit');
+
+Route::post('advertisements/delete/{id}', [
+    'as' => 'advertisements.delete',
+    'uses' => 'AdvertisementController@postDelete',
 ]);

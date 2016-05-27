@@ -6,8 +6,8 @@
 @if (count($errors) > 0)
     @include('partials.errors')
 @endif
-<form action="{{url('users/edit')}}" method="post" class="form-group">
-    <input type="hidden" name="user_id" value="" />
+<form action="{{route('users.edit', ['id' => $user->id])}}" method="post" class="form-group">
+    {{ csrf_field() }}
     @include('users.partials.add-edit')
 <div class="form-group">
     <label for="inputStatus">Status</label>
@@ -23,7 +23,7 @@
     </select>
 </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" name="ok">Save</button>
+        <button type="submit" class="btn btn-primary" name="save">Save</button>
         <a class="btn btn-default" href="{{url('users')}}">Cancel</a>
     </div>
 </form>
