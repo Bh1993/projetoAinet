@@ -23,11 +23,13 @@ Route::get('/', function () {
     - View user accounts using filters, sortable and paged lists
     - Possibility of authentication with valid credentials
     - Possibility of register
-*/
-    
+
+
 Route::group([['middleware' => 'auth'], function (){
     // Autenticação
 }]);
+
+*/
 
 
 //Users
