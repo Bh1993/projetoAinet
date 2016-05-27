@@ -2,15 +2,18 @@
 
 namespace App;
 
-class Product 
+use Illuminate\Database\Eloquent\Model;
+
+class Advertisement extends Model
 {
+   
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'owner_id', 'name', 'description', 'available_on', 'available_until', 'price_cents', 
+        'name', 'description', 'available_on', 'available_until', 'price_cents', 
         'quantity',
 
     ];
@@ -32,3 +35,5 @@ class Product
     
 
 }
+
+

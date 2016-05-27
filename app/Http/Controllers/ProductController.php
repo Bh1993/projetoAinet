@@ -4,39 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Product;
+use App\Advertisement;
 
-class ProductController extends Controller
+class AdvertisementController extends Controller
 {
     public function index()
     {
-        $products = Product::paginate(10);
+        $advertisements = Advertisement::paginate(10);
 
-        return view('products.list', compact('products'));
+        return view('advertisements.list', compact('advertisements'));
     }
 
     public function getShow($id)
     {
         // get the nerd
-        $product = Product::find($id);
+        $advertisement = Advertisement::find($id);
 
-        // show the view and pass the nerd to it
-        //return view('products.display-product', compact('product'));
+       
+        //return view('advertisements.display-advertisement', compact('advertisement'));
            
     }
 
     public function getCreate()
     {
-        $product = new Product();
+        $advertisement = new Advertisement();
         
-        return view('products.add', compact('product'));
+        return view('advertisements.add', compact('advertisement'));
 
     }
 
     public function getEdit($id)
     {
-        $product = Product::find($id);
-        return view('products.edit', compact('product'));
+        $advertisement = Advertisement::find($id);
+        return view('advertisements.edit', compact('advertisement'));
 
     }
 
@@ -52,10 +52,10 @@ class ProductController extends Controller
 
         ]);
 
-        $product = new Product($request->all());
+        $advertisement = new Advertisement($request->all());
 
-        $product->save();
-        return redirect('products');
+        $advertisement->save();
+        return redirect('advertisements');
        
     }
 
@@ -71,25 +71,25 @@ class ProductController extends Controller
 
         ]);
 
-        $product = Product::find($request->id);
+        $advertisement = Advertisement::find($request->id);
 
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->available_on = $request->available_on;
-        $product->available_until = $request->available_until;
-        $product->price_cents = $request->price_cents;
-        $product->blocked = $request->blocked;
+        $advertisement->name = $request->name;
+        $advertisement->description = $request->description;
+        $advertisement->available_on = $request->available_on;
+        $advertisement->available_until = $request->available_until;
+        $advertisement->price_cents = $request->price_cents;
+        $advertisement->blocked = $request->blocked;
 
-        $product->save();
-        return redirect('products');
+        $advertisement->save();
+        return redirect('advertisements');
     }
 
     public function postDelete($id)
     {
-        $product = Product::find($id);
-        $product->delete();
+        $advertisement = Advertisement::find($id);
+        $advertisement->delete();
 
-        return redirect('products');
+        return redirect('advertisements');
 
     }
 

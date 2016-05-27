@@ -10,6 +10,7 @@
 | database. Just tell the factory how a default model should look.
 |
 */
+/*
 $factory->define(App\User::class, function(Faker\Generator $faker) {
     return [
     'name' => $faker->name,
@@ -21,4 +22,18 @@ $factory->define(App\User::class, function(Faker\Generator $faker) {
     'remember_token' => str_random(10),
     ];
 });
+*/
+$factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
+    return [
+    'owner_id' => $faker->numberBetween($min = 14, $max = 60),
+    'name' => $faker->name,
+    'description' => $faker->text(),
+    'available_on' => $faker->date($format = 'Y-m-d', $max = 'available_until'),
+    'available_until' => $faker->date($format = 'Y-m-d', $max = 'now'),
+    'price_cents' => $faker->numberBetween($min = 10, $max = 200),
+    'quantity' => $faker->randomNumber($nbDigits = NULL),
+    
+    ];
+});
+
 

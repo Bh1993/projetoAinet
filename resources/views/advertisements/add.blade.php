@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
-@section('title', 'Edit Advertisement')
+@section('title', 'Create Advertisement')
 
 @section('content')
 @if (count($errors) > 0)
     @include('partials.errors')
 @endif
 
-<form action="{{url('products.edit')}}" method="post" class="form-group">
-    
-    <input type="hidden" name="product_id" value="{{$product->id}}" />
+<form action="{{url('advertisements/create')}}" method="post" class="form-group">
+    {{ csrf_field() }}
+
     <div class="image">
         <img src="image.jpg" alt="Mountain View" style="width:304px;height:228px;">
     </div>
@@ -27,7 +27,7 @@
         type="text" class="form-control"
         name="description" id="inputDescription"
         placeholder="Description"
-        value=" {{ $product->description }}" />
+        value=" {{ $advertisement->description }}" />
 </div>
 <div class="form-group">
     <label for="inputStartDate">Start Date</label>
@@ -35,7 +35,7 @@
         type="date" class="form-control"
         name="available_on" id="inputDate"
         placeholder="Start Date"
-        value="{{ $product->available_on }}"/>
+        value="{{ $advertisement->available_on }}"/>
 </div>
 
 <div class="form-group">
@@ -44,16 +44,16 @@
         type="endDate" class="form-control"
         name="available_until" id="inputEndDate"
         placeholder="End Date"
-        value="{{ $product->available_until }}"/>
+        value="{{ $advertisement->available_until }}"/>
 </div>
 
 <div class="form-group">
     <label for="inputPrice">Price</label>
     <input
         type="price" class="form-control"
-        name="price_cents" id="inputPrice"
+        name="price_cemts" id="inputPrice"
         placeholder="Price"
-        value="{{ $product->price_cents }}?>"/>
+        value="{{ $advertisement->price }}?>"/>
 </div>
 
 <div class="form-group">
@@ -62,7 +62,7 @@
         type="quantity" class="form-control"
         name="quantity" id="inputQuantity"
         placeholder="Quantity"
-        value="{{ $product->quantity }}"/>
+        value="{{ $advertisement->quantity }}"/>
 </div>
 
 <div class="form-group">
@@ -71,7 +71,7 @@
         type="mediaContent" class="form-control"
         name="mediaContent" id="inputMediaContent"
         placeholder="Media Content"
-        value="{{ $product->media }}"/>
+        value="{{ $advertisement->media }}"/>
 </div>
 
 <div class="form-group">
@@ -80,11 +80,12 @@
         type="tags" class="form-control"
         name="tags" id="inputTags"
         placeholder="Tags"
-        value="{{ $product->tags }}"/>
+        value="{{ $advertisement->tags }}"/>
 </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-success" name="ok">Save</button>
-        <button type="submit" class="btn btn-default" name="cancel" href="{{url('products')}}">Cancel</button>
+
+<div class="form-group">
+        <button type="submit" class="btn btn-success" name="ok">Add</button>
+        <button type="submit" class="btn btn-default" name="cancel">Cancel</button>
     </div>
 </form>
-@endsection
+@endsection    

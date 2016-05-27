@@ -5,7 +5,7 @@
 @section('content')
 
 <div>
-    <a class="btn btn-primary" href="{{route('products.create')}}">Add Advertisement</a>
+    <a class="btn btn-primary" href="{{route('advertisements.create')}}">Add Advertisement</a>
     <div class="pull-right"> 
        <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -26,7 +26,7 @@
     </div>
 </div>
 
-@if (count($products))
+@if (count($advertisements))
     <table class="table table-striped">
     <thead>
         <tr>
@@ -40,19 +40,19 @@
         </tr>
     </thead>
     <tbody>
-     @foreach ($products as $product)
+     @foreach ($advertisements as $advertisement)
         <tr>
-            <td> {{ $product->name }} </td>
-            <td> {{ $product->description }} </td>
-            <td> {{ $product->startDate }} </td>
-            <td> {{ $product->endDate }} </td>
-            <td> {{ $product->price }} </td>
-            <td> {{ $product->getSatus() }} </td>
+            <td> {{ $advertisement->name }} </td>
+            <td> {{ $advertisement->description }} </td>
+            <td> {{ $advertisement->startDate }} </td>
+            <td> {{ $advertisement->endDate }} </td>
+            <td> {{ $advertisement->price }} </td>
+            <td> {{ $advertisement->getSatus() }} </td>
             
             
         <td>
-                <a class="btn btn-xs btn-primary" href="{{route('products.edit', ['id' => $product->id])}}">Edit</a>
-                <form action="{{route('products.delete', ['id' => $product->id])}}" method="post" class="inline">
+                <a class="btn btn-xs btn-primary" href="{{route('advertisements.edit', ['id' => $advertisement->id])}}">Edit</a>
+                <form action="{{route('advertisements.delete', ['id' => $advertisement->id])}}" method="post" class="inline">
                 {{ csrf_field() }}
                     <div class="form-group">
                         <button type="submit" class="btn btn-xs btn-danger">Delete</button>
@@ -63,7 +63,7 @@
         </tr>
     @endforeach
     </table>
-    @include('layouts.pagination-products',['paginator'=>$products]);
+    @include('layouts.pagination-advertisements',['paginator'=>$advertisements]);
 
 @else
     <h2>No advertisements found</h2>
