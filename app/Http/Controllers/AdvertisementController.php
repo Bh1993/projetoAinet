@@ -20,8 +20,7 @@ class AdvertisementController extends Controller
         // get the nerd
         $advertisement = Advertisement::find($id);
 
-       
-        //return view('advertisements.display-advertisement', compact('advertisement'));
+        return view('advertisements.display-advertisement', compact('advertisement'));
            
     }
 

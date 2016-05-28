@@ -8,11 +8,22 @@ use App\Http\Requests;
 
 use App\User;
 
-class GuestController extends Controller
+class MainController extends Controller
 {
     public function getUsers()
     {
-    	return view('farmersmarket.users-view', compact('users'));
+
+    	return view('farmersmarket.users-view', compact('user'));
+    }
+
+    public function getAllUsers()
+    {
+    	return view('farmersmarket.users-all');
+    }
+ 
+    public function getUserProfile()
+    {
+    	return view('farmersmarket.user-profile');
     }
 
     public function getHome()
@@ -22,6 +33,7 @@ class GuestController extends Controller
 
     public function getTopRatedUsers()
     {
+    	
     	return view('farmersmarket.users-toprated');
     }
 

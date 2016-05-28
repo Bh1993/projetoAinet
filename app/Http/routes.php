@@ -20,10 +20,12 @@ Route::get('/', function () {
     return view('farmersmarket.farmersmarket');
 });
 
-Route::get('users-view', 'GuestController@getUsers');
-Route::get('farmersmarket', 'GuestController@getHome');
-Route::get('users-toprated', 'GuestController@getTopRatedUsers');
-Route::get('users-topsellers', 'GuestController@getTopSellers');
+Route::get('users-all', 'MainController@getAllUsers');
+Route::get('users-view', 'MainController@getUsers');
+Route::get('users-profile', 'MainController@getUserProfile');
+Route::get('farmersmarket', 'MainController@getHome');
+Route::get('users-toprated', 'MainController@getTopRatedUsers');
+Route::get('users-topsellers', 'MainController@getTopSellers');
 
 
 // Login & Register Group
@@ -82,3 +84,6 @@ Route::post('advertisements/delete/{id}', [
     'as' => 'advertisements.delete',
     'uses' => 'AdvertisementController@postDelete',
 ]);
+
+Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement',
+    'uses' => 'AdvertisementController@getShow', ]);

@@ -17,10 +17,9 @@ class UserController extends Controller
 
     public function getShow($id)
     {
-        // get the nerd
+        
         $user = User::find($id);
 
-        // show the view and pass the nerd to it
         return view('users.display-user', compact('user'));
            
     }

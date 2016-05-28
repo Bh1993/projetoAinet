@@ -93,5 +93,5 @@
                 </div>
             </div>
         </div>
-         <a class="btn btn-primary" style="margin-left:615px" href="">View All Users</a>
+         <a class="btn btn-primary" style="margin-left:615px" href="{{url('users-all')}}">View All Users</a>
     </section>

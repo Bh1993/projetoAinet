@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', 'List advertisements')
+@section('title', 'List Advertisements')
 
 @section('content')
 
@@ -42,7 +42,7 @@
     <tbody>
      @foreach ($advertisements as $advertisement)
         <tr>
-            <td> {{ $advertisement->name }} </td>
+            <td><a href="{{route('advertisements.display-advertisement', ['id' => $advertisement->id])}}">{{ $advertisement->name }} </td>
             <td> {{ $advertisement->owner_id }} </td>
             <td> {{ $advertisement->available_on }} </td>
             <td> {{ $advertisement->available_until }} </td>

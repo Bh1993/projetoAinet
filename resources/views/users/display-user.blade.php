@@ -10,8 +10,6 @@
 <div class="col-sm-6 col-md-4">
  
         <img src="{{ $user->profile_photo }}" alt="Mountain View" style="width:304px;height:228px;" >
-    
-    
  </div>   
 <div class="col-sm-6 col-md-8">
 
