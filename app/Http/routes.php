@@ -62,6 +62,9 @@ Route::post('users/delete/{id}', [
 Route::get('users/show/{id}', ['as' => 'users.display-user',
     'uses' => 'UserController@getShow', ]);
 
+Route::get('users/show/{id}/bids', ['as' => 'users.display-bids',
+    'uses' => 'UserController@getBids',]);
+
 
 
 //advertisements
