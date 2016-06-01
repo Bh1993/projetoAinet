@@ -4,7 +4,7 @@
 <section id="main-page-news">
         <div class="container">
             <div class="news-header" style="padding-top:20px">
-                <h1>All Users</h1>
+                <h1>Most Viewed Advertisements</h1>
             </div>
             <br>
             <br>

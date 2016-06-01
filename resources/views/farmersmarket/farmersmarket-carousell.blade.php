@@ -5,9 +5,6 @@
 				<li data-target="#main-slider" data-slide-to="0" class="active"></li>
 				<li data-target="#main-slider" data-slide-to="1" class="#"></li>
 				<li data-target="#main-slider" data-slide-to="2" class="#"></li>
-				<li data-target="#main-slider" data-slide-to="3" class="#"></li>
-				<li data-target="#main-slider" data-slide-to="4" class="#"></li>
-				<li data-target="#main-slider" data-slide-to="5" class="#"></li>
 			</ol>
 			<div class="carousel-inner">
 				<div class="item active" style="">

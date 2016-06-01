@@ -1,16 +1,16 @@
 @extends('layouts.farmersmarket-head')
 @include('layouts.main-nav')
 
-<section id="display" style="padding-top:20px">
+<section id="main-page-news">
 		<div class="container" >
-			<div class="display-header">
+			<div class="news-header">
 				<h1>User Profile</h1>
 			</div>
 			<br>
 			<div class="row">
 				<div class="col-sm-6 col-md-4">
 					<div class="image">
-						<img src="image.jpg" alt="Mountain View" style="width:304px;height:228px;">
+						<img src="{{$user->profile_photo}}" alt="{{$user->name}}" style="width:304px;height:228px;">
 					</div>
 				</div>
 
@@ -46,11 +46,6 @@
 					<div class="form-group">
     					<label for="inputProfileUrl">Profile URL</label>
    						    <p> {{ $user->profile_url }} </p>
-					</div>
-
-					<div class="form-group">
-    					<label for="inputStatus">Status</label>
-    						<p>{{ $user->getStatus() }}</p>
 					</div>
 
 					<div class="form-group">

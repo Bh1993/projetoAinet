@@ -63,6 +63,24 @@ hr {
   padding-bottom: 0px;
 }
 
+.pagination>li>a, .pagination>li>span {
+    
+    color: #FF8345;
+    
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    
+    background-color: #ff8345;
+    border-color: #ff8345;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+   
+    color: #9E512A;
+    
+}
+
 .btn-primary {
   padding: 8px 20px;
   background: #ff8345;

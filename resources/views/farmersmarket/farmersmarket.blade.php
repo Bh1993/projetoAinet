@@ -6,6 +6,5 @@
 @include('farmersmarket.farmersmarket-products')
 @include('farmersmarket.farmersmarket-market')
 @include('layouts.farmersmarket-footer')
-
 </body>
 </html>

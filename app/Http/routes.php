@@ -16,16 +16,26 @@ Route::group(['middleware' => 'auth'], function () {
     Route::auth();
 }
 */
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('farmersmarket.farmersmarket');
 });
+*/
+Route::get('/', 'MainController@getHome');
+
 
 Route::get('users-all', 'MainController@getAllUsers');
+Route::get('farmersmarket/users/show/{id}', ['as' => 'farmersmarket.user-profile',
+    'uses' => 'MainController@getUserProfile', ]);
 Route::get('users-view', 'MainController@getUsers');
-Route::get('users-profile', 'MainController@getUserProfile');
+
 Route::get('farmersmarket', 'MainController@getHome');
 Route::get('users-toprated', 'MainController@getTopRatedUsers');
 Route::get('users-topsellers', 'MainController@getTopSellers');
+
+Route::get('advertisements-all', 'MainController@getAllAdvertisements');
+Route::get('advertisements-bestsellers', 'MainController@getMostSoldAdvertisements');
+Route::get('advertisements-mostviewed', 'MainController@getMostViewedAdvertisements');
+Route::get('advertisements-toprated', 'MainController@getTopRatedAdvertisements');
 
 
 // Login & Register Group

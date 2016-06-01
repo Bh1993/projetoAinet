@@ -115,12 +115,12 @@
 								</ul>
 							</li>
 								
-							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products</a>
+							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Advertisements</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Top Rated</a></li>
-									<li><a href="#">Best Sellers</a></li>
-									<li><a href="#">Most Recent</a></li>
-									<li><a href="#">Most Viewed</a></li>
+									<li><a href="{{url('advertisements-toprated')}}">Top Rated</a></li>
+									<li><a href="{{url('advertisements-bestsellers')}}">Best Sellers</a></li>
+									<li><a href="{{url('advertisements-mostviewed')}}">Most Viewed</a></li>
+									<li><a href="{{url('advertisements-all')}}">All Advertisements</a></li>
 								</ul>
 							</li>
 							<li><a href="">Market</a></li>

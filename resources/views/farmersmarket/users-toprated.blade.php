@@ -9,182 +9,21 @@
             <br>
             <br>
             <div class="row">
+            @foreach($users as $user)
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
+                        <img src="{{$user->profile_photo}}" alt="...">
                         <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
+                            <h3>{{$user->name}}</h3>
+                            <p></p>
                             <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-                    
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-                    
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail" style="border:0; padding:0">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
-                        </div>
-                    </div>
-                </div>
+            @endforeach    
             </div>
-
+@include('layouts.pagination-users',['paginator'=>$users])    
         </div>
-         
+    
     </section>
-
-    @include('layouts.farmersmarket-footer')
+@include('layouts.farmersmarket-footer')
