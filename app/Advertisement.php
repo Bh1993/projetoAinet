@@ -31,16 +31,23 @@ class Advertisement extends Model
     {
         return $this->blocked ? 'Blocked' : 'Unblocked';
     }
-/*
-<<<<<<< HEAD
-   
-=======
+
+     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     public function comments()
     {
         return $this->hasMany('App\Comment'); // Segundo a documentação
     }
->>>>>>> ffb7e22e56116429fe7d2c971622eba02da5ae6f
-*/
+
+    // As an authenticated user I want to be able to bid on a product that I do not own;
+    public function bids() 
+    {
+        return $this->hasMany('App\Bid'); 
+    }
+
 }
 
 

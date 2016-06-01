@@ -35,5 +35,10 @@ class User extends Authenticatable
     {
         return $this->blocked ? 'Blocked' : 'Unblocked';
     }
+
+    public function getBids()
+    {
+        return $this->advertisement()->bids()->get();
+    }
     
 }

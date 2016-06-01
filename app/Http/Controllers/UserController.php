@@ -88,5 +88,12 @@ class UserController extends Controller
 
     }
 
+    public function getBids($id)
+    {
+        $user = User::find($id);
+        $user->getBids();
+
+        return view('users.bids', compact('user'))
+    }
 
 }
