@@ -68,11 +68,12 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'location' => $data['location'],
+            //'location' => $data['location'],
             'admin' => 0, // Verificar se aqui é 0 ou '0'
             'blocked' => 0, // Verificar se aqui é 0 ou '0'
         ]);
     }
+}
     /*
     protected function getLogin()
     {
@@ -80,7 +81,7 @@ class AuthController extends Controller
     }
     */
    
-   protected function postLogin(Request $request)
+   /* protected function postLogin(Request $request)
    {
         $this->validate($request, [
             'email' => 'required|email',
@@ -116,6 +117,6 @@ class AuthController extends Controller
         $user = $this->create($request->all());
 
         $user->save();
-        return redirect('/');
+        return redirect('/'); 
    }
 }

@@ -37,23 +37,33 @@ Route::get('advertisements-bestsellers', 'MainController@getMostSoldAdvertisemen
 Route::get('advertisements-mostviewed', 'MainController@getMostViewedAdvertisements');
 Route::get('advertisements-toprated', 'MainController@getTopRatedAdvertisements');
 
-
-// Login & Register Group
-/*Route::group(['login' => 'auth'], function () {
-    Route::get('login', 'AuthController@getLogin');
+/* Route::get('login', 'AuthController@getLogin');
     Route::post('auth/login', 'Auth\AuthController@postLogin');
-    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+   
     
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', 'Auth\AuthController@postRegister');
-}*/
+*/
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::auth();
+
+// Login & Register Group
+Route::group(['middleware' => 'auth'], function () {
+   Route::get('users', 'UserController@index');
+    
+});
+
+Route::group(['middleware' => 'admin'], function() {
+    
+        Route::get('users/create', [
+        'as' => 'users.create',
+        'uses' => 'UserController@getCreate',
+    ]);
+});
 
 //Users
-Route::get('users', 'UserController@index');
-Route::get('users/create', [
-    'as' => 'users.create',
-    'uses' => 'UserController@getCreate',
-]);
+//Route::get('users', 'UserController@index');
+
 Route::post('users/create', 'UserController@postCreate');
 
 Route::get('users/edit/{id}', [

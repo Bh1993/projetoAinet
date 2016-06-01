@@ -14,7 +14,7 @@ class Comment extends Model
 
     public function advertisement()
     {
-        return $this->belongsTo('App\Advertisement'); // TODO: Corrigir return
+        return $this->belongsTo(Advertisement::class); // TODO: Corrigir return
     }
 
     public function comments()
