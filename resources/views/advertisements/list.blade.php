@@ -46,7 +46,7 @@
             <td> {{ $advertisement->owner_id }} </td>
             <td> {{ $advertisement->available_on }} </td>
             <td> {{ $advertisement->available_until }} </td>
-            <td> {{ $advertisement->price_cents }} </td>
+  a>          <td> {{ $advertisement->price_cents }} </td>
             <td> {{ $advertisement->getStatus() }} </td>
             
             

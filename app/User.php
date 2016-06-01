@@ -36,6 +36,11 @@ class User extends Authenticatable
         return $this->blocked ? 'Blocked' : 'Unblocked';
     }
 
+    public function advertisement()
+    {
+        return $this->hasMany('\App\Advertisement', 'owner_id');
+    }
+
     public function getBids()
     {
         return $this->advertisement()->bids()->get();

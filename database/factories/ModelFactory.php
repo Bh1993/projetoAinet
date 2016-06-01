@@ -24,8 +24,9 @@
 });*/
 
 $factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
+    $users = App\User::all();
     return [
-    'owner_id' => $faker->numberBetween($min = 1, $max = 101),
+    'owner_id' => $users->random()->id,
     'name' => $faker->name,
     'description' => $faker->text(),
     'available_on' => $faker->date($format = 'Y-m-d', $max = 'now'),

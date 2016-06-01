@@ -34,7 +34,7 @@ class Advertisement extends Model
 
      public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'owner_id');
     }
     
     public function comments()
@@ -45,7 +45,7 @@ class Advertisement extends Model
     // As an authenticated user I want to be able to bid on a product that I do not own;
     public function bids() 
     {
-        return $this->hasMany('App\Bid'); 
+        return $this->hasMany('App\Bid' , 'advertisement_id'); 
     }
 
 }
