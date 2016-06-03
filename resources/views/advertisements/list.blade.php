@@ -46,7 +46,7 @@
             <td> {{ $advertisement->owner_id }} </td>
             <td> {{ $advertisement->available_on }} </td>
             <td> {{ $advertisement->available_until }} </td>
-  a>          <td> {{ $advertisement->price_cents }} </td>
+            <td> {{ $advertisement->price_cents }} </td>
             <td> {{ $advertisement->getStatus() }} </td>
             
             
@@ -63,7 +63,7 @@
         </tr>
     @endforeach
     </table>
-    @include('layouts.pagination-advertisements',['paginator'=>$advertisements]);
+    @include('layouts.pagination-advertisements',['paginator'=>$advertisements])
 
 @else
     <h2>No advertisements found</h2>

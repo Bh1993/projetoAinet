@@ -73,8 +73,8 @@
 </div>
 
 <div class="form-group">
-        <button type="submit" class="btn btn-primary" name="ok">Edit</button>
-        <button type="submit" class="btn btn-default" name="cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" href="" name="ok">Edit</button>
+        <button type="submit" class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</button>
     </div>
 
 </div>

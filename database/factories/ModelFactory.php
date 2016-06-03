@@ -37,4 +37,13 @@ $factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Media::class, function(Faker\Generator $faker){
+    $advertisements = App\Advertisement::all();
+    return [
+    'advertisement_id' => $advertisements->random()->id,
+    'media_url' => $faker->url,
+    'photo_path' => $faker->imageUrl($width = 304, $height = 228),
+    ];
+});
+
 

@@ -7,13 +7,16 @@
 				<li data-target="#main-slider" data-slide-to="2" class="#"></li>
 			</ol>
 			<div class="carousel-inner">
+			<img src="images/image.jpg" alt="">
 				<div class="item active" style="">
 					<div class="container">
+
 						<div class="row slide-margin">
 							<div class="col-sm-6">
 								<div class="carousel-content">
-									<h1 class="animation animated-item-1"><h1></h1>
-									<h2 class="animation animated-item-2"><h2></h2>
+
+									<h1 class="animation animated-item-1"><h1>dasdasdasdas</h1>
+									<h2 class="animation animated-item-2"><h2>asdasdasdasd</h2>
 									<a class="btn-slide animation animated-item-3" href="#">Read More</a>
 								</div>
 							</div>

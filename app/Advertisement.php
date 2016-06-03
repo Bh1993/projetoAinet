@@ -32,6 +32,11 @@ class Advertisement extends Model
         return $this->blocked ? 'Blocked' : 'Unblocked';
     }
 
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
+
      public function user()
     {
         return $this->belongsTo(User::class, 'owner_id');

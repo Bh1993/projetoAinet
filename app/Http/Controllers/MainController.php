@@ -19,9 +19,10 @@ class MainController extends Controller
     }
 
     public function getAllUsers()
-    {
+    {	
+    	$users = User::paginate(8);
 
-    	return view('farmersmarket.users-all');
+    	return view('farmersmarket.users-all', compact('users'));
     }
 
     public function getUserProfile($id)
@@ -36,7 +37,8 @@ class MainController extends Controller
     
     	$users = User::orderByRaw("RAND()")->take(8)->get();
 
-    	$advertisements = Advertisement::orderByRaw("RAND()")->take(8)->get();
+    	$advertisements = Advertisement::with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
+
 
     	return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
     }
@@ -50,11 +52,13 @@ class MainController extends Controller
 
      public function getTopSellers()
     {
-    	return view('farmersmarket.users-topsellers');
+    	$users = User::paginate(8);
+    	return view('farmersmarket.users-topsellers', compact('users'));
     }
 
     public function getAllAdvertisements()
     {
+    	
     	return view('farmersmarket.advertisements-all');
     }
 
