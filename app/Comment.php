@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
 
+    protected $fillable = [
+        'comment', 'user_id', 'advertisement_id', 'comment',
+        
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id', 
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

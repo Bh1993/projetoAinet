@@ -1,12 +1,10 @@
 @extends('layouts.backend')
 
-@section('title', 'List users')
+@section('title', 'List Comments')
 
 @section('content')
-
 <div>
     <a class="btn btn-primary" href="{{route('users.create')}}">Add user</a>
-  
     <div class="pull-right"> 
        <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -24,33 +22,30 @@
     </div>
 </div>
 
-@if (count($users))
+@if (count($comments))
     <table class="table table-striped">
     <thead>
         <tr>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Status</th>
+            <th>Comment number</th>
+            <th>User</th>
+            <th>Advertisement</th>
+            <th>Reply</th>
             <th>Created At</th>
-            <th>Updated At</th>
-            <th>Actions</th>
         </tr>
     </thead>
     
     <tbody>
-    @foreach ($users as $user)
+    @foreach ($comments as $comment)
         <tr>
-            <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
-            <td><a href="{{route('users.display-user', ['id' => $user->id])}}">{{ $user->name }}</td>
-            <td>{{ $user->getType() }}</td>
-            <td>{{ $user->getStatus() }}</td>
-            <td>{{ $user->created_at }}</td>
-            <td>{{ $user->updated_at }}</td>
+            <td><a href="{{route('comments.display-comment', ['id' => $comment->id])}}">{{ $comment->id }}</td>
+            <td>{{ $comment->user_id }}</td>
+            <td>{{ $comment->advertisement_id }}</td>
+            <td>{{ $comment->parent_id }}</td>
+            <td>{{ $comment->created_at }}</td>
             
             <td>
                 <a class="btn btn-xs btn-primary" href="{{route('users.edit', ['id' => $user->id])}}">Edit</a>
-                <form action="{{route('users.delete', ['id' => $user->id])}}" method="post" class="inline">
+                <form action="{{route('comments.delete', ['id' => $comment->id])}}" method="post" class="inline">
                 {{ csrf_field() }}
                     <div class="form-group">
                         <button type="submit" class="btn btn-xs btn-danger">Delete</button>
@@ -61,9 +56,9 @@
         </tr>
     @endforeach
     </table>
-    @include('layouts.pagination-users',['paginator'=>$users])
+    @include('layouts.pagination-comments',['paginator'=>$comments])
 @else
-    <h2>No users found</h2>
+    <h2>No comments found</h2>
 @endif
 @endsection
 

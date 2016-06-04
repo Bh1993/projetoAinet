@@ -18,7 +18,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+     
       <a class="navbar-brand" href="#">Administrator Area</a>
+
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,7 +41,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         
-        <li><a href="#">Go back to website</a></li>
+        <li><a href="{{url('/')}}">Go back to website</a></li>
         
       </ul>
     </div><!-- /.navbar-collapse -->

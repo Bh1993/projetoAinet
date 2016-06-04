@@ -31,6 +31,12 @@ class MainController extends Controller
     	return view('farmersmarket.user-profile',compact('user'));
     }
  
+    public function getAdvertisementProfile($id)
+    {
+        $advertisement = Advertisement::find($id);
+        return view('farmersmarket.advertisements-profile',compact('advertisement'));
+    }
+ 
     
     public function getHome()
     {
@@ -58,25 +64,28 @@ class MainController extends Controller
 
     public function getAllAdvertisements()
     {
-    	
-    	return view('farmersmarket.advertisements-all');
+    	$advertisements = Advertisement::paginate(8);
+    	return view('farmersmarket.advertisements-all',compact('advertisements'));
     }
 
      public function getTopRatedAdvertisements()
     {
     	
-    	return view('farmersmarket.advertisements-toprated');
+    	$advertisements = Advertisement::paginate(8);
+        return view('farmersmarket.advertisements-toprated',compact('advertisements'));
     }
 
      public function getMostViewedAdvertisements()
     {
     	
-    	return view('farmersmarket.advertisements-mostviewed');
+    	$advertisements = Advertisement::paginate(8);
+        return view('farmersmarket.advertisements-mostviewed',compact('advertisements'));
     }
 
      public function getMostSoldAdvertisements()
     {
     	
-    	return view('farmersmarket.advertisements-bestsellers');
+    	$advertisements = Advertisement::paginate(8);
+        return view('farmersmarket.advertisements-bestsellers',compact('advertisements'));
     }
 }

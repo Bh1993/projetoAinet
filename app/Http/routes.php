@@ -26,6 +26,8 @@ Route::get('/', 'MainController@getHome');
 Route::get('users-all', 'MainController@getAllUsers');
 Route::get('farmersmarket/users/show/{id}', ['as' => 'farmersmarket.user-profile',
     'uses' => 'MainController@getUserProfile', ]);
+Route::get('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
+    'uses' => 'MainController@getAdvertisementProfile', ]);
 Route::get('users-view', 'MainController@getUsers');
 
 Route::get('farmersmarket', 'MainController@getHome');
