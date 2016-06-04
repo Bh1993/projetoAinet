@@ -88,10 +88,26 @@ class UserController extends Controller
 
     }
 
-    public function getBids($id)
+    public function getComments()    // Vista admin dos comentários do user com $id
+    {
+        $user = User::all();
+        $user->getComments()->where('blocked', 1);
+
+        return view('user.comments');   // TODO
+    }
+
+    public function getAdvertisements()      // Vista Admin dos advertisements bloqueados
+    {
+        $user = User::all();
+        $user->getAdvertisements()->where('blocked', 1);
+
+        return view('user.advertisements'); // Falta compact ?
+    }
+
+    public function getBids($id) // TODO: View
     {
         $user = User::find($id);
-        $user->getBids();
+        $user->getAdvertisements();
 
         return view('users.bids', compact('user'));
     }
