@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Advertisement extends Model
 {
-   
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -44,13 +44,13 @@ class Advertisement extends Model
     
     public function comments()
     {
-        return $this->hasMany('App\Comment'); // Segundo a documentação
+        return $this->hasMany(Comment::class); 
     }
 
     // As an authenticated user I want to be able to bid on a product that I do not own;
     public function bids() 
     {
-        return $this->hasMany('App\Bid' , 'advertisement_id'); 
+        return $this->hasMany(Bid::class , 'advertisement_id'); 
     }
 
 }

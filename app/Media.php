@@ -13,7 +13,7 @@ class Media extends Model
 
     protected $hidden = [
         'id', 
-    ];
+    ]; 
 
     public function advertisement()
     {
