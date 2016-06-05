@@ -1,12 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.farmersmarket-head')
+@include('layouts.main-nav')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
+<section id="main-page-news">
+        <div class="container">
+            <div class="news-header">
+                <h1>Log In</h1>
+            </div>
+
+            <div class="row">
+                <div class="container" style="padding-bottom:180px">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
@@ -51,7 +53,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i> Login
+                                    <i class="glyphicon glyphicon-log-in"></i> Login
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
@@ -61,6 +63,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+</section>
+ @include('layouts.farmersmarket-footer')
+  

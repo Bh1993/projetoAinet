@@ -42,7 +42,7 @@
     <tbody>
      @foreach ($advertisements as $advertisement)
         <tr>
-            <td><a href="{{route('advertisements.display-advertisement', ['id' => $advertisement->id])}}">{{ $advertisement->name }} </td>
+            <td><a href="{{route('advertisements.display-advertisement', ['id' => $advertisement->id])}}">{{ $advertisement->name }}</a></td>
             <td> {{ $advertisement->owner_id }} </td>
             <td> {{ $advertisement->available_on }} </td>
             <td> {{ $advertisement->available_until }} </td>

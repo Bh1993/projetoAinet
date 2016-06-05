@@ -1,12 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.farmersmarket-head')
+@include('layouts.main-nav')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
+<section id="main-page-news">
+        <div class="container">
+            <div class="news-header">
+                <h1>Register Account</h1>
+            </div>
+
+            <div class="row">
+                <div class="container" style="padding-bottom:70px">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
@@ -33,6 +35,20 @@
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Location</label>
+
+                            <div class="col-md-6">
+                                <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}">
+
+                                @if ($errors->has('location'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('location') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -69,7 +85,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
+                                    <i class="glyphicon glyphicon-user"></i> Register
                                 </button>
                             </div>
                         </div>
@@ -77,6 +93,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+</section>
+ @include('layouts.farmersmarket-footer')

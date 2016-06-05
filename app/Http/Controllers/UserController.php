@@ -10,9 +10,18 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::orderBy('name','asc')->paginate(10);
+        $options = ['name' => 'Name','email' => 'Email'];
 
-        return view('users.list', compact('users'));
+        return view('users.list', compact(['users','options']));
+    }
+
+    public function orderBy(Request $request)
+    {
+        
+        $users = User::orderBy($request->input('options'),'asc')->paginate(10); 
+        $options = ['name' => 'Name','email' => 'Email']; 
+        return view('users.list', compact(['users','options']));
     }
 
     public function getShow($id)
@@ -38,6 +47,8 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
 
     }
+
+    
 
     public function postCreate(Request $request)
     {

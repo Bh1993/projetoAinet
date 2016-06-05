@@ -13,9 +13,18 @@
 				<div class="col-sm-6 col-xs-8">
 					<div class="top-account">
 						<ul class="account">
-						
-							<li><a href="#myModalAccount" data-toggle="modal" data-target="#myModalAccount"><span class="glyphicon glyphicon-user"></span> Create accout </a></li>
-							<li><a href="#myModal" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+							@if(!Auth::check())
+							<li><a href="{{url('auth/register')}}"><span class="glyphicon glyphicon-user"></span> Create accout </a></li>
+							<li><a href="{{url('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+							@else
+							<li><a href="{{route('farmersmarket.user-myprofile',['id' => Auth::user()->id])}}"><span class="glyphicon glyphicon-cog"></span> My Profile </a></li>
+							<li><a href=""><span class="glyphicon glyphicon-book"></span> My Advertisements </a></li>
+							<li><a href=""><span class="glyphicon glyphicon-shopping-cart"></span> My Bids </a></li>
+							@if(Auth::user()->admin == 1)
+							<li><a href="{{url('users')}}"><span class="glyphicon glyphicon-log-in"></span> Dashboard </a></li>
+							@endif
+							<li><a href="{{url('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>	
+							@endif
 						</ul>
 					</div>
 				</div>
@@ -45,11 +54,9 @@
 								</ul>
 							</li>
 								
-							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Advertisements</a>
+							<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Advertisements</a>
 								<ul class="dropdown-menu">
-									<li><a href="{{url('advertisements-toprated')}}">Top Rated</a></li>
-									<li><a href="{{url('advertisements-bestsellers')}}">Best Sellers</a></li>
-									<li><a href="{{url('advertisements-mostviewed')}}">Most Viewed</a></li>
+									<li><a href="{{url('advertisements-mostrecent')}}">Most Recent</a></li>
 									<li><a href="{{url('advertisements-all')}}">All Advertisements</a></li>
 								</ul>
 							</li>

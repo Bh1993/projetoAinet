@@ -14,23 +14,36 @@
 
 Route::get('/', 'MainController@getHome');
 
+Route::post('users-orderBy', ['as' => 'users-orderBy',
+    'uses' => 'UserController@orderBy']);
 
 Route::get('users-all', 'MainController@getAllUsers');
+
 Route::get('farmersmarket/users/show/{id}', ['as' => 'farmersmarket.user-profile',
     'uses' => 'MainController@getUserProfile', ]);
+
+Route::get('farmersmarket/my-profile/show/{id}', ['as' => 'farmersmarket.user-myprofile',
+    'uses' => 'MainController@getMyProfile', ]);
+
+Route::get('farmersmarket/edit-profile/{id}', [                 // Edit users, each user can edit himself
+    'as' => 'farmersmarket.user-edit-profile',
+    'uses' => 'MainController@getEditProfile', ]);
+
 Route::get('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
     'uses' => 'MainController@getAdvertisementProfile', ]);
-Route::get('users-view', 'MainController@getUsers');
 
+Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
 Route::get('users-toprated', 'MainController@getTopRatedUsers');
 Route::get('users-topsellers', 'MainController@getTopSellers');
 
 Route::get('advertisements-all', 'MainController@getAllAdvertisements');
+Route::get('advertisements-mostrecent', 'MainController@getRecentAdvertisements');
+/*
 Route::get('advertisements-bestsellers', 'MainController@getMostSoldAdvertisements');
 Route::get('advertisements-mostviewed', 'MainController@getMostViewedAdvertisements');
 Route::get('advertisements-toprated', 'MainController@getTopRatedAdvertisements');
-
+*/
 Route::get('advertisements', 'AdvertisementController@index');      // Every person can see advertisements
 
 Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement', // Every person can see details
@@ -55,7 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
     'uses' => 'AdvertisementController@getCreate',
     ]);
 
-   Route::post('advertisements/create', 'AdvertisementController@postCreate');     // Post create ads
+    Route::post('advertisements/create', 'AdvertisementController@postCreate');     // Post create ads
 
     Route::get('advertisements/edit/{id}', [                            // Each user can edit it's ads
         'as' => 'advertisements.edit',
@@ -73,7 +86,8 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'admin'], function() { // Admin Route
 
     Route::get('users', 'UserController@index');     // List users as Admin
-    
+    Route::get('advertisements', 'AdvertisementController@index');
+
     Route::get('users/create', [                // View to create users as admin
         'as' => 'users.create',
         'uses' => 'UserController@getCreate',

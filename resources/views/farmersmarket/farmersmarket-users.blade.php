@@ -11,6 +11,7 @@
                     <div class="thumbnail" style="border:0; padding:0">
                         <img src="{{$user->profile_photo}}" alt="...">
                         <div class="caption">
+                            
                             <h3>{{$user->name}}</h3>
                             <p></p>
                             <p><a href="{{route('farmersmarket.user-profile',['id' => $user->id])}}" class="btn btn-primary" role="button">View Profile</a></p>

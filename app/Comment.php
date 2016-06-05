@@ -18,7 +18,7 @@ class Comment extends Model
      * @var array
      */
     protected $hidden = [
-        'id', 
+        'id', 'parent_id',
     ];
 
     public function user()

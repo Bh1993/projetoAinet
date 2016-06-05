@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\User;
-
 use App\Advertisement;
 
 class MainController extends Controller
@@ -30,6 +27,18 @@ class MainController extends Controller
     	$user = User::find($id);
     	return view('farmersmarket.user-profile',compact('user'));
     }
+
+    public function getEditProfile($id)
+    {
+        $user = User::find($id);
+        return view('farmersmarket.user-edit-profile', compact('user'));
+    }
+
+    public function getMyProfile($id)
+    {
+        $user = User::find($id);
+        return view('farmersmarket.user-myprofile',compact('user'));
+    }
  
     public function getAdvertisementProfile($id)
     {
@@ -45,8 +54,13 @@ class MainController extends Controller
 
     	$advertisements = Advertisement::with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
 
-
     	return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
+    }
+
+    public function getUserAdvertisements()
+    {
+        $user = User::with('advertisements')->has('advertisements')->get();
+        return view('farmersmarket.user-advertisements', compact('user'));
     }
 
     public function getTopRatedUsers()
@@ -68,6 +82,13 @@ class MainController extends Controller
     	return view('farmersmarket.advertisements-all',compact('advertisements'));
     }
 
+    public function getRecentAdvertisements()
+    {
+        $advertisements = Advertisement::paginate(8);
+        return view('farmersmarket.advertisements-mostrecent',compact('advertisements'));
+    }
+
+    /*
      public function getTopRatedAdvertisements()
     {
     	
@@ -88,4 +109,5 @@ class MainController extends Controller
     	$advertisements = Advertisement::paginate(8);
         return view('farmersmarket.advertisements-bestsellers',compact('advertisements'));
     }
+    */
 }

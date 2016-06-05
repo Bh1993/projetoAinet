@@ -4,73 +4,73 @@
 <section id="main-page-news">
 		<div class="container" >
 			<div class="news-header">
-				<h1>User Profile</h1>
+				<h1>My Profile</h1>
 			</div>
 			
 			<div class="row">
 				<div class="col-sm-6 col-md-4">
 					<div class="image">
-						<img src="{{$user->profile_photo}}" alt="{{$user->name}}" style="width:304px;height:228px;">
+						<img src="{{Auth::user()->profile_photo}}" alt="{{Auth::user()->name}}" style="width:304px;height:228px;">
 					</div>
 				</div>
 
 				<div class="col-sm-12 col-md-8">
 					<div class="form-group">
     					<label for="inputFullname">Fullname</label>
-    						<p> {{ $user->name }} </p>
+    						<p> {{ Auth::user()->name }} </p>
         
 					</div>
 					
 					<div class="form-group">
     					<label for="inputType">Type</label>
-    						<p>{{$user->getType()}}</p>
+    						<p>{{Auth::user()->getType()}}</p>
 					</div>
 
 					<div class="form-group">
     					<label for="inputEmail">Email</label>
-    						<p> {{ $user->email }} </p>
+    						<p> {{ Auth::user()->email }} </p>
 					</div>
 
 					<div class="form-group">
     					<label for="inputLocation">Location</label>
-    						<p> {{ $user->location }} </p>
+    						<p> {{ Auth::user()->location}} </p>
 
 					</div>
 
 					<div class="form-group">
     					<label for="inputPresentation">Presentation</label>
-    						<p> {{ $user->presentation }}</p>
+    						<p> {{ Auth::user()->presentation }}</p>
         
 						</div>
 
 					<div class="form-group">
     					<label for="inputProfileUrl">Profile URL</label>
-   						    <p> {{ $user->profile_url }} </p>
+   						    <p> {{Auth::user()->profile_url }} </p>
 					</div>
 
 					<div class="form-group">
     					<label for="inputSellsEvals">Seller Evaluations</label>
-    						<p> {{ $user->sells_evals }} </p>
+    						<p> {{ Auth::user()->sells_evals }} </p>
 					</div>
 
 					<div class="form-group">
     					<label for="inputSellsCount">Sells Count</label>
-    						<p> {{ $user->sells_count }}</p>
+    						<p> {{ Auth::user()->sells_count }}</p>
         
 					</div>
 
 					<div class="form-group">
     					<label for="inputSellsCount">Buys Evals</label>
-    						<p> {{ $user->buys_evals }}</p>
+    						<p> {{ Auth::user()->buys_evals }}</p>
 					</div>
 
 					<div class="form-group">
     					<label for="inputSellsCount">Buys Count</label>
-    						<p> {{ $user->buys_count }}</p>
+    						<p> {{ Auth::user()->buys_count }}</p>
 					</div>
-					@if(Auth::check() && Auth::user()->admin == 1 )
-					<a class="btn btn-primary" href="">Block user</a>
-					@endif
+					
+					<a class="btn btn-primary" href="{{route('farmersmarket.user-edit-profile', ['id' => Auth::user()->id])}}">Edit Profile</a>
+					
 				</div>
     		</div>
     	</div>

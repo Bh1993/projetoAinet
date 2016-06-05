@@ -1,13 +1,15 @@
+@extends('layouts.farmersmarket-head')
+@include('layouts.main-nav')
+
 <section id="main-page-news">
         <div class="container">
             <div class="news-header" style="padding-top:20px">
-                <h1>Advertisements</h1>
+                <h1>Most Recent Advertisements</h1>
             </div>
             <br>
             <br>
             <div class="row">
-            
-                @foreach($advertisements as $advertisement)
+            @foreach($advertisements as $advertisement)
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                     @if($advertisement->media->count() > 0)
@@ -22,9 +24,10 @@
                         </div>
                     </div>
                 </div>
-            @endforeach 
-            
+            @endforeach    
             </div>
-        </div>
-         <a class="btn btn-primary" style="margin-left:615px" href="">View All Advertisements</a>
+@include('layouts.pagination-advertisements',['paginator'=>$advertisements])    
+        </div>         
     </section>
+
+    @include('layouts.farmersmarket-footer')

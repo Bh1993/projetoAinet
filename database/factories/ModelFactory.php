@@ -39,6 +39,10 @@
 
 /*$factory->define(App\Media::class, function(Faker\Generator $faker){
     $advertisements = App\Advertisement::all();
+    $
+    for($advertisements as $advertisement){
+        
+    }
     return [
     'advertisement_id' => $advertisements->random()->id,
     'media_url' => $faker->url,
@@ -46,14 +50,23 @@
     ];
 });*/
 
-$factory->define(App\Comment::class, function(Faker\Generator $faker){
+/*$factory->define(App\Comment::class, function(Faker\Generator $faker){
     $advertisements = App\Advertisement::all();
     $users = App\User::all();
-    
+    $comments = App\Comment::all();
     return [
     'advertisement_id' => $advertisements->random()->id,
     'user_id' => $users->random()->id,
     'comment' => $faker->text(),
+    'parent_id' => $comments->random()->id,
+    ];
+});*/
+
+$factory->define(App\Tag::class, function(Faker\Generator $faker){
+    $tags = App\Advertisement::all();
+    
+    return [
+    'name' => $faker->word(),
     
     ];
 });

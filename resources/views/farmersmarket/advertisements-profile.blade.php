@@ -55,6 +55,10 @@
     					<p> {{ $advertisement->tags }} </p>
 					</div>
 
+					@if(Auth::check() && Auth::user()->admin == 1 )
+					<a class="btn btn-primary" href="">Block Advertisement</a>
+					@endif
+
 					<h1>Faltam Comments!!</h1>
 					</div>
     			</div>
