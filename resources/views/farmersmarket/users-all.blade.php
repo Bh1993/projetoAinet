@@ -6,10 +6,18 @@
             <div class="news-header" style="padding-top:20px">
                 <h1>All Users</h1>
             </div>
+            <div class="pull-right"> 
+            {!!Form::open(['route' => 'users-all-orderBy'])!!}
+            {!!Form::select('options', $options)!!}
+            {!!Form::submit('Order')!!}
+            {!!Form::close()!!}
+            </div>
             <br>
             <br>
             <div class="row">
+            
             @foreach($users as $user)
+            @if($user->blocked == 0)
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                         <img src="{{$user->profile_photo}}" alt="...">
@@ -20,7 +28,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach    
+                 @endif
+            @endforeach 
+              
             </div>
 @include('layouts.pagination-users',['paginator'=>$users])    
         </div>

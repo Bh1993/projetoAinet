@@ -18,7 +18,7 @@
 							<li><a href="{{url('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
 							@else
 							<li><a href="{{route('farmersmarket.user-myprofile',['id' => Auth::user()->id])}}"><span class="glyphicon glyphicon-cog"></span> My Profile </a></li>
-							<li><a href=""><span class="glyphicon glyphicon-book"></span> My Advertisements </a></li>
+							<li><a href="{{route('farmersmarket.user-my-advertisements',['id' => Auth::user()->id])}}"><span class="glyphicon glyphicon-book"></span> My Advertisements </a></li>
 							<li><a href=""><span class="glyphicon glyphicon-shopping-cart"></span> My Bids </a></li>
 							@if(Auth::user()->admin == 1)
 							<li><a href="{{url('users')}}"><span class="glyphicon glyphicon-log-in"></span> Dashboard </a></li>
