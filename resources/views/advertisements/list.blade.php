@@ -40,18 +40,9 @@
         </tr>
     </thead>
     <tbody>
-<<<<<<< HEAD
-       @foreach ($advertisements as $advertisement)
-       <tr>
-        <td><a href="{{route('advertisements.display-advertisement', ['id' => $advertisement->id])}}">{{ $advertisement->name }} </td>
-        <td> {{ $advertisement->owner_id }} </td>
-        <td> {{ $advertisement->available_on }} </td>
-        <td> {{ $advertisement->available_until }} </td>
-        a>          <td> {{ $advertisement->price_cents }} </td>
-        <td> {{ $advertisement->getStatus() }} </td>
 
 
-=======
+
      @foreach ($advertisements as $advertisement)
         <tr>
             <td><a href="{{route('advertisements.display-advertisement', ['id' => $advertisement->id])}}">{{ $advertisement->name }}</a></td>
@@ -62,7 +53,7 @@
             <td> {{ $advertisement->getStatus() }} </td>
             
             
->>>>>>> 19102b196e351d091f33dc1df896626a6c4b9612
+
         <td>
             <a class="btn btn-xs btn-primary" href="{{route('advertisements.edit', ['id' => $advertisement->id])}}">Edit</a>
             <form action="{{route('advertisements.delete', ['id' => $advertisement->id])}}" method="post" class="inline">
@@ -85,13 +76,10 @@
         </td>
     </tr>
     @endforeach
-<<<<<<< HEAD
+
 </table>
 @include('layouts.pagination-advertisements',['paginator'=>$advertisements]);
-=======
-    </table>
-    @include('layouts.pagination-advertisements',['paginator'=>$advertisements])
->>>>>>> 19102b196e351d091f33dc1df896626a6c4b9612
+
 
 @else
 <h2>No advertisements found</h2>

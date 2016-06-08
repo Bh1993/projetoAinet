@@ -117,7 +117,7 @@ Route::group(['middleware' => 'admin'], function() { // Admin Route
 
 
 
-<<<<<<< HEAD
+
 Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement',
     'uses' => 'AdvertisementController@getShow', ]);
 
@@ -125,7 +125,6 @@ Route::post('advertisements/block/{advertisement}', [
     'as' => 'advertisements.block',
     'uses' => 'AdvertisementController@postBlock',
 ]);
-=======
+
     Route::get('users/show/{id}/bids', ['as' => 'users.display-bids',   // User bids, each user can see it's own bids
     'uses' => 'UserController@getBids',]);
->>>>>>> 19102b196e351d091f33dc1df896626a6c4b9612
