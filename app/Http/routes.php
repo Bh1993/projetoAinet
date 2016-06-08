@@ -89,7 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
     
 });
 
-Route::group(['middleware' => 'admin'], function() { // Admin Route
+Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
 
     Route::get('users', 'UserController@index');     // List users as Admin
     Route::get('advertisements', 'AdvertisementController@index');
