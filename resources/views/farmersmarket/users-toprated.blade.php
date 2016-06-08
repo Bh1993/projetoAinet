@@ -16,7 +16,7 @@
                         <div class="caption">
                             <h3>{{$user->name}}</h3>
                             <p></p>
-                            <p><a href="#" class="btn btn-primary" role="button">Read More</a></p>
+                            <p><a href="{{route('farmersmarket.user-profile',['id' => $user->id])}}" class="btn btn-primary" role="button">Read More</a></p>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@
 <section id="main-page-news">
         <div class="container">
             <div class="news-header" style="padding-top:20px">
-                <h1>All Advertisements</h1>
+                <h1>Most Recent Advertisements</h1>
             </div>
             <br>
             <br>
@@ -27,8 +27,7 @@
             @endforeach    
             </div>
 @include('layouts.pagination-advertisements',['paginator'=>$advertisements])    
-        </div>
-    
+        </div>         
     </section>
 
     @include('layouts.farmersmarket-footer')

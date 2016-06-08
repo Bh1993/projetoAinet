@@ -3,22 +3,15 @@
 @section('title', 'List users')
 
 @section('content')
+
 <div>
     <a class="btn btn-primary" href="{{route('users.create')}}">Add user</a>
+  
     <div class="pull-right"> 
-       <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Order By
-                <span class="caret">
-            </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Email</a></li>
-            <li><a href="#">Fullname</a></li>
-            <li><a href="#">Regist Date</a></li>
-            <li><a href="#">Type</a></li>
-        </ul>
-        </div>
-      
+       {!!Form::open(['route' => 'users-orderBy'])!!}
+       {!!Form::select('options', $options)!!}
+       {!!Form::submit('Order!')!!}
+       {!!Form::close()!!}
     </div>
 </div>
 
@@ -26,9 +19,9 @@
     <table class="table table-striped">
     <thead>
         <tr>
-            <th>Email</th>
             <th>Name</th>
-            <th>Admin</th>
+            <th>Email</th>
+            <th>Type</th>
             <th>Status</th>
             <th>Created At</th>
             <th>Updated At</th>
@@ -39,8 +32,8 @@
     <tbody>
     @foreach ($users as $user)
         <tr>
+            <td><a href="{{route('users.display-user', ['id' => $user->id])}}">{{ $user->name }}</a></td>
             <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
-            <td><a href="{{route('users.display-user', ['id' => $user->id])}}">{{ $user->name }}</td>
             <td>{{ $user->getType() }}</td>
             <td>{{ $user->getStatus() }}</td>
             <td>{{ $user->created_at }}</td>

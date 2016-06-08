@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Advertisement;
+use App\Media;
 
 class AdvertisementController extends Controller
 {
@@ -17,8 +18,8 @@ class AdvertisementController extends Controller
 
     public function getShow($id)
     {
-        // get the nerd
-        $advertisement = Advertisement::find($id);
+        
+        $advertisement = Advertisement::with('media')->find($id);
 
         return view('advertisements.display-advertisement', compact('advertisement'));
            

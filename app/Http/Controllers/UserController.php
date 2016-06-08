@@ -10,9 +10,18 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::orderBy('name','asc')->paginate(10);
+        $options = ['name' => 'Name','email' => 'Email'];
 
-        return view('users.list', compact('users'));
+        return view('users.list', compact(['users','options']));
+    }
+
+    public function orderBy(Request $request)
+    {
+        
+        $users = User::orderBy($request->input('options'),'asc')->paginate(10); 
+        $options = ['name' => 'Name','email' => 'Email']; 
+        return view('users.list', compact(['users','options']));
     }
 
     public function getShow($id)
@@ -38,6 +47,8 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
 
     }
+
+    
 
     public function postCreate(Request $request)
     {
@@ -88,10 +99,26 @@ class UserController extends Controller
 
     }
 
-    public function getBids($id)
+    public function getComments()    // Vista admin dos comentários do user com $id
+    {
+        $user = User::all();
+        $user->getComments()->where('blocked', 1);
+
+        return view('user.comments');   // TODO
+    }
+
+    public function getAdvertisements()      // Vista Admin dos advertisements bloqueados
+    {
+        $user = User::all();
+        $user->getAdvertisements()->where('blocked', 1);
+
+        return view('user.advertisements'); // Falta compact ?
+    }
+
+    public function getBids($id) // TODO: View
     {
         $user = User::find($id);
-        $user->getBids();
+        $user->getAdvertisements();
 
         return view('users.bids', compact('user'));
     }

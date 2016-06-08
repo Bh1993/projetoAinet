@@ -7,19 +7,33 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
 
+    protected $fillable = [
+        'comment', 'user_id', 'advertisement_id', 'comment',
+        
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id', 'parent_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
+    } 
 
     public function advertisement()
     {
-        return $this->belongsTo('App\Advertisement'); // TODO: Corrigir return
+        return $this->belongsTo(Advertisement::class); 
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany(Comment::class, 'parent_id');
     }
      
 }

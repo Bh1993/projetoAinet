@@ -11,93 +11,113 @@
 |
 */
 
-/*
-Route::group(['middleware' => 'auth'], function () {
-    Route::auth();
-}
-*/
-/*Route::get('/', function () {
-    return view('farmersmarket.farmersmarket');
-});
-*/
+
 Route::get('/', 'MainController@getHome');
 
+Route::post('users-orderBy', ['as' => 'users-orderBy',
+    'uses' => 'UserController@orderBy']);
 
 Route::get('users-all', 'MainController@getAllUsers');
+
 Route::get('farmersmarket/users/show/{id}', ['as' => 'farmersmarket.user-profile',
     'uses' => 'MainController@getUserProfile', ]);
-Route::get('users-view', 'MainController@getUsers');
 
+Route::get('farmersmarket/my-profile/show/{id}', ['as' => 'farmersmarket.user-myprofile',
+    'uses' => 'MainController@getMyProfile', ]);
+
+Route::get('farmersmarket/edit-profile/{id}', [                 // Edit users, each user can edit himself
+    'as' => 'farmersmarket.user-edit-profile',
+    'uses' => 'MainController@getEditProfile', ]);
+
+Route::get('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
+    'uses' => 'MainController@getAdvertisementProfile', ]);
+
+Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
 Route::get('users-toprated', 'MainController@getTopRatedUsers');
 Route::get('users-topsellers', 'MainController@getTopSellers');
 
 Route::get('advertisements-all', 'MainController@getAllAdvertisements');
+Route::get('advertisements-mostrecent', 'MainController@getRecentAdvertisements');
+/*
 Route::get('advertisements-bestsellers', 'MainController@getMostSoldAdvertisements');
 Route::get('advertisements-mostviewed', 'MainController@getMostViewedAdvertisements');
 Route::get('advertisements-toprated', 'MainController@getTopRatedAdvertisements');
+*/
+Route::get('advertisements', 'AdvertisementController@index');      // Every person can see advertisements
 
+Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement', // Every person can see details
+    'uses' => 'AdvertisementController@getShow', ]); 
+
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+Route::auth();
 
 // Login & Register Group
-/*Route::group(['login' => 'auth'], function () {
-    Route::get('login', 'AuthController@getLogin');
-    Route::post('auth/login', 'Auth\AuthController@postLogin');
-    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::group(['middleware' => 'auth'], function () {
+
+   Route::get('advertisements/create', [                               // Only users can create ads
+    'as' => 'advertisements.create',
+    'uses' => 'AdvertisementController@getCreate',
+    ]);
+
+    Route::post('advertisements/create', 'AdvertisementController@postCreate');     // Post create ads
+
+    Route::get('advertisements/edit/{id}', [                            // Each user can edit it's ads
+        'as' => 'advertisements.edit',
+        'uses' => 'AdvertisementController@getEdit', ]);
+
+    Route::post('advertisements/edit/{id}', 'AdvertisementController@postEdit');    // Post edit ads
+
+    Route::post('advertisements/delete/{id}', [                         // Each user can delete it's ads
+        'as' => 'advertisements.delete',
+        'uses' => 'AdvertisementController@postDelete',
+    ]);
     
-    Route::get('auth/register', 'Auth\AuthController@getRegister');
-    Route::post('auth/register', 'Auth\AuthController@postRegister');
-}*/
+});
 
-//Users
-Route::get('users', 'UserController@index');
-Route::get('users/create', [
-    'as' => 'users.create',
-    'uses' => 'UserController@getCreate',
-]);
-Route::post('users/create', 'UserController@postCreate');
+Route::group(['middleware' => 'admin'], function() { // Admin Route
 
-Route::get('users/edit/{id}', [
+    Route::get('users', 'UserController@index');     // List users as Admin
+    Route::get('advertisements', 'AdvertisementController@index');
+
+    Route::get('users/create', [                // View to create users as admin
+        'as' => 'users.create',
+        'uses' => 'UserController@getCreate',
+    ]);
+
+    Route::post('users/create', 'UserController@postCreate'); // Create users as admin
+
+    Route::get('users/edit/{id}', [                 // Edit users, each user can edit himself
     'as' => 'users.edit',
     'uses' => 'UserController@getEdit', ]);
 
-Route::post('users/edit/{id}', [
-    'as' => 'users.edit',
-    'uses' => 'UserController@postEdit', ]);
+    Route::post('users/edit/{id}', [                // Post Edit users
+        'as' => 'users.edit',
+        'uses' => 'UserController@postEdit', ]);
 
-Route::post('users/delete/{id}', [
-    'as' => 'users.delete',
-    'uses' => 'UserController@postDelete',
-]);
+    Route::post('users/delete/{id}', [              // Post Delete users, only admin can delete users
+        'as' => 'users.delete',
+        'uses' => 'UserController@postDelete',
+    ]);
 
-Route::get('users/show/{id}', ['as' => 'users.display-user',
+});
+
+    
+
+    Route::get('users/show/{id}', ['as' => 'users.display-user',        // User profile, everyone can see 
     'uses' => 'UserController@getShow', ]);
 
-Route::get('users/show/{id}/bids', ['as' => 'users.display-bids',
-    'uses' => 'UserController@getBids',]);
 
 
-
-//advertisements
-
-Route::get('advertisements', 'AdvertisementController@index');
-
-Route::get('advertisements/create', [
-    'as' => 'advertisements.create',
-    'uses' => 'AdvertisementController@getCreate',
-]);
-Route::post('advertisements/create', 'AdvertisementController@postCreate');
-
-Route::get('advertisements/edit/{id}', [
-    'as' => 'advertisements.edit',
-    'uses' => 'AdvertisementController@getEdit', ]);
-
-Route::post('advertisements/edit/{id}', 'AdvertisementController@postEdit');
-
-Route::post('advertisements/delete/{id}', [
-    'as' => 'advertisements.delete',
-    'uses' => 'AdvertisementController@postDelete',
-]);
-
+<<<<<<< HEAD
 Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement',
     'uses' => 'AdvertisementController@getShow', ]);
 
@@ -105,3 +125,7 @@ Route::post('advertisements/block/{advertisement}', [
     'as' => 'advertisements.block',
     'uses' => 'AdvertisementController@postBlock',
 ]);
+=======
+    Route::get('users/show/{id}/bids', ['as' => 'users.display-bids',   // User bids, each user can see it's own bids
+    'uses' => 'UserController@getBids',]);
+>>>>>>> 19102b196e351d091f33dc1df896626a6c4b9612

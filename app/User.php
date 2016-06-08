@@ -14,7 +14,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'location', 'profile_photo', 'profile_url', 
         'presentation',
-
+ 
     ];
 
     /**
@@ -38,12 +38,32 @@ class User extends Authenticatable
 
     public function advertisement()
     {
-        return $this->hasMany('\App\Advertisement', 'owner_id');
+        return $this->hasMany(Advertisement::class, 'owner_id');
+    }
+
+    public function bids()
+    {
+        return $this->hasManyThrough(Bids::class, Advertisement::class, 'owner_id', 'advertisement_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function getComments()
+    {
+        return $this->comments()->get();
     }
 
     public function getBids()
     {
         return $this->advertisement()->bids()->get();
+    }
+
+    public function getAdvertisements()
+    {
+        return $this->advertisement()->where('blocked', 0)->get();
     }
     
 }
