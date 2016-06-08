@@ -8,7 +8,7 @@ class Comment extends Model
 {
 
     protected $fillable = [
-        'comment', 'user_id', 'advertisement_id', 'comment',
+        'comment', 'user_id', 'advertisement_id',
         
     ];
 

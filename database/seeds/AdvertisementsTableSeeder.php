@@ -11,6 +11,10 @@ class AdvertisementsTableSeeder extends Seeder
      */
     public function run()
     {
-       factory(App\Advertisement::class, 100)->create();
+       factory(App\Advertisement::class, 100) 
+       	->create()
+       	->each(function ($a) {
+       		$a->media()->save(factory(App\Media::class)->make());
+       	});
     }
 }

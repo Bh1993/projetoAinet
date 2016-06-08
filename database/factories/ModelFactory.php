@@ -11,7 +11,7 @@
 |
 */
 
-/*$factory->define(App\User::class, function(Faker\Generator $faker) {
+$factory->define(App\User::class, function(Faker\Generator $faker) {
     return [
     'name' => $faker->name,
     'email' => $faker->safeEmail,
@@ -20,10 +20,14 @@
     'profile_photo' => $faker->imageUrl($width = 304, $height = 228),
     'presentation' => $faker->text(),
     'remember_token' => str_random(10),
+    'sells_count' => $faker->numberBetween($min = 0, $max = 30),
+    'buys_count' => $faker->numberBetween($min = 0, $max = 30),
+    'sells_evals' => $faker->numberBetween($min = 0, $max = 30),
+    'buys_evals' => $faker->numberBetween($min = 0, $max = 30),
     ];
 });
 
-/*$factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
+$factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
     $users = App\User::all();
     return [
     'owner_id' => $users->random()->id,
@@ -35,20 +39,15 @@
     'quantity' => $faker->randomNumber($nbDigits = NULL),
     
     ];
-});*/
+});
 
-/*$factory->define(App\Media::class, function(Faker\Generator $faker){
-    $advertisements = App\Advertisement::all();
-    $
-    for($advertisements as $advertisement){
-        
-    }
+$factory->define(App\Media::class, function(Faker\Generator $faker){
     return [
-    'advertisement_id' => $advertisements->random()->id,
+    'advertisement_id' => 1,
     'media_url' => $faker->url,
     'photo_path' => $faker->imageUrl($width = 304, $height = 228),
     ];
-});*/
+});
 
 /*$factory->define(App\Comment::class, function(Faker\Generator $faker){
     $advertisements = App\Advertisement::all();
@@ -62,6 +61,7 @@
     ];
 });*/
 
+/*
 $factory->define(App\Tag::class, function(Faker\Generator $faker){
     $tags = App\Advertisement::all();
     
