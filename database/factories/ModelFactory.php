@@ -49,7 +49,7 @@ $factory->define(App\Media::class, function(Faker\Generator $faker){
     ];
 });
 
-/*$factory->define(App\Comment::class, function(Faker\Generator $faker){
+$factory->define(App\Comment::class, function(Faker\Generator $faker){
     $advertisements = App\Advertisement::all();
     $users = App\User::all();
     $comments = App\Comment::all();
@@ -57,9 +57,9 @@ $factory->define(App\Media::class, function(Faker\Generator $faker){
     'advertisement_id' => $advertisements->random()->id,
     'user_id' => $users->random()->id,
     'comment' => $faker->text(),
-    'parent_id' => $comments->random()->id,
+    'parent_id' => NULL,
     ];
-});*/
+});
 
 /*
 $factory->define(App\Tag::class, function(Faker\Generator $faker){

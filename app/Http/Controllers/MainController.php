@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Advertisement;
+use App\Comment;
 
 class MainController extends Controller
 {
@@ -53,9 +54,10 @@ class MainController extends Controller
     public function getAdvertisementProfile($id)
     {
         $advertisement = Advertisement::find($id);
-        return view('farmersmarket.advertisements-profile',compact('advertisement'));
+        $comment = Comment::find($id);
+
+        return view('farmersmarket.advertisements-profile',compact(['advertisement','comment']));
     }
- 
     
     public function getHome()
     {

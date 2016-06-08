@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-sm-6 col-md-4">
 					<div class="image">
-						//<img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
+						<img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
 					</div>
 				</div>
 
@@ -57,9 +57,10 @@
 
 					@if(Auth::check() && Auth::user()->admin == 1 )
 					<a class="btn btn-primary" href="">Block Advertisement</a>
+					
 					@endif
 
-					<h1>Faltam Comments!!</h1>
+					@include('layouts.farmersmarket-advertisement-comments')
 					</div>
     			</div>
     		</div>
