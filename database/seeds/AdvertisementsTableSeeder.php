@@ -15,6 +15,7 @@ class AdvertisementsTableSeeder extends Seeder
        	->create()
        	->each(function ($a) {
        		$a->media()->save(factory(App\Media::class)->make());
+          $a->comments()->save(factory(App\Comment::class)->make());
        	});
     }
 }

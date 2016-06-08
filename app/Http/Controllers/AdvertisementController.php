@@ -52,9 +52,7 @@ class AdvertisementController extends Controller
 
         ]);
 
-        if (isset()) {
-            
-        }
+        
 
         $advertisement = new Advertisement($request->all());
 

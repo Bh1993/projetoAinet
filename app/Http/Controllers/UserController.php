@@ -104,7 +104,7 @@ class UserController extends Controller
         $user = User::all();
         $user->getComments()->where('blocked', 1);
 
-        return view('user.comments');   // TODO
+        return view('user.comments', compact('user'));  
     }
 
     public function getAdvertisements()      // Vista Admin dos advertisements bloqueados
@@ -112,7 +112,7 @@ class UserController extends Controller
         $user = User::all();
         $user->getAdvertisements()->where('blocked', 1);
 
-        return view('user.advertisements'); // Falta compact ?
+        return view('user.advertisements', compact('user')); 
     }
 
     public function getBids($id) // TODO: View
