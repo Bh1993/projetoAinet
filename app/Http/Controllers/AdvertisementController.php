@@ -93,5 +93,23 @@ class AdvertisementController extends Controller
 
     }
 
+    public function postBlock(Advertisement $advertisement)
+    {
+        if ($advertisement->blocked == 0){
+            $advertisement->blocked = 1;
+        }else{
+            $advertisement->blocked == 0;
+        }
+
+
+        $advertisement->save();
+
+        return redirect('advertisements');
+
+    }
+
+    
+
+   
 
 }

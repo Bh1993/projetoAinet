@@ -66,6 +66,7 @@
 
 
     <div class="form-group">
+    
         <button type="submit" class="btn btn-success" href="{{route('advertisements.edit', ['id' => $advertisement->id])}}">Edit</button>
         <button type="submit" class="btn btn-default" name="cancel" href="{{url('advertisements')}}">Cancel</button>
     </div>

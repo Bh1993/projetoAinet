@@ -21,7 +21,7 @@
     'presentation' => $faker->text(),
     'remember_token' => str_random(10),
     ];
-});*/
+});
 
 /*$factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
     $users = App\User::all();
@@ -70,5 +70,5 @@ $factory->define(App\Tag::class, function(Faker\Generator $faker){
     
     ];
 });
-
+*/
 
