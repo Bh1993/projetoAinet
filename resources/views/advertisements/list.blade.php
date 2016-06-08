@@ -41,8 +41,6 @@
     </thead>
     <tbody>
 
-
-
      @foreach ($advertisements as $advertisement)
         <tr>
             <td><a href="{{route('advertisements.display-advertisement', ['id' => $advertisement->id])}}">{{ $advertisement->name }}</a></td>
@@ -51,9 +49,6 @@
             <td> {{ $advertisement->available_until }} </td>
             <td> {{ $advertisement->price_cents }} </td>
             <td> {{ $advertisement->getStatus() }} </td>
-            
-            
-
         <td>
             <a class="btn btn-xs btn-primary" href="{{route('advertisements.edit', ['id' => $advertisement->id])}}">Edit</a>
             <form action="{{route('advertisements.delete', ['id' => $advertisement->id])}}" method="post" class="inline">
@@ -79,7 +74,6 @@
 
 </table>
 @include('layouts.pagination-advertisements',['paginator'=>$advertisements]);
-
 
 @else
 <h2>No advertisements found</h2>

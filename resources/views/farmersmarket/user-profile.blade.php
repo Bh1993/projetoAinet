@@ -12,6 +12,15 @@
 					<div class="image">
 						<img src="{{$user->profile_photo}}" alt="{{$user->name}}" style="width:304px;height:228px;">
 					</div>
+					<h2>User's Advertisements</h2>
+					<p></p>
+					@if($user->advertisements->count()>0)
+						@foreach($user->advertisements as $advertisement)
+						<p><a href="{{route('farmersmarket.advertisement-profile',['id' => $advertisement->id])}}">{{$advertisement->name}}</a></p>
+						@endforeach
+					@else
+					<h3>No Advertisements found</h3>	
+					@endif	
 				</div>
 
 				<div class="col-sm-12 col-md-8">
