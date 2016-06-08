@@ -30,7 +30,7 @@
         <li><a href="{{url('advertisements')}}">Advertisements</a></li>
         <li><a href="#">Market</a></li>
         <li><a href="#">Tags</a></li>
-        <li><a href="#">Comments</a></li>
+        <li><a href="{{url('comments')}}">Comments</a></li>
         
       </ul>
       <form class="navbar-form navbar-left" role="search">

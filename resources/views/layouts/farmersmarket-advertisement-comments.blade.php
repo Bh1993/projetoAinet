@@ -18,9 +18,9 @@
                         <div class="media-body">
                           <div class="well well-lg">
                               <h4 class="media-heading text-uppercase reviews">{{$comment->user->name}}</h4>
-                              <ul class="media-date text-uppercase reviews list-inline">
-                                
-                              </ul>
+                              <p class="media-date text-uppercase reviews list-inline">
+                                {{$comment->created_at}}
+                              </p>
                               <p class="media-comment">
                                {{$comment->comment}}
                               </p>
@@ -31,18 +31,18 @@
                           </div>              
                         </div>
                       </li>
-                      
-                        <a class="btn btn-primary" href="">Block Comment</a>
+                    @if(Auth::user()->admin == 1)  
+                    <a class="btn btn-primary" href="">Block Comment</a>
+                    @endif
                      @endforeach
                      @else
                      <h3>No Comments Found</h3>   
-                     @endif
-                               
+                     @endif          
                     </ul> 
                 </div>
 
                 <div class="tab-pane" id="add-comment">
-                    <form action="#" method="post" class="form-horizontal" id="commentForm" role="form"> 
+                    <form action="" method="post" class="form-horizontal" id="commentForm" role="form"> 
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">Comment</label>
                             <div class="col-sm-10">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">                    
-                                <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Submit comment</button>
+                                <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment" name="save"><span class="glyphicon glyphicon-send"></span> Submit comment</button>
                             </div>
                         </div>            
                     </form>

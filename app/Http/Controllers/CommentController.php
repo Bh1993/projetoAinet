@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Comment;
 
 class CommentController extends Controller
 {
@@ -11,9 +12,9 @@ class CommentController extends Controller
     {
         $comments = Comment::paginate(10);
 
-        return view('comments.list', compact('comment'));
+        return view('comments.list', compact('comments'));
     }
-
+/*
     public function getShow($id)
     {
         
@@ -22,7 +23,7 @@ class CommentController extends Controller
         return view('comments.display-comment', compact('comment'));
            
     }
-
+*/
     public function postDelete($id)
     {
         $comment = Comment::find($id);

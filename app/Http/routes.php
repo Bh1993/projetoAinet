@@ -36,7 +36,7 @@ Route::get('farmersmarket/edit-profile/{id}', [                 // Edit users, e
     'uses' => 'MainController@getEditProfile', ]);
 
 Route::get('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
-    'uses' => 'MainController@getAdvertisementProfile', ]);
+    'uses' => 'MainController@getAdvertisementProfile',]);
 
 Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
 
     Route::get('users', 'UserController@index');     // List users as Admin
     Route::get('advertisements', 'AdvertisementController@index');
+    Route::get('comments', 'CommentController@index');
 
     Route::get('users/create', [                // View to create users as admin
         'as' => 'users.create',
