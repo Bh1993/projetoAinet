@@ -99,7 +99,7 @@ class UserController extends Controller
 
     }
 
-    public function getComments()    // Vista admin dos comentários do user com $id
+    public function getComments()    // Vista admin dos comentários bloqueados
     {
         $user = User::all();
         $user->getComments()->where('blocked', 1);
