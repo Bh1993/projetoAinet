@@ -11,7 +11,7 @@
 |
 */
 
-/*$factory->define(App\User::class, function(Faker\Generator $faker) {
+$factory->define(App\User::class, function(Faker\Generator $faker) {
     return [
     'name' => $faker->name,
     'email' => $faker->safeEmail,
@@ -23,7 +23,7 @@
     ];
 });
 
-/*$factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
+$factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
     $users = App\User::all();
     return [
     'owner_id' => $users->random()->id,
@@ -35,9 +35,9 @@
     'quantity' => $faker->randomNumber($nbDigits = NULL),
     
     ];
-});*/
+});
 
-/*$factory->define(App\Media::class, function(Faker\Generator $faker){
+$factory->define(App\Media::class, function(Faker\Generator $faker){
     $advertisements = App\Advertisement::all();
     $
     for($advertisements as $advertisement){
@@ -48,9 +48,9 @@
     'media_url' => $faker->url,
     'photo_path' => $faker->imageUrl($width = 304, $height = 228),
     ];
-});*/
+});
 
-/*$factory->define(App\Comment::class, function(Faker\Generator $faker){
+$factory->define(App\Comment::class, function(Faker\Generator $faker){
     $advertisements = App\Advertisement::all();
     $users = App\User::all();
     $comments = App\Comment::all();
@@ -60,7 +60,7 @@
     'comment' => $faker->text(),
     'parent_id' => $comments->random()->id,
     ];
-});*/
+});
 
 $factory->define(App\Tag::class, function(Faker\Generator $faker){
     $tags = App\Advertisement::all();
