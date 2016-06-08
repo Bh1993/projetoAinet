@@ -100,3 +100,8 @@ Route::post('advertisements/delete/{id}', [
 
 Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement',
     'uses' => 'AdvertisementController@getShow', ]);
+
+Route::post('advertisements/block/{advertisement}', [
+    'as' => 'advertisements.block',
+    'uses' => 'AdvertisementController@postBlock',
+]);
