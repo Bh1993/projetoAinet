@@ -36,6 +36,11 @@ class User extends Authenticatable
         return $this->blocked ? 'Blocked' : 'Unblocked';
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
     public function advertisements()
     {
         return $this->hasMany(Advertisement::class, 'owner_id');

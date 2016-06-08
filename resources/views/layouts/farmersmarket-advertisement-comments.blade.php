@@ -9,28 +9,34 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="comments-logout">                
                     <ul class="media-list">
-                    
+                    @if($advertisement->comments()->count()>0)
+                    @foreach($advertisement->comments as $comment)
                       <li class="media">
                         <a class="pull-left" href="#">
-                          <img class="media-object img-circle" src="" alt="profile">
+                          <img class="media-object img-circle" src="{{$comment->user->profile_photo}}" alt="profile" style="width: 100px">
                         </a>
                         <div class="media-body">
                           <div class="well well-lg">
-                              <h4 class="media-heading text-uppercase reviews"> </h4>
+                              <h4 class="media-heading text-uppercase reviews">{{$comment->user->name}}</h4>
                               <ul class="media-date text-uppercase reviews list-inline">
                                 
                               </ul>
                               <p class="media-comment">
-                               
+                               {{$comment->comment}}
                               </p>
                               <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
-                              <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 2 comments</a>
+                              
+                              <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 
+                              {{$comment->comments()->count()}} comments</a>
                           </div>              
                         </div>
                       </li>
                       
                         <a class="btn btn-primary" href="">Block Comment</a>
-                     
+                     @endforeach
+                     @else
+                     <h3>No Comments Found</h3>   
+                     @endif
                                
                     </ul> 
                 </div>
@@ -45,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">                    
-                                <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit comment</button>
+                                <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Submit comment</button>
                             </div>
                         </div>            
                     </form>

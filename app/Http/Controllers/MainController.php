@@ -53,10 +53,10 @@ class MainController extends Controller
  
     public function getAdvertisementProfile($id)
     {
-        $advertisement = Advertisement::find($id);
-        $comment = Comment::find($id);
+        $advertisement = Advertisement::with('comments')->find($id);
+        
 
-        return view('farmersmarket.advertisements-profile',compact(['advertisement','comment']));
+        return view('farmersmarket.advertisements-profile',compact('advertisement'));
     }
     
     public function getHome()
