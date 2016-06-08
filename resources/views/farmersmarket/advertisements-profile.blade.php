@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-sm-6 col-md-4">
 					<div class="image">
-						<img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
+						//<img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
 					</div>
 				</div>
 
