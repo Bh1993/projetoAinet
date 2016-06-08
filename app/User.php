@@ -36,7 +36,7 @@ class User extends Authenticatable
         return $this->blocked ? 'Blocked' : 'Unblocked';
     }
 
-    public function advertisement()
+    public function advertisements()
     {
         return $this->hasMany(Advertisement::class, 'owner_id');
     }

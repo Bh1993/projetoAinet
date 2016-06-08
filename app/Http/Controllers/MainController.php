@@ -15,11 +15,21 @@ class MainController extends Controller
     	return view('farmersmarket.users-view', compact('users'));
     }
 
+    public function orderBy(Request $request)
+    {
+        
+        $users = User::orderBy($request->input('options'),'asc')->paginate(8); 
+        $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location']; 
+        return view('farmersmarket.users-all', compact(['users','options']));
+    }
+
+
     public function getAllUsers()
     {	
-    	$users = User::paginate(8);
+    	$users = User::orderBy('name','asc')->paginate(8);
+        $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location'];
 
-    	return view('farmersmarket.users-all', compact('users'));
+    	return view('farmersmarket.users-all', compact(['users','options']));
     }
 
     public function getUserProfile($id)
@@ -57,23 +67,28 @@ class MainController extends Controller
     	return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
     }
 
-    public function getUserAdvertisements()
+    public function getUserAdvertisements($id)
     {
-        $user = User::with('advertisements')->has('advertisements')->get();
-        return view('farmersmarket.user-advertisements', compact('user'));
+        $user = User::find($id);
+        return view('farmersmarket.user-my-advertisements', compact('user'));
     }
 
     public function getTopRatedUsers()
     {
-    	$users = User::paginate(8);
+        $users = User::orderBy('name','asc')->paginate(8);
+        $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location'];
+       
 
-    	return view('farmersmarket.users-toprated', compact('users'));
+    	return view('farmersmarket.users-toprated', compact(['users','options']));
     }
 
      public function getTopSellers()
     {
-    	$users = User::paginate(8);
-    	return view('farmersmarket.users-topsellers', compact('users'));
+    	$users = User::orderBy('name','asc')->paginate(8);
+        $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location'];
+
+        
+    	return view('farmersmarket.users-topsellers', compact(['users','options']));
     }
 
     public function getAllAdvertisements()

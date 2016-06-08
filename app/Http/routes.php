@@ -19,11 +19,17 @@ Route::post('users-orderBy', ['as' => 'users-orderBy',
 
 Route::get('users-all', 'MainController@getAllUsers');
 
+Route::post('users-all-orderBy', ['as' => 'users-all-orderBy',
+    'uses' => 'MainController@orderBy']);
+
 Route::get('farmersmarket/users/show/{id}', ['as' => 'farmersmarket.user-profile',
     'uses' => 'MainController@getUserProfile', ]);
 
 Route::get('farmersmarket/my-profile/show/{id}', ['as' => 'farmersmarket.user-myprofile',
     'uses' => 'MainController@getMyProfile', ]);
+
+Route::get('farmersmarket/my-advertisements/show/{id}', ['as' => 'farmersmarket.user-my-advertisements',
+    'uses' => 'MainController@getUserAdvertisements', ]);
 
 Route::get('farmersmarket/edit-profile/{id}', [                 // Edit users, each user can edit himself
     'as' => 'farmersmarket.user-edit-profile',
