@@ -38,13 +38,8 @@ $factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
 });
 
 $factory->define(App\Media::class, function(Faker\Generator $faker){
-    $advertisements = App\Advertisement::all();
-    $
-    for($advertisements as $advertisement){
-        
-    }
     return [
-    'advertisement_id' => $advertisements->random()->id,
+    'advertisement_id' => 1,
     'media_url' => $faker->url,
     'photo_path' => $faker->imageUrl($width = 304, $height = 228),
     ];
@@ -58,17 +53,6 @@ $factory->define(App\Comment::class, function(Faker\Generator $faker){
     'advertisement_id' => $advertisements->random()->id,
     'user_id' => $users->random()->id,
     'comment' => $faker->text(),
-    'parent_id' => $comments->random()->id,
+    'parent_id' => NULL,
     ];
 });
-
-$factory->define(App\Tag::class, function(Faker\Generator $faker){
-    $tags = App\Advertisement::all();
-    
-    return [
-    'name' => $faker->word(),
-    
-    ];
-});
-*/
-

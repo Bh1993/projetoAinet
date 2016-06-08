@@ -31,4 +31,20 @@ class CommentController extends Controller
         return redirect('comments');
 
     }
+
+    public function postCreate(Request $request)
+    {
+        $this->validate($request, [
+            'comment' => 'required',
+            'user_id' => 'required',
+            'advertisement_id' => 'required',
+            'parent_id' => '',
+        ]);
+
+        $comment = new Comment($request->all());
+
+        $comment->save();
+        
+        return redirect('farmersmarket/advertisements/show/{advertisement_id}');
+    }
 }
