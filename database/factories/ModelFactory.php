@@ -33,6 +33,7 @@ $factory->define(App\Advertisement::class, function(Faker\Generator $faker) {
     'available_until' => $faker->date($format = 'Y-m-d', $max = 'now'),
     'price_cents' => $faker->numberBetween($min = 10, $max = 200),
     'quantity' => $faker->randomNumber($nbDigits = NULL),
+    'trade_prefs' => $faker->text(),
     
     ];
 });

@@ -19,9 +19,6 @@
                     <li><a href="#">Price - Highest first</a></li>
                     </ul>
                 </div>
-
-               
-                <br>
             </div>
             <br>
             <h2>Advertisement Name</h2>

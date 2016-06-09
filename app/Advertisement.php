@@ -14,7 +14,7 @@ class Advertisement extends Model
      */
     protected $fillable = [
         'name', 'description', 'available_on', 'available_until', 'price_cents', 
-        'quantity',
+        'quantity', 'trade_prefs',
 
     ];
 

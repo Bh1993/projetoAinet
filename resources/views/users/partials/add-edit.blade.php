@@ -6,7 +6,7 @@
         <input type="file" name="fileToUpload" id="fileToUpload">
         <br>
         <input type="submit" class="btn btn-success" value="Upload Image" name="submit">
-   
+  <br>
    
 <div class="form-group">
     <label for="inputFullname">Fullname</label>

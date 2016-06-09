@@ -45,6 +45,11 @@
 </div>
 
 <div class="form-group">
+    <label for="inputPrice">Trade Preference</label>
+    <p> {{ $advertisement->trade_prefs }} </p>
+</div>
+
+<div class="form-group">
     <label for="inputQunatity">Quantity</label>
     <p> {{ $advertisement->quantity }} </p>
 </div>

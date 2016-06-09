@@ -10,6 +10,16 @@
 <form action="{{url('advertisements/create')}}" method="post" class="form-group">
     {{ csrf_field() }}
 
+<div class="image">
+        <img src="" alt="Mountain View" style="width:304px;height:228px;" >
+    </div>
+    
+        <label>Select image to upload:</label>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <br>
+        <input type="submit" class="btn btn-success" value="Upload Image" name="submit">
+<br>
+
 <div class="form-group">
     <label for="inputDescription">Description</label>
     <input
@@ -34,6 +44,15 @@
         name="available_until" id="inputEndDate"
         placeholder="End Date"
         value="{{ $advertisement->available_until }}"/>
+</div>
+
+<div class="form-group">
+    <label for="inputTradePrefs">Trade Preference</label>
+    <input
+        type="text" class="form-control"
+        name="trade_prefs" id="inputTradePrefs"
+        placeholder="Description"
+        value=" {{ $advertisement->trade_prefs }}" />
 </div>
 
 <div class="form-group">
