@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Advertisement;
+use App\Bid;
 use App\Comment;
 
 class MainController extends Controller
@@ -20,6 +21,7 @@ class MainController extends Controller
     {
         
         $users = User::orderBy($request->input('options'),'asc')->paginate(8); 
+
         $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location']; 
         return view('farmersmarket.users-all', compact(['users','options']));
     }
@@ -54,9 +56,9 @@ class MainController extends Controller
     public function getAdvertisementProfile($id)
     {
         $advertisement = Advertisement::with('comments')->find($id);
-        
+        $comment = new Comment();
 
-        return view('farmersmarket.advertisements-profile',compact('advertisement'));
+        return view('farmersmarket.advertisements-profile',compact(['advertisement','comment']));
     }
     
     public function getHome()
@@ -103,6 +105,14 @@ class MainController extends Controller
     {
         $advertisements = Advertisement::paginate(8);
         return view('farmersmarket.advertisements-mostrecent',compact('advertisements'));
+    }
+
+    public function getAllBids(){
+
+        $bids = Bid::orderByRaw("RAND()")->take(8)->get();;
+        $options = ['name' => 'Name','created_at' => 'Date'];
+
+        return view('farmersmarket.farmersmarket-market-bids', compact(['bids','options'])); 
     }
 
     /*

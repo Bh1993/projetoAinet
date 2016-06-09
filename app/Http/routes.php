@@ -38,6 +38,9 @@ Route::get('farmersmarket/edit-profile/{id}', [                 // Edit users, e
 Route::get('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
     'uses' => 'MainController@getAdvertisementProfile',]);
 
+Route::post('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
+    'uses' => 'CommentController@postCreate',]);
+
 Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
 Route::get('users-toprated', 'MainController@getTopRatedUsers');
@@ -45,6 +48,7 @@ Route::get('users-topsellers', 'MainController@getTopSellers');
 
 Route::get('advertisements-all', 'MainController@getAllAdvertisements');
 Route::get('advertisements-mostrecent', 'MainController@getRecentAdvertisements');
+Route::get('farmersmarket-market-bids', 'MainController@getAllBids');
 /*
 Route::get('advertisements-bestsellers', 'MainController@getMostSoldAdvertisements');
 Route::get('advertisements-mostviewed', 'MainController@getMostViewedAdvertisements');
@@ -52,8 +56,8 @@ Route::get('advertisements-toprated', 'MainController@getTopRatedAdvertisements'
 */
 Route::get('advertisements', 'AdvertisementController@index');      // Every person can see advertisements
 
-Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement', // Every person can see details
-    'uses' => 'AdvertisementController@getShow', ]); 
+Route::post('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement', // Every person can see details
+    'uses' => 'AdvertisementController@getShow',]); 
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

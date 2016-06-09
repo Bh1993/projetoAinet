@@ -60,7 +60,7 @@
 									<li><a href="{{url('advertisements-all')}}">All Advertisements</a></li>
 								</ul>
 							</li>
-							<li><a href="">Market</a></li>
+							<li><a href="{{url('farmersmarket-market-bids')}}">Market</a></li>
 							<li><a href="">About Us</a></li> 
 							<li><a href="">Contacts</a></li>                        
 						</ul>

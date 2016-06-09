@@ -35,6 +35,7 @@ class CommentController extends Controller
 
     public function postCreate(Request $request)
     {
+        
         $this->validate($request, [
             'comment' => 'required',
             'user_id' => 'required',
@@ -46,6 +47,6 @@ class CommentController extends Controller
 
         $comment->save();
         
-        return redirect('farmersmarket/advertisements/show/{advertisement_id}');
+        return redirect('/');
     }
 }

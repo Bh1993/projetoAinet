@@ -18,7 +18,7 @@
                         <div class="media-body">
                           <div class="well well-lg">
                               <h4 class="media-heading text-uppercase reviews">{{$comment->user->name}}</h4>
-                              <p class="media-date text-uppercase reviews list-inline">
+                              <p>
                                 {{$comment->created_at}}
                               </p>
                               <p class="media-comment">
@@ -28,12 +28,16 @@
                               
                               <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 
                               {{$comment->comments()->count()}} comments</a>
-                          </div>              
+
+                              @if(Auth::user()->admin == 1)  
+                              <a class="btn btn-info btn-circle text-uppercase" href="">Block Comment</a>
+                              @endif
+                          </div> 
+                                        
                         </div>
+
                       </li>
-                    @if(Auth::user()->admin == 1)  
-                    <a class="btn btn-primary" href="">Block Comment</a>
-                    @endif
+                   
                      @endforeach
                      @else
                      <h3>No Comments Found</h3>   
@@ -42,16 +46,17 @@
                 </div>
 
                 <div class="tab-pane" id="add-comment">
-                    <form action="" method="post" class="form-horizontal" id="commentForm" role="form"> 
+                    <form action="{{route('farmersmarket.advertisement-profile',['id' => $advertisement->id])}}" method="post" class="form-horizontal" id="commentForm" role="form">
+                    {{ csrf_field() }} 
                         <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Comment</label>
+                            <label for="comment" class="col-sm-2 control-label">Comment</label>
                             <div class="col-sm-10">
-                              <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                              <textarea class="form-control" name="comment" id="inputComment" rows="5" value="{{$comment->comment}}"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">                    
-                                <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment" name="save"><span class="glyphicon glyphicon-send"></span> Submit comment</button>
+                                <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment" name="save"><span class="glyphicon glyphicon-send"></span> Submit Comment</button>
                             </div>
                         </div>            
                     </form>
