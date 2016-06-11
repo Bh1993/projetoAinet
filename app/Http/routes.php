@@ -41,6 +41,9 @@ Route::get('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.adv
 Route::post('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
     'uses' => 'CommentController@postCreate',]);
 
+Route::post('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
+    'uses' => 'CommentController@postReply',]);
+
 Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
 Route::get('users-toprated', 'MainController@getTopRatedUsers');

@@ -56,9 +56,8 @@ class MainController extends Controller
     public function getAdvertisementProfile($id)
     {
         $advertisement = Advertisement::with('comments')->find($id);
-        $comment = new Comment();
-
-        return view('farmersmarket.advertisements-profile',compact(['advertisement','comment']));
+        
+        return view('farmersmarket.advertisements-profile',compact('advertisement'));
     }
     
     public function getHome()
@@ -107,14 +106,7 @@ class MainController extends Controller
         return view('farmersmarket.advertisements-mostrecent',compact('advertisements'));
     }
 
-    public function getAllBids(){
-
-        $bids = Bid::orderByRaw("RAND()")->take(8)->get();;
-        $options = ['name' => 'Name','created_at' => 'Date'];
-
-        return view('farmersmarket.farmersmarket-market-bids', compact(['bids','options'])); 
-    }
-
+   
     /*
      public function getTopRatedAdvertisements()
     {

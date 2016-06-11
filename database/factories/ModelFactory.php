@@ -20,6 +20,10 @@ $factory->define(App\User::class, function(Faker\Generator $faker) {
     'profile_photo' => $faker->imageUrl($width = 304, $height = 228),
     'presentation' => $faker->text(),
     'remember_token' => str_random(10),
+    'sells_evals' => $faker->numberBetween($min = 0, $max = 30),
+    'buys_evals' => $faker->numberBetween($min = 0, $max = 30),
+    'sells_count' => $faker->numberBetween($min = 0, $max = 30),
+    'buys_count' => $faker->numberBetween($min = 0, $max = 30),
     ];
 });
 

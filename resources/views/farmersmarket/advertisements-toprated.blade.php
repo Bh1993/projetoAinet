@@ -10,6 +10,7 @@
             <br>
             <div class="row">
             @foreach($advertisements as $advertisement)
+                
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                     @if($advertisement->media->count() > 0)

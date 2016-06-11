@@ -12,6 +12,8 @@
 					<div class="image">
 						<img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
 					</div>
+					<h3>Owner Profile</h3>
+					<p><a href="{{route('farmersmarket.user-profile',['id' => $advertisement->user->id])}}">{{$advertisement->user->name}}</a></p>
 				</div>
 
 				<div class="col-sm-12 col-md-8">
@@ -43,6 +45,11 @@
 					<div class="form-group">
    						 <label for="inputQunatity">Quantity</label>
     					 <p> {{ $advertisement->quantity }} </p>
+					</div>
+
+					<div class="form-group">
+    					<label for="inputTradePrefs">Trade Preferences</label>
+    					<p> {{ $advertisement->trade_prefs }} </p>
 					</div>
 
 					<div class="form-group">

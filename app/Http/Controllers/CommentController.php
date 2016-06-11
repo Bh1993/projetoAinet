@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Comment;
 
@@ -33,20 +34,35 @@ class CommentController extends Controller
 
     }
 
-    public function postCreate(Request $request)
+    public function postCreate($id, Request $request)
     {
-        
         $this->validate($request, [
-            'comment' => 'required',
-            'user_id' => 'required',
-            'advertisement_id' => 'required',
-            'parent_id' => '',
+            'comment' => 'required'
         ]);
+        $comment = new Comment();
 
-        $comment = new Comment($request->all());
-
+        $comment->comment = $request->comment;
+        $comment->user_id = Auth::user()->id;
+        $comment->advertisement_id = $id;
         $comment->save();
         
-        return redirect('/');
+        return back();
+    }
+
+    public function postReply($advertisement_id, Request $request)
+    {
+        $this->validate($request, [
+            'comment' => 'required'
+        ]);
+
+        $comment = new Comment();
+        $comment->comment = $request->comment;
+        $comment->user_id = Auth::user()->id;
+        $comment->parent_id = $request->get('parent_id');
+        $comment->advertisement_id = $advertisement_id;
+        
+        $comment->save();
+        
+        return back();
     }
 }

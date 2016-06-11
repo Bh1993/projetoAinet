@@ -8,7 +8,7 @@ class Comment extends Model
 {
 
     protected $fillable = [
-        'comment', 'user_id', 'advertisement_id',
+        'comment', 'user_id', 'advertisement_id', 'parent_id',
         
     ];
 
@@ -18,7 +18,7 @@ class Comment extends Model
      * @var array
      */
     protected $hidden = [
-        'id', 'parent_id',
+        'id',
     ];
 
     public function user()
@@ -35,5 +35,10 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class, 'parent_id');
     } 
+
+    public function getParentComment()
+    {
+        return $this->belongsTo(Comment::class,'parent_id');
+    }
      
 }

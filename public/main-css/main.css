@@ -420,6 +420,8 @@ ul.account li a:hover {
   position: relative;
   background-color: #F4F4F4;
   border-bottom: 5px solid #ff8345;
+  padding-top: 0px;
+  padding-bottom: 0px;
   
 }
 
@@ -471,6 +473,13 @@ ul.account li a:hover {
   -o-transition: opacity ease-in-out 500ms;
   transition: opacity ease-in-out 500ms;
 }
+.carousel-caption {
+    right: 20%;
+    left: 20%;
+    padding-bottom: 30px;
+    background-color: #FF8345;
+    margin-bottom: 70px;
+  }
 
 #main-slider .carousel .item:first-child {
   top: auto;

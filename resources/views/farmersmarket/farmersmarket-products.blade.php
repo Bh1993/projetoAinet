@@ -26,5 +26,5 @@
             
             </div>
         </div>
-         <a class="btn btn-primary" style="margin-left:615px" href="">View All Advertisements</a>
+         <a class="btn btn-primary" style="margin-left:615px" href="{{url('advertisements-all')}}">View All Advertisements</a>
     </section>
