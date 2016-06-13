@@ -6,8 +6,14 @@
             <div class="news-header">
                 <h1>My Profile</h1>
             </div>
-            
+            @section('content')
+                @if (count($errors) > 0)
+                @include('partials.errors')
+            @endif
+            <form action="{{route('farmersmarket.user-edit-profile', ['id' => Auth::user()->id])}}" method="post" class="form-group">
+            {{ csrf_field() }}
             <div class="row">
+            
                 <div class="col-sm-6 col-md-4">
                     <div class="image">
                         <img src="{{Auth::user()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
@@ -70,11 +76,12 @@
                     
                    <div class="form-group">
                         <button type="submit" class="btn btn-primary" name="save">Save</button>
-                        <button type="cancel" class="btn btn-primary" name="save">Cancel</button>
+                        <button type="cancel" class="btn btn-primary" href="{{url('user-myprofile')}}" name="cancel">Cancel</button>
                     </div>
                     
                 </div>
             </div>
+            </form>
         </div>
     </section>
 

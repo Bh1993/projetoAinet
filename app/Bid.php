@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bid extends Model
 {
-    /* protected $fillable = [
-        'name', 'description', 'available_on', 'available_until', 'price_cents',  // TODO: ALTERAR
-        'quantity',
+    protected $fillable = [
+        'price_cents', 'trade_prefs', 'quantity', 'trade_location', 'comment',  // TODO: ALTERAR
+        'advertisement_id','buyer_id','status','buyer_eval','seller_eval',
  
-    ]; */
+    ]; 
 
 
    public function user()

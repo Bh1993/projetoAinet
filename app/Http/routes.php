@@ -35,6 +35,10 @@ Route::get('farmersmarket/edit-profile/{id}', [                 // Edit users, e
     'as' => 'farmersmarket.user-edit-profile',
     'uses' => 'MainController@getEditProfile', ]);
 
+Route::post('farmersmarket/edit-profile/{id}', [                 // Edit users, each user can edit himself
+    'as' => 'farmersmarket.user-edit-profile',
+    'uses' => 'MainController@postEditProfile', ]);
+
 Route::get('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
     'uses' => 'MainController@getAdvertisementProfile',]);
 
@@ -43,6 +47,14 @@ Route::post('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.ad
 
 Route::post('farmersmarket/advertisements/show/{id}', ['as' => 'farmersmarket.advertisement-profile',
     'uses' => 'CommentController@postReply',]);
+
+Route::post('user-create-advertisement', ['as' => 'user-create-advertisement', 
+    'uses' => 'MainController@postCreate']);
+
+Route::get('user-create-advertisement', [                               // Only users can create ads
+    'as' => 'user-create-advertisement',
+    'uses' => 'MainController@getCreate',
+    ]);
 
 Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
@@ -61,6 +73,7 @@ Route::get('advertisements', 'AdvertisementController@index');      // Every per
 
 Route::post('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement', // Every person can see details
     'uses' => 'AdvertisementController@getShow',]); 
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -87,7 +100,9 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'advertisements.edit',
         'uses' => 'AdvertisementController@getEdit', ]);
 
-    Route::post('advertisements/edit/{id}', 'AdvertisementController@postEdit');    // Post edit ads
+    Route::post('advertisements/edit/{id}', [
+        'as' => 'advertisements.edit',
+        'uses' => 'AdvertisementController@postEdit']);   // Post edit ads
 
     Route::post('advertisements/delete/{id}', [                         // Each user can delete it's ads
         'as' => 'advertisements.delete',

@@ -10,6 +10,15 @@
 <div class="col-sm-6 col-md-4">
  
         <img src="{{ $user->profile_photo }}" alt="Mountain View" style="width:304px;height:228px;" >
+        <h2>User's Advertisements</h2>
+                    <p></p>
+                    @if(Auth::user()->advertisements->count()>0)
+                        @foreach(Auth::user()->advertisements as $advertisement)
+                        <p><a href="{{route('advertisements.display-advertisement',['id' => $advertisement->id])}}">{{$advertisement->name}}</a></p>
+                        @endforeach
+                    @else
+                    <h3>No Advertisements found</h3>    
+                    @endif  
  </div>   
 <div class="col-sm-6 col-md-8">
 
@@ -73,7 +82,7 @@
 </div>
 
 <div class="form-group">
-        <button type="submit" class="btn btn-primary" href="{{url('users.edit')}}" name="edit">Edit</button>
+        <button type="submit" class="btn btn-primary" href="{{route('users.edit', ['id' => $user->id])}}" name="edit">Edit</button>
         <button type="submit" class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</button>
     </div>
 

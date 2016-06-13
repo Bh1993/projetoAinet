@@ -14,7 +14,9 @@
         @else
         <img src="images/no-image.jpg" alt="Mountain View" style="width:304px;height:228px;" >
         @endif
-        @endif
+    @endif
+    <h3>Owner Profile</h3>
+    <p><a href="{{route('users.display-user',['id' => $advertisement->user->id])}}">{{$advertisement->user->name}}</a></p>
  </div>
 
  <div class="col-sm-6 col-md-8">
@@ -56,7 +58,7 @@
 
 <div class="form-group">
     <label for="inputMediaContent">Media Content</label>
-    <p>{{ $advertisement->media->first()->media_url }}</p>
+    <p>{{ $advertisement->media()->first()->media_url }}</p>
 </div>
 
 <div class="form-group">
@@ -72,7 +74,7 @@
 
     <div class="form-group">
     
-        <button type="submit" class="btn btn-success" href="{{route('advertisements.edit', ['id' => $advertisement->id])}}">Edit</button>
+        <button type="submit" class="btn btn-success" name="edit" href="{{url('advertisements.edit')}}">Edit</button>
         <button type="submit" class="btn btn-default" name="cancel" href="{{url('advertisements')}}">Cancel</button>
     </div>
 

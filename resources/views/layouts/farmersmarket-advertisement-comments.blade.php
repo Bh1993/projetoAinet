@@ -24,7 +24,9 @@
             <div class="comment-tabs">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#comments-logout" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Comments</h4></a></li>
+                @if(Auth::user())
                 <li class=""><a href="#add-comment" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add comment</h4></a></li>
+                @endif
             </ul>            
             <div class="tab-content">
                 <div class="tab-pane active" id="comments-logout">                
@@ -38,14 +40,16 @@
                         </a>
                         <div class="media-body">
                           <div class="well well-lg">
-                              <h4 class="media-heading text-uppercase reviews">{{$comment->user->name}}</h4>
+                              <a href="{{route('farmersmarket.user-profile',['id' => $comment->user->id])}}">{{$comment->user->name}}</a>
                               <p>
                                 {{$comment->created_at}}
                               </p>
                               <p class="media-comment">
                                {{$comment->comment}}
                               </p>
+                              @if(Auth::user())
                               <a onclick="onClick({{$comment->id}})" class="btn btn-info btn-circle text-uppercase" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                              @endif
                               <a onclick="onClick2({{$comment->id}}+'_coments')" class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 
                               {{$comment->comments()->count()}} Replies</a>
                               @if(Auth::check() && Auth::user()->admin == 1)  

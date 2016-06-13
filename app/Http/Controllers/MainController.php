@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Advertisement;
 use App\Bid;
@@ -45,6 +46,30 @@ class MainController extends Controller
     {
         $user = User::find($id);
         return view('farmersmarket.user-edit-profile', compact('user'));
+    }
+
+    public function postEditProfile(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'location' => '',
+            'profile_url' => '',
+            
+        ]);
+
+        $user = User::find($request->id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->location = $request->location;
+        $user->presentation = $request->presentation;
+
+        $user->profile_url = $request->profile_url;
+       
+
+        $user->save();
+        return view('farmersmarket.user-myprofile');
     }
 
     public function getMyProfile($id)
@@ -104,6 +129,39 @@ class MainController extends Controller
     {
         $advertisements = Advertisement::paginate(8);
         return view('farmersmarket.advertisements-mostrecent',compact('advertisements'));
+    }
+    
+    public function getCreate()
+    {
+        $advertisement = new Advertisement();
+        
+        return view('farmersmarket.user-create-advertisement', compact('advertisement'));
+
+    }
+    
+    public function postCreate(Request $request)
+    {
+
+         $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'available_on' => 'required',
+            'available_until' => 'required',
+            
+
+        ]);
+        
+        $advertisement = new Advertisement();
+
+        $advertisement->name = $request->name;
+        $advertisement->description = $request->description;
+        $advertisement->available_on = $request->available_on;
+        $advertisement->available_until = $request->available_until;
+        $advertisement->price_cents = $request->price_cents;
+        $advertisement->owner_id = Auth::user()->id;
+        $advertisement->save();
+
+        return redirect('/');
     }
 
    

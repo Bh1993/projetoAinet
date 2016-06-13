@@ -7,8 +7,22 @@
     @include('partials.errors')
 @endif
 
-<form action="{{url('advertisements.edit')}}" method="post" class="form-group">
-    
+<form action="{{route('advertisements.edit', ['id' => $advertisement->id])}}" method="post" class="form-group">
+    {{ csrf_field() }}
+    <div class="col-sm-6 col-md-4">
+                    <div class="image">
+                        <img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
+                    </div>
+    </div>
+    <div class="col-sm-12 col-md-8">
+    <div class="form-group">
+    <label for="inputName">Name</label>
+    <input
+        type="text" class="form-control"
+        name="name" id="inputName"
+        placeholder="Name"
+        value=" {{ $advertisement->name }}" />
+</div>
 <div class="form-group">
     <label for="inputDescription">Description</label>
     <input
@@ -81,6 +95,7 @@
     <div class="form-group">
         <button type="submit" class="btn btn-success" name="ok">Save</button>
         <button type="submit" class="btn btn-default" name="cancel" href="{{url('advertisements')}}">Cancel</button>
+    </div>
     </div>
 </form>
 @endsection

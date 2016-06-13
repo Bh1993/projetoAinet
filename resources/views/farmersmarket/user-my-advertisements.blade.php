@@ -31,7 +31,7 @@
                 @endif
             @endif    
             </div>
-            <a href="" class="btn btn-primary" role="button">Create Advertisement</a>
+            <a href="{{route('user-create-advertisement')}}" class="btn btn-primary" role="button">Create Advertisement</a>
         </div>
 </section>
 
