@@ -78,7 +78,18 @@
     						<p> {{ $user->buys_count }}</p>
 					</div>
 					@if(Auth::check() && Auth::user()->admin == 1 )
-					<a class="btn btn-primary" href="">Block user</a>
+					<form action="{{route('users.block', ['id' => $user->id])}}" method="post" class="inline">
+					{{ csrf_field() }}
+					<div class="form-group">
+						@if ($user->blocked == 0)
+						<button type="submit" class="btn btn-xs btn-danger" name="block" >Block User</button>
+						@else
+						<button type="submit" class="btn btn-xs btn-success" name"block" >Unblock User</button>
+						@endif
+						<button type="submit" class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</button>
+					</div>
+					
+				</form>
 					@endif
 				</div>
     		</div>

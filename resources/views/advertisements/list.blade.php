@@ -6,6 +6,8 @@
 
 <div>
     <a class="btn btn-primary" href="{{route('advertisements.create')}}">Add Advertisement</a>
+    <a class="btn btn-primary" href="{{url('advertisements')}}">All Advertisements</a>
+    <a class="btn btn-primary" href="{{route('advertisements.allBlocked')}}">List of All Ads Blocked</a>
     <div class="pull-right"> 
      <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
