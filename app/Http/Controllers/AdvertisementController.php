@@ -53,7 +53,7 @@ class AdvertisementController extends Controller
         ]);
 
         $advertisement = new Advertisement($request->all());
-
+        
         $advertisement->save();
         return redirect('advertisements');
        

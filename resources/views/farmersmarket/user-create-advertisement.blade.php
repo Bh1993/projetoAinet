@@ -1,23 +1,28 @@
-@extends('layouts.backend')
+@extends('layouts.farmersmarket-head')
+@include('layouts.main-nav')
 
-@section('title', 'Create Advertisement')
-
-@section('content')
 @if (count($errors) > 0)
     @include('partials.errors')
 @endif
 
-<form action="{{url('advertisements/create')}}" method="post" class="form-group">
+<section id="main-page-news">
+		<div class="container" >
+			<div class="news-header">
+				<h1>Create Advertisement</h1>
+			</div>
+			
+			<form action="{{route('user-create-advertisement',['id' => Auth::user()->id])}}" method="post" class="form-group">
     {{ csrf_field() }}
 
 <div class="image">
         <img src="" alt="Mountain View" style="width:304px;height:228px;" >
-    </div>
+</div>
     
         <label>Select image to upload:</label>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <br>
-        <input type="submit" class="btn btn-success" value="Upload Image" name="submit">
+        <input type="submit" class="btn btn-success" value="Submit" name="submit">
+
 <br>
 
 <div class="form-group">
@@ -102,7 +107,12 @@
 
 <div class="form-group">
         <button type="submit" class="btn btn-success" name="save">Add</button>
-        <button type="submit" class="btn btn-default" name="cancel" href="{{url('advertisements')}}" >Cancel</button>
+
+        <button type="submit" class="btn btn-default" name="cancel" href="" >Cancel</button>
     </div>
 </form>
-@endsection    
+    		
+    	</div>
+	</section>
+
+@include('layouts.farmersmarket-footer')

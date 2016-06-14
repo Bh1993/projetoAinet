@@ -61,7 +61,7 @@ class UserController extends Controller
         ]);
 
         $user = new User($request->all());
-
+       
         $user->save();
         return redirect('users');
        
