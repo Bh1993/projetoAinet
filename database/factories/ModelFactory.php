@@ -63,6 +63,21 @@ $factory->define(App\Comment::class, function(Faker\Generator $faker){
 });
 
 
+$factory->define(App\Bid::class, function(Faker\Generator $faker){
+    
+    $advertisements = App\Advertisement::all();
+    return [
+    'comment' => $faker->text(),
+    'trade_location' => $faker->address,
+    'quantity' => $faker->randomNumber($nbDigits = NULL),
+    'trade_prefs' => $faker->text(),
+    'price_cents' => $faker->numberBetween($min = 10, $max = 200),
+    'advertisement_id' => 1,
+    'buyer_id' => NULL,
+    ];
+});
+
+
 
 
 

@@ -27,7 +27,7 @@ class CreateBidsTable extends Migration
             $table->integer('advertisement_id')->unsigned();
             $table->foreign('advertisement_id')->references('id')->on('advertisements');
 
-            $table->integer('buyer_id')->unsigned();
+            $table->integer('buyer_id')->unsigned()->nullable();
             $table->foreign('buyer_id')->references('id')->on('users');
 
             // 0 Canceled ; 1 Pending ; 2 Refused ; 3 Accepted
