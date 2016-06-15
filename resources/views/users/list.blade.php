@@ -6,6 +6,8 @@
 
 <div>
     <a class="btn btn-primary" href="{{route('users.create')}}">Add user</a>
+    <a class="btn btn-primary" href="{{url('users')}}">All Users</a>
+    <a class="btn btn-primary" href="{{route('users.allBlocked')}}">List of All User Blocked</a>
   
     <div class="pull-right"> 
        {!!Form::open(['route' => 'users-orderBy'])!!}
@@ -47,6 +49,17 @@
                         <button type="submit" class="btn btn-xs btn-danger">Delete</button>
                     </div>
 
+                </form>
+                <form action="{{route('users.block', ['id' => $user->id])}}" method="post" class="inline">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        @if ($user->blocked == 0)
+                        <button type="submit" class="btn btn-xs btn-danger" name="block" >Block User</button>
+                        @else
+                        <button type="submit" class="btn btn-xs btn-success" name"block" >Unblock User</button>
+                        @endif
+                    </div>
+                    
                 </form>
             </td>
         </tr>

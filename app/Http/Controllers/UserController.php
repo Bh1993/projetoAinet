@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 
+
 class UserController extends Controller
 {
     public function index()
@@ -120,6 +121,38 @@ class UserController extends Controller
         $user->getAdvertisements();
 
         return view('users.bids', compact('user'));
+    }
+
+    public function postDashboardBlock(User $user)
+    {
+        if ($user->blocked == 0) {
+            $user->blocked = 1;
+        } else {
+            $user->blocked = 0;
+        }
+        
+        $ads = $user->advertisements()->get();
+
+        if (count($ads)) {
+            foreach ($ads as $ad) {
+                $ad->blocked = 1;
+                $ad->save();
+            }
+        }
+
+    
+        $user->save();
+
+        return redirect('users');
+
+    }
+
+    public function getAllBlocked()
+    {
+        $users = User::where('blocked', 1)->orderBy('name','asc')->paginate(10);
+        $options = ['name' => 'Name','email' => 'Email'];
+
+        return view('users.list', compact(['users','options']));
     }
 
 }

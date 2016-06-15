@@ -52,8 +52,6 @@ class AdvertisementController extends Controller
 
         ]);
 
-        
-
         $advertisement = new Advertisement($request->all());
         
         $advertisement->save();
@@ -95,7 +93,7 @@ class AdvertisementController extends Controller
 
     }
 
-    public function postBlock(Advertisement $advertisement)
+    public function postDashboardBlock(Advertisement $advertisement)
     {
         if ($advertisement->blocked == 0) {
             $advertisement->blocked = 1;
@@ -110,6 +108,13 @@ class AdvertisementController extends Controller
 
     }
 
+    
+
+    public function getAllBlocked()
+    {
+        $advertisements = Advertisement::where('blocked', 1)->paginate(8);
+        return view('advertisements.list',compact('advertisements'));
+    }
     
 
    

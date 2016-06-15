@@ -30,7 +30,7 @@ class MainController extends Controller
 
     public function getAllUsers()
     {	
-    	$users = User::orderBy('name','asc')->paginate(8);
+    	$users = User::where('blocked', 0)->orderBy('name','asc')->paginate(8);
         $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location'];
 
     	return view('farmersmarket.users-all', compact(['users','options']));
@@ -88,9 +88,9 @@ class MainController extends Controller
     public function getHome()
     {
     
-    	$users = User::orderByRaw("RAND()")->take(8)->get();
+    	$users = User::where('blocked', 0)->orderByRaw("RAND()")->take(8)->get();
 
-    	$advertisements = Advertisement::with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
+    	$advertisements = Advertisement::where('blocked', 0)->with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
 
         $bids = Bid::orderByRaw("RAND()")->take(8)->get();
 
@@ -123,7 +123,7 @@ class MainController extends Controller
 
     public function getAllAdvertisements()
     {
-    	$advertisements = Advertisement::paginate(8);
+    	$advertisements = Advertisement::where('blocked', 0)->paginate(8);
     	return view('farmersmarket.advertisements-all',compact('advertisements'));
     }
 
