@@ -95,7 +95,9 @@ class MainController extends Controller
 
     	$advertisements = Advertisement::where('blocked', 0)->with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
 
-    	return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
+        $bids = Bid::orderByRaw("RAND()")->take(8)->get();
+
+    	return view('farmersmarket.farmersmarket',compact(['users','advertisements','bids']));
     }
 
     public function getUserAdvertisements($id)
