@@ -8,9 +8,13 @@ class Bid extends Model
 {
     protected $fillable = [
         'price_cents', 'trade_prefs', 'quantity', 'trade_location', 'comment',  // TODO: ALTERAR
-        'advertisement_id','buyer_id','status','buyer_eval','seller_eval',
+        'advertisement_id','status','buyer_eval','seller_eval',
  
     ]; 
+
+    protected $hidden = [
+        'id',
+    ]
 
 
    public function user()
@@ -20,6 +24,6 @@ class Bid extends Model
 
     public function advertisement()
     {
-        return $this->hasOne(Advertisement::class);
+        return $this->hasOne(Advertisement::class, 'id');
     }
 }

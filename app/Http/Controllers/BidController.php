@@ -41,20 +41,54 @@ class BidController extends Controller
 
     }
 
-    public function postCreate(Request $request)
+    public function postCreate($id, Request $request)
     {
         $this->validate($request, [
-            
-
-        ]);
-
-        
+            'trade_prefs' = 'required',
+            'trade_location' = 'required',
+            'advertisement_id' = 'required',
+            'buyer_id' = 'required',
+        ]);        
 
         $bid = new Bid($request->all());
 
         $bid->save();
         return redirect('bids');
        
+    }
+
+    // 0 Canceled ; 1 Pending ; 2 Refused ; 3 Accepted
+    
+
+    public function postAccept(Bid $bid) // status-> 1 - Accepted
+    {
+        $advertisement = Advertisement::find($bid->advertisement_id);
+        $bid->status = 3;
+        $bid->save();
+        $advertisement->available_until = now();
+        $advertisement->save();
+        return redirect('bids');
+    }
+
+    public function postRefuse(Bid $bid)   // status-> 2 - Refused
+    {
+        $bid->status = 2;
+        $bids->save();
+        return redirect('bids');
+    }
+
+    public function postCancel(Bid $bid)
+    {
+        $bid->status = 0;
+        $bids->save();
+        return redirect('bids');
+    }
+
+    public function postCounterOffer(Bid $bid)
+    {
+        //$bid->status = ;
+        $bids->save();
+        return redirect('bids.counteroffer');
     }
 
     public function postEdit(Request $request)
@@ -92,11 +126,9 @@ class BidController extends Controller
             $bid->blocked = 0;
         }
 
-
         $bid->save();
 
         return redirect('bids');
-
     }
 
     

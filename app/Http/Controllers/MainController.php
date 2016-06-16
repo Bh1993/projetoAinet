@@ -170,8 +170,6 @@ class MainController extends Controller
     {
         $query = $request->input('search');
 
-        htmlspecialchars($query);
-
         if (empty($request->input('search'))) {
             $this->getHome();
         }
