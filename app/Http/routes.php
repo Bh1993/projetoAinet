@@ -14,6 +14,8 @@
 
 Route::get('/', 'MainController@getHome');
 
+Route::get('/', ['as' => 'farmersmarket.search', 'uses' => 'MainController@getSearch' ]);
+
 Route::post('users-orderBy', ['as' => 'users-orderBy',
     'uses' => 'UserController@orderBy']);
 
@@ -181,4 +183,6 @@ Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertis
 
     Route::get('users/show/{id}/bids', ['as' => 'users.display-bids',   // User bids, each user can see it's own bids
     'uses' => 'UserController@getBids',]);
+
+
 

@@ -132,11 +132,19 @@ class UserController extends Controller
         }
         
         $ads = $user->advertisements()->get();
+        $comments = $user->comments()->get();
 
         if (count($ads)) {
             foreach ($ads as $ad) {
                 $ad->blocked = 1;
                 $ad->save();
+            }
+        }
+
+        if (count($comments)) {
+            foreach ($comments as $comment) {
+                $comment->blocked = 1;
+                $comment->save();
             }
         }
 

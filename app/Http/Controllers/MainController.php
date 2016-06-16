@@ -9,6 +9,7 @@ use App\User;
 use App\Advertisement;
 use App\Bid;
 use App\Comment;
+use DB;
 
 class MainController extends Controller
 {
@@ -164,6 +165,25 @@ class MainController extends Controller
         return redirect('/');
     }
 
+
+    public function getSearch(Request $request)
+    {
+        $query = $request->input('search');
+
+        htmlspecialchars($query);
+
+        if (empty($request->input('search'))) {
+            $this->getHome();
+        }
+
+        $users = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')->get();
+
+        $advertisements = DB::table('advertisements')->where('name', 'LIKE', '%' . $query . '%')->get();
+
+        return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
+
+        
+    }
    
     /*
      public function getTopRatedAdvertisements()
