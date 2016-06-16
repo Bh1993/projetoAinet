@@ -11,12 +11,13 @@ class AdvertisementController extends Controller
 {
     public function index()
     {
-        $advertisements = Advertisement::paginate(10);
+        $advertisements = Advertisement::where('blocked', 0)
+                                        ->paginate(10);
 
         return view('advertisements.list', compact('advertisements'));
     }
 
-    public function getShow($id)
+    public function getShow($id) // Não pode mostrar ads que estejam bloqueados
     {
         
         $advertisement = Advertisement::with('media')->find($id);

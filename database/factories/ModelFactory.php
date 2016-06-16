@@ -11,7 +11,7 @@
 |
 */
 
-/*$factory->define(App\User::class, function(Faker\Generator $faker) {
+$factory->define(App\User::class, function(Faker\Generator $faker) {
     return [
     'name' => $faker->name,
     'email' => $faker->safeEmail,
@@ -20,10 +20,10 @@
     'profile_photo' => $faker->imageUrl($width = 304, $height = 228),
     'presentation' => $faker->text(),
     'remember_token' => str_random(10),
-    'sells_evals' => $faker->numberBetween($min = 0, $max = 30),
-    'buys_evals' => $faker->numberBetween($min = 0, $max = 30),
-    'sells_count' => $faker->numberBetween($min = 0, $max = 30),
-    'buys_count' => $faker->numberBetween($min = 0, $max = 30),
+    'sells_count' => $faker->numberBetween($min = 0, $max = 30), 
+    'buys_count' => $faker->numberBetween($min = 0, $max = 30), 
+    'sells_evals' => $faker->numberBetween($min = 0, $max = 30), 
+    'buys_evals' => $faker->numberBetween($min = 0, $max = 30), 
     ];
 });
 
@@ -50,6 +50,8 @@ $factory->define(App\Media::class, function(Faker\Generator $faker){
     ];
 });
 
+
+
 $factory->define(App\Comment::class, function(Faker\Generator $faker){
     $advertisements = App\Advertisement::all();
     $users = App\User::all();
@@ -60,20 +62,11 @@ $factory->define(App\Comment::class, function(Faker\Generator $faker){
     'comment' => $faker->text(),
     'parent_id' => NULL,
     ];
-});
+}); 
 
-
-
-
-
-/*
-$factory->define(App\Tag::class, function(Faker\Generator $faker){
-    $tags = App\Advertisement::all();
-    
+$factory->define(App\Tag::class, function(Faker\Generator $faker){    
     return [
-    'name' => $faker->word(),
-    
+    'name' => $faker->randomNumber(),    
     ];
 });
-*/
-
+ 

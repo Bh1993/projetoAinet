@@ -14,7 +14,10 @@ class MainController extends Controller
 {
     public function getUsers()
     {
-    	$users = User::orderByRaw("RAND()")->take(8)->get();
+    	$users = User::where('blocked', 0)
+                        ->orderByRaw("RAND()")
+                        ->take(8)
+                        ->get();
     	return view('farmersmarket.users-view', compact('users'));
     }
 
@@ -103,20 +106,28 @@ class MainController extends Controller
 
     public function getTopRatedUsers()
     {
-        $users = User::orderBy('name','asc')->paginate(8);
-        $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location'];
+        $users = User::where('blocked', 0 )
+                                ->orderBy('sells_eval', 'desc')
+                                ->take(10)
+                                ->get();
+        //$users = User::orderBy('name','asc')->paginate(8);
+        //$options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location'];
        
 
-    	return view('farmersmarket.users-toprated', compact(['users','options']));
+    	return view('farmersmarket.users-toprated', compact('users'));
     }
 
      public function getTopSellers()
     {
-    	$users = User::orderBy('name','asc')->paginate(8);
-        $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location'];
+
+    	$users = User::where('blocked', 0 )
+                                ->orderBy('sells_count','desc')
+                                ->take(10)
+                                ->get();
+        //$options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location'];
 
         
-    	return view('farmersmarket.users-topsellers', compact(['users','options']));
+    	return view('farmersmarket.users-topsellers', compact('users'));
     }
 
     public function getAllAdvertisements()
@@ -127,7 +138,11 @@ class MainController extends Controller
 
     public function getRecentAdvertisements()
     {
-        $advertisements = Advertisement::paginate(8);
+        $advertisements = Advertisement::where('blocked', 0)
+                                        ->orderBy('created_at', 'desc')
+                                        ->take(10)
+                                        ->get();
+
         return view('farmersmarket.advertisements-mostrecent',compact('advertisements'));
     }
     
@@ -163,6 +178,17 @@ class MainController extends Controller
 
         return redirect('/');
     }
+
+    public function getMosUsedTags()
+    {
+        $tags = Advertisement_tag::orderBy(count('name'))
+                                    ->take(5)
+                                    ->get();
+
+        return view('tags', compact('tags'));         
+    }
+
+
 
    
     /*

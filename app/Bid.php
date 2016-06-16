@@ -12,6 +12,10 @@ class Bid extends Model
  
     ]; 
 
+    protected $hidden = [
+        'id',
+    ]
+
 
    public function user()
     {
@@ -20,6 +24,6 @@ class Bid extends Model
 
     public function advertisement()
     {
-        return $this->hasOne(Advertisement::class);
+        return $this->hasOne(Advertisement::class, 'id');
     }
 }

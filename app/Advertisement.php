@@ -50,7 +50,7 @@ class Advertisement extends Model
     // As an authenticated user I want to be able to bid on a product that I do not own;
     public function bids() 
     {
-        return $this->hasMany(Bid::class , 'advertisement_id'); 
+        return $this->hasMany(Bid::class ); 
     }
 
 }
