@@ -12,6 +12,10 @@ class Bid extends Model
  
     ]; 
 
+    protected $hidden = [
+        'id',
+    ];
+
 
    public function user()
     {

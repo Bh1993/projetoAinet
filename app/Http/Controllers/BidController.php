@@ -34,14 +34,83 @@ class BidController extends Controller
 
     }
 
+<<<<<<< HEAD
     public function getCreate()
     {
         $bid = new Bid();
         
         return view('farmersmarket.create-bid', compact('bid'));
+=======
+    public function postCreate($id, Request $request)
+    {
+        $this->validate($request, [
+            'trade_prefs' = 'required',
+            'trade_location' = 'required',
+            'advertisement_id' = 'required',
+            'buyer_id' = 'required',
+        ]);        
+>>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
 
     }
 
+<<<<<<< HEAD
+=======
+    // 0 Canceled ; 1 Pending ; 2 Refused ; 3 Accepted
+    
+
+    public function postAccept($id) // status-> 1 - Accepted
+    {
+        $bid = Bid::find($id);
+        $advertisement = Advertisement::find($bid->advertisement_id);
+        $bid->status = 3;
+        $bid->save();
+        $advertisement->available_until = now();
+        $advertisement->save();
+        return redirect('bids');
+    }
+
+    public function postRefuse($id)   // status-> 2 - Refused
+    {
+        $bid = Bid::find($id);
+        $bid->status = 2;
+        $bids->save();
+        return redirect('bids');
+    }
+
+    public function postCancel($id)
+    {
+        $bid = Bid::find($id);
+        $bid->status = 0;
+        $bids->save();
+        return redirect('bids');
+    }
+    
+    public function postCounterOffer($id, Request $request)
+    {
+        $bid = Bid::find($id);
+
+        $this->validate($request, [
+            'price_cents' => 'required',
+            'quantity' => 'required',
+        ]);
+
+        $bid->price_cents = $request->price_cents
+        $bid->quantity = $request->quantity;
+        $bid->updated_at = date("Y-m-d H:i:s");
+        $bid->save();
+        return redirect('bids.counteroffer');
+    }
+
+    public function postEdit(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'available_on' => '',
+            'available_until' => '',
+            'price_cents' => '',
+            'blocked' => ' ',
+>>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
 
     public function postCreate($id, Request $request)
     {   
@@ -76,10 +145,10 @@ class BidController extends Controller
             $bid->blocked = 0;
         }
 
-
         $bid->save();
 
         return redirect('bids');
+<<<<<<< HEAD
 
     }
 

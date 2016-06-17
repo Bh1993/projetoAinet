@@ -65,4 +65,19 @@ class CommentController extends Controller
         
         return back();
     }
+
+    public function postDashboardBlock(Comment $comment)
+    {
+        if ($comment->blocked == 0) {
+            $comment->blocked = 1;
+        } else {
+            $comment->blocked = 0;
+        }
+
+
+        $comment->save();
+
+        return redirect('comments');
+
+    }
 }

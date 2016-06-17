@@ -10,7 +10,16 @@ class TagsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-       factory(App\Tag::class, 10)->create();
+    {    
+        $i = 0; 
+       factory(App\Tag::class, 4)
+        ->create()
+        ->each(function ($t, $i) {
+            $tags = ["Carrots", "Trees", "Brocolli", "Tag"];         
+            $t->name = $tags[$i];
+            $t->save();
+            $i++;
+        });
     }
+
 }

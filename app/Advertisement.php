@@ -53,6 +53,11 @@ class Advertisement extends Model
         return $this->hasMany(Bid::class, 'advertisement_id'); 
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }
 
 

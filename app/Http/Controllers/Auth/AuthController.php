@@ -54,6 +54,8 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
+
+
     }
 
     /**
@@ -73,6 +75,14 @@ class AuthController extends Controller
             'blocked' => 0, // Verificar se aqui é 0 ou '0'
         ]);
     }
+
+    public function authenticate()
+    {
+        if (Auth::attempt()) {
+            
+        }
+    }
+
 }
     /*
     protected function getLogin()

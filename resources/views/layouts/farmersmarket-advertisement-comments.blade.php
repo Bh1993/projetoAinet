@@ -33,7 +33,7 @@
                     <ul class="media-list">
                     @if($advertisement->comments()->count()>0)
                     @foreach($advertisement->comments as $comment)
-                    @if(!$comment->parent_id)
+                    @if(!$comment->parent_id && $comment->blocked == 0)
                       <li class="media">
                         <a class="pull-left" href="#">
                           <img class="media-object img-circle" src="{{$comment->user->profile_photo}}" alt="profile" style="width: 100px">
@@ -51,7 +51,7 @@
                               <a onclick="onClick({{$comment->id}})" class="btn btn-info btn-circle text-uppercase" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
                               @endif
                               <a onclick="onClick2({{$comment->id}}+'_coments')" class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 
-                              {{$comment->comments()->count()}} Replies</a>
+                              {{$comment->comments()->where('blocked', 0)->count()}} Replies</a>
                               @if(Auth::check() && Auth::user()->admin == 1)  
                               <a class="btn btn-info btn-circle text-uppercase" href="">Block Comment</a>
                               @endif
@@ -75,6 +75,7 @@
                       </li>
                       <li class="media" >
                       @foreach($comment->comments as $reply)
+                      @if($reply->blocked == 0)
                       <ul class="media-list {{$comment->id}}_coments" style="display:none;">
                       <li class="media" style="margin-left: 50px">
                         <a class="pull-left" href="#">
@@ -119,6 +120,7 @@
                       </li>
                       </ul>
                       </li>
+                      @endif
                       @endforeach
                       @endif
                      @endforeach
@@ -134,7 +136,7 @@
                         <div class="form-group">
                             <label for="comment" class="col-sm-2 control-label">Comment</label>
                             <div class="col-sm-10">
-                              <textarea class="form-control" name="comment" id="inputComment" rows="5" value="{{$comment->comment}}"></textarea>
+                              <textarea class="form-control" name="comment" id="inputComment" rows="5"></textarea>
                             </div>
                         </div>
                         <div class="form-group">

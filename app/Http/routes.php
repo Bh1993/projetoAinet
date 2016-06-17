@@ -12,12 +12,21 @@
 */
 
 
-Route::get('/', 'MainController@getHome');
+Route::group(['middleware' =>['allowed']], function() {
+    Route::get('/', 'MainController@getHome');
+    
+    Route::get('users-all', 'MainController@getAllUsers');
+});
+
+
+
+
+
+Route::get('search', ['as' => 'farmersmarket.search', 'uses' => 'MainController@getSearch' ]);
 
 Route::post('users-orderBy', ['as' => 'users-orderBy',
     'uses' => 'UserController@orderBy']);
 
-Route::get('users-all', 'MainController@getAllUsers');
 
 Route::post('users-all-orderBy', ['as' => 'users-all-orderBy',
     'uses' => 'MainController@orderBy']);
@@ -81,6 +90,7 @@ Route::get('user-create-advertisement', [                               // Only 
     'uses' => 'MainController@getCreate',
     ]);
 
+<<<<<<< HEAD
 Route::get('farmersmarket/create-bid/show/{id}', [                               // Only users can create ads
     'as' => 'create-bid',
     'uses' => 'BidController@getCreate',
@@ -88,6 +98,17 @@ Route::get('farmersmarket/create-bid/show/{id}', [                              
 
 Route::post('farmersmarket/create-bid/show/{id}', ['as' => 'create-bid', 
     'uses' => 'BidController@postCreate']);
+=======
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+
+>>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
 
 Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
@@ -124,6 +145,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+
 Route::auth();
 
 // Login & Register Group
@@ -152,6 +174,8 @@ Route::group(['middleware' => 'auth'], function () {
     
 });
 
+
+
 Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
 
     Route::get('users', 'UserController@index');     // List users as Admin
@@ -170,7 +194,11 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
         'uses' => 'UserController@postDashboardBlock',
     ]);
 
-    
+    Route::post('users/admin/{user}', [ // 
+        'as' => 'users.assignAdmin',
+        'uses' => 'UserController@assignAdmin',
+    ]);
+
 
     Route::post('users/create', 'UserController@postCreate'); // Create users as admin
 
@@ -192,6 +220,16 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
         'uses' => 'AdvertisementController@postDashboardBlock',
     ]);
 
+    Route::post('comments/block/{comment}', [ // admin block advertisements at dashboard
+        'as' => 'comments.block',
+        'uses' => 'CommentController@postDashboardBlock',
+    ]);
+
+
+    Route::get('users/allAdmin', [
+        'as' => 'users.allAdmin', 
+        'uses' => 'UserController@getAllAdmin'
+        ]);
 
 
     Route::get('advertisements/allBlocked', [
@@ -221,4 +259,6 @@ Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertis
 
     Route::get('users/show/{id}/bids', ['as' => 'users.display-bids',   // User bids, each user can see it's own bids
     'uses' => 'UserController@getBids',]);
+
+
 

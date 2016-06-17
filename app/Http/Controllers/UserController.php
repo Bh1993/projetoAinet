@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Mail;
 
 
 class UserController extends Controller
@@ -61,6 +62,10 @@ class UserController extends Controller
         ]);
 
         $user = new User($request->all());
+        
+        if ($request->profile_photo == '') {
+           $user->profile_photo = 'cenas';
+        }
        
         $user->save();
         return redirect('users');
@@ -132,11 +137,19 @@ class UserController extends Controller
         }
         
         $ads = $user->advertisements()->get();
+        $comments = $user->comments()->get();
 
         if (count($ads)) {
             foreach ($ads as $ad) {
                 $ad->blocked = 1;
                 $ad->save();
+            }
+        }
+
+        if (count($comments)) {
+            foreach ($comments as $comment) {
+                $comment->blocked = 1;
+                $comment->save();
             }
         }
 
@@ -153,6 +166,27 @@ class UserController extends Controller
         $options = ['name' => 'Name','email' => 'Email'];
 
         return view('users.list', compact(['users','options']));
+    }
+
+    public function getAllAdmin()
+    {
+        $users = User::where('admin', 1)->orderBy('name', 'asc')->paginate(10);
+        $options = ['name' => 'Name', 'email' => 'Email'];
+
+        return view('users.list', compact(['users', 'options']));
+    }
+
+    public function assignAdmin(User $user)
+    {
+        if ($user->admin == 0 && $user->blocked == 0) {
+            $user->admin = 1;
+        } else {
+            $user->admin = 0;
+        }
+
+        $user->save();
+
+        return redirect('users');
     }
 
 }
