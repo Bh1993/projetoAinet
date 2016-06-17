@@ -140,6 +140,7 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
 
     Route::get('advertisements', 'AdvertisementController@index');
     Route::get('comments', 'CommentController@index');
+    Route::get('tags', 'TagController@index');
 
 
     Route::get('users/create', [                // View to create users as admin
@@ -198,6 +199,11 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
     Route::get('users/allBLocked', [ 
         'as' => 'users.allBlocked',
         'uses' => 'UserController@getAllBlocked',
+    ]);
+
+    Route::get('comments/allBLocked', [ 
+        'as' => 'comments.allBlocked',
+        'uses' => 'CommentController@getAllBlocked',
     ]);
 
 

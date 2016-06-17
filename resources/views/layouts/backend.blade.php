@@ -29,7 +29,7 @@
         <li class="active"><a href="{{url('users')}}">Users<span class="sr-only">(current)</span></a></li>
         <li><a href="{{url('advertisements')}}">Advertisements</a></li>
         <li><a href="#">Market</a></li>
-        <li><a href="#">Tags</a></li>
+        <li><a href="{{url('tags')}}">Tags</a></li>
         <li><a href="{{url('comments')}}">Comments</a></li>
         
       </ul>
