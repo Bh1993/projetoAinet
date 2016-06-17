@@ -3,7 +3,7 @@
 
 <section id="main-page-news">
         <div class="container" >
-            <h1>Offer Details</h1>
+            <h2>Offer Details</h2>
             <br>
             <div class="row">
                 <div class="col-sm-6 col-md-4">
@@ -12,7 +12,7 @@
                         <div class="caption">
                             <h3>{{$bid->advertisement->name}}</h3>
                          
-                            <p><a href="{{route('farmersmarket.advertisement-profile',['id' => $bid->advertisement_id])}}" class="btn btn-primary" role="button">View Advertisement</a></p>
+                            <p><a href="{{route('farmersmarket.advertisement-profile',['id' => $bid->advertisement->id])}}" class="btn btn-primary" role="button">View Advertisement</a></p>
                         </div>
                     </div>
 
@@ -22,10 +22,6 @@
                
                 </div>
                 <div class="col-sm-6 col-md-8">
-                 @if($bid->buyer_id != Auth::user()->id)
-                 <h2>Offer Made By: <a href="{{route('farmersmarket.user-profile',['id' => $bid->buyer_id])}}">{{$bid->getName()}}</a></h2>
-                 @endif
-            
                     <div class="form-group">
                         <label for="inputDescription"><h2>Product Description</h2></label>
                         <p>{{$bid->advertisement->description}}</p>
@@ -36,47 +32,41 @@
                         <p>{{$bid->advertisement->user->name}}</p>
                     </div>
 
+                    <form action="{{route('bid.counter',['id' => $bid->id])}}" method="post" class="form-group">
+                     {{ csrf_field() }}
+
                      <div class="form-group">
 
                         <label for="inputTradeLocation">Trade Location</label>
-                        <p>{{$bid->trade_location}}
+                         <input
+                            type="text" class="form-control"
+                            name="trade_location" id="inputTradeLocation"
+                            placeholder="Trade Location"/>
                     </div>
 
                     <div class="form-group">
 
                         <label for="inputTradePrefs">Trade Preferences</label>
-                        <p>{{$bid->trade_prefs}} 
+                         <input
+                            type="text" class="form-control"
+                            name="trade_prefs" id="inputTradePrefs"
+                            placeholder="Trade Preferences"/>
                     </div>
 
                     <div class="form-group">
                         <label for="inputPriceCents">Monetary Preferneces</label>
-                        <p>{{$bid->price_cents}}
+                         <input
+                            type="text" class="form-control"
+                            name="price_cents" id="inputPriceCents"
+                            placeholder="Monetary Preferences"/>
                     </div>
 
-                    @if($bid->buyer_id != Auth::user()->id)
-                    <form action="{{route('bid.accept',['id' => $bid->id])}}" method="post" class="inline">
-                        {{csrf_field()}}
-                            <div class="form-group">
-                                <button class="btn btn-primary" type="submit" id="accept">Accept</button>
-                            </div>
-                    </form>
+                    <div class="form-group">
+                         <button type="submit" class="btn btn-success" name="save">Submit Counter Offer</button>
 
-                    <form action="{{route('bid.decline',['id' => $bid->id])}}" method="post" class="inline"> 
-                        {{csrf_field()}}      
-                            <div class="form-group">
-                                <button class="btn btn-primary" type="submit" id="accept">Decline</button>
-                            </div>
-                    </form> 
-
-                    <a href="{{route('farmersmarket.offers-counter-offer',['id' => $bid->id])}}" class="btn btn-primary" role="button">Counter Offer</a>
-
-                    @else
-                       <div class="form-group">
-                        <label for="inputStatus">Status</label>
-                        <p>{{$bid->getStatus()}}</p>
+                         <button type="submit" class="btn btn-default" name="cancel" href="" >Cancel</button>
                     </div>
-                    @endif
-
+                    </form>    
                     </div>
                 </div>
             </div> 

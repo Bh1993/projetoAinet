@@ -95,11 +95,8 @@ class MainController extends Controller
     	$advertisements = Advertisement::where('blocked', 0)->with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
         $bids = Bid::paginate(8);
 
-<<<<<<< HEAD
-    	return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
-=======
     	return view('farmersmarket.farmersmarket',compact(['users','advertisements', 'bids']));
->>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
+
     }
 
     public function getUserAdvertisements($id)
@@ -178,7 +175,6 @@ class MainController extends Controller
         return redirect('/');
     }
 
-<<<<<<< HEAD
     public function getAllOffers()
     {
         $advertisements = Advertisement::where('blocked', 0)->paginate(8);
@@ -202,11 +198,6 @@ class MainController extends Controller
     }
 
 
-
-
-
-=======
-
     public function getSearch(Request $request)
     {
         $query = $request->input('search');
@@ -228,9 +219,7 @@ class MainController extends Controller
         return view('farmersmarket.farmersmarket',compact(['users','advertisements', 'bids']));
 
         
-    }
->>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
-   
+    }   
     /*
      public function getTopRatedAdvertisements()
     {

@@ -24,7 +24,7 @@ class Bid extends Model
 
     public function advertisement()
     {
-        return $this->belongsTo(Advertisement::class, 'advertisement_id');
+        return $this->belongsTo(Advertisement::class, 'id');
     }
 
     public function getName()
