@@ -90,7 +90,7 @@ Route::get('user-create-advertisement', [                               // Only 
     'uses' => 'MainController@getCreate',
     ]);
 
-<<<<<<< HEAD
+
 Route::get('farmersmarket/create-bid/show/{id}', [                               // Only users can create ads
     'as' => 'create-bid',
     'uses' => 'BidController@getCreate',
@@ -98,7 +98,7 @@ Route::get('farmersmarket/create-bid/show/{id}', [                              
 
 Route::post('farmersmarket/create-bid/show/{id}', ['as' => 'create-bid', 
     'uses' => 'BidController@postCreate']);
-=======
+
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
@@ -108,7 +108,6 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
->>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
 
 Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
@@ -227,6 +226,11 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
     ]);
 
 
+    Route::post('tags/block/{tag}', [ // admin block advertisements at dashboard
+        'as' => 'tags.block',
+        'uses' => 'TagController@postDashboardBlock',
+    ]);
+
     Route::get('users/allAdmin', [
         'as' => 'users.allAdmin', 
         'uses' => 'UserController@getAllAdmin'
@@ -248,6 +252,10 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
         'uses' => 'CommentController@getAllBlocked',
     ]);
 
+    Route::get('tags/allBLocked', [ 
+        'as' => 'tags.allBlocked',
+        'uses' => 'TagController@getAllBlocked',
+    ]);
 
 
 });

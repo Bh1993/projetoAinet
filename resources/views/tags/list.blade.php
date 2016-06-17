@@ -6,7 +6,7 @@
 
 @if (count($tags))
     <div>
-        <a class="btn btn-primary" href="{{url('tags')}}">All Comments</a>
+        <a class="btn btn-primary" href="{{url('tags')}}">All Tags</a>
         <a class="btn btn-primary" href="{{route('tags.allBlocked')}}">List of All Tags Blocked</a>
     </div>
     <table class="table table-striped">
@@ -14,6 +14,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Actions</th>
         </tr>
     </thead>
     
@@ -21,8 +22,7 @@
     @foreach ($tags as $tag)
         <tr>
             <td>{{$tag->id}}</td>
-            <td>{{$tag->user->name}}</a></td>
-            <td>{{ $comment->advertisement->name }}</td>
+            <td>{{$tag->name}}</a></td>
            
             
             <td>
@@ -41,7 +41,7 @@
         </tr>
     @endforeach
     </table>
-    @include('layouts.pagination-tag',['paginator'=>$tags])
+    @include('layouts.pagination-tags',['paginator'=>$tags])
 @else
     <h2>No tags found</h2>
 @endif

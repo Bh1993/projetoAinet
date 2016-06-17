@@ -9,6 +9,7 @@ use App\User;
 use App\Advertisement;
 use App\Bid;
 use App\Comment;
+use App\Tag;
 use DB;
 
 class MainController extends Controller
@@ -95,11 +96,8 @@ class MainController extends Controller
     	$advertisements = Advertisement::where('blocked', 0)->with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
         $bids = Bid::paginate(8);
 
-<<<<<<< HEAD
-    	return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
-=======
+
     	return view('farmersmarket.farmersmarket',compact(['users','advertisements', 'bids']));
->>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
     }
 
     public function getUserAdvertisements($id)
@@ -178,7 +176,6 @@ class MainController extends Controller
         return redirect('/');
     }
 
-<<<<<<< HEAD
     public function getAllOffers()
     {
         $advertisements = Advertisement::where('blocked', 0)->paginate(8);
@@ -202,34 +199,25 @@ class MainController extends Controller
     }
 
 
-
-
-
-=======
-
     public function getSearch(Request $request)
     {
         $query = $request->input('search');
 
-        if ($query == '') {     
+       /* if ($query == '') {     
             return $this->getHome();
-        }
+        }*/
 
-        //$users = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')->get();
         $users = User::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
+        $location = User::where('location', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
+        $advertisements = Advertisement::where('name', 'like', '%' . $query . '%')->having('blocked', '=', 0)->get();
+        $tag = Tag::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
 
-        $advertisements = Advertisement::where('name', 'like', '%' . $query . '%', 'and' , 'blocked', 0)
-        ->having('blocked', '=', 0)->get();
+   
 
-        $bids = Bid::paginate(8);
-
-       // DB::table('advertisements')->where('name', 'LIKE', '%' . $query . '%')->get();
-
-        return view('farmersmarket.farmersmarket',compact(['users','advertisements', 'bids']));
+        return view('farmersmarket.farmersmarket-search',compact(['users','location', 'advertisements', 'tag']));
 
         
     }
->>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
    
     /*
      public function getTopRatedAdvertisements()

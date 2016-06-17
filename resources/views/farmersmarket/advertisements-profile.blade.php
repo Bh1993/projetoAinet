@@ -86,7 +86,7 @@
 
 
 					@include('layouts.farmersmarket-advertisement-comments')
-		
+				<a class="btn btn-default" href="{{url('farmersmarket')}}" name="cancel">Cancel</a>
 			</div>
 		</div>
 	</div>

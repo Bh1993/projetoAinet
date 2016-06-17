@@ -15,4 +15,25 @@ class TagController extends Controller
 
         return view('tags.list', compact('tags'));
     }
+
+    public function postDashboardBlock(Tag $tag)
+    {
+        if ($tag->blocked == 0) {
+            $tag->blocked = 1;
+        } else {
+            $tag->blocked = 0;
+        }
+
+
+        $tag->save();
+
+        return redirect('tags');
+
+    }
+
+    public function getAllBlocked()
+    {
+        $tags = Tag::where('blocked', 1)->paginate(8);
+        return view('tags.list',compact('tags'));
+    } 
 }
