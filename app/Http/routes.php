@@ -99,6 +99,12 @@ Route::get('farmersmarket/create-bid/show/{id}', [                              
 Route::post('farmersmarket/create-bid/show/{id}', ['as' => 'create-bid', 
     'uses' => 'BidController@postCreate']);
 
+
+
+Route::get('farmersmarket/counter-offer/show/{id}', ['as' => 'farmersmarket.offers-counter-offer',
+    'uses' => 'BidController@getCounterOffer', ]);
+
+
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
@@ -106,7 +112,6 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
-
 
 
 Route::get('users-view', 'MainController@getUsers');

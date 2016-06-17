@@ -40,32 +40,83 @@ class BidController extends Controller
         $bid = new Bid();
         
         return view('farmersmarket.create-bid', compact('bid'));
-    }
 
-    public function postCreate($id, Request $request)
+
+    }    
+    // 0 Canceled ; 1 Pending ; 2 Refused ; 3 Accepted
+    
+ 
+    public function getCounterOffer($id)
     {
+        
+        $bid = Bid::find($id);
+
+        return view('farmersmarket.offers-counter-offer', compact('bid'));
+           
+    }   
+    
+    public function postCounterOffer(Request $request)
+    {
+
         $this->validate($request, [
-            'trade_prefs' => 'required',
             'trade_location' => 'required',
-            'advertisement_id' => 'required',
-            'buyer_id' => 'required',
-        ]);        
+            'price_cents' => 'required_without_all:trade_prefs,price_cents',
+            'trade_prefs' => 'required_without_all:price_cents,trade_prefs',
 
+        ]);
 
+        
+        $bid = Bid::find($request->id);
+        
+        $bid->trade_location = $request->trade_location;
+        $bid->trade_prefs = $request->trade_prefs;
+        $bid->price_cents = $request->price_cents;
+        
+        
+        $bid->updated_at = date("Y-m-d H:i:s");
+        $bid->save();
+        return redirect('/');
     }
 
-
-
-    public function postEdit(Request $request)
-    {
+    
+    public function postCreate($id, Request $request)
+    {   
+        
         $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'available_on' => '',
-            'available_until' => '',
-            'price_cents' => '',
-            'blocked' => ' ',
-            ]);
+            'trade_location' => 'required',
+            'price_cents' => 'required_without_all:trade_prefs,price_cents',
+            'trade_prefs' => 'required_without_all:price_cents,trade_prefs',
+        ]);
+    
+        $bid = new Bid();
+        $advertisement = Advertisement::find($id);
+        
+
+        $bid->quantity = $advertisement->quantity;
+        $bid->trade_location = $request->trade_location;
+        $bid->advertisement_id = $id;
+        $bid->buyer_id = Auth::user()->id;
+
+        $bid->trade_prefs = $request->trade_prefs;
+        $bid->price_cents = $request->price_cents;
+        $bid->save();
+        
+        return back();
+    }
+
+    public function postBlock(Advertisement $bid)
+    {
+        if ($bid->blocked == 0) {
+            $bid->blocked = 1;
+        } else {
+            $bid->blocked = 0;
+        }
+
+        $bid->save();
+
+        return redirect('bids');
+    }
+
     }
 
 
@@ -101,22 +152,6 @@ class BidController extends Controller
         $bid->status = 0;
         $bid->save();
         return redirect('/');
-    }
-
-    public function postCounterOffer($id, Request $request) //TODO
-    {
-        $bid = Bid::find($id);
-
-        $this->validate($request, [
-            'price_cents' => 'required',
-            'quantity' => 'required',
-        ]);
-
-        $bid->price_cents = $request->price_cents;
-        $bid->quantity = $request->quantity;
-        $bid->updated_at = date("Y-m-d H:i:s");
-        $bid->save();
-        return redirect('bids.counteroffer');
     }
 
 }
