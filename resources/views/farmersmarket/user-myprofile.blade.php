@@ -27,7 +27,6 @@
 					<div class="form-group">
     					<label for="inputFullname">Fullname</label>
     						<p> {{ Auth::user()->name }} </p>
-        
 					</div>
 					
 					<div class="form-group">

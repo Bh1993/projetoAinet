@@ -73,29 +73,24 @@
         
     </div>
 
-
-<div class="form-group">
-        <button type="submit" class="btn btn-primary" href="{{route('users.edit', ['id' => $user->id])}}" name="edit">Edit</button>
-        <button type="submit" class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</button>
-
-    </div>
-
-    <div class="form-group">
+     <div class="form-group">
         <label for="inputSellsCount">Buys Count</label>
         <p> {{ $user->buys_count }}</p>
+    </div>
+
 
         <div class="form-group">
+            
             @if(Auth::check() && Auth::user()->admin == 1 )
             <form action="{{route('users.block', ['id' => $user->id])}}" method="post" class="inline">
                 {{ csrf_field() }}
-                
+                <button type="submit" class="btn btn-primary" href="{{route('users.edit', ['id' => $user->id])}}" name="edit">Edit</button>
                 @if ($user->blocked == 0)
                 <button type="submit" class="btn btn-danger" name="block" >Block User</button>
                 @else
                 <button type="submit" class="btn btn-success" name"block" >Unblock User</button>
                 @endif
-                <button type="submit" class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</button>    
-
+                <button type="submit" class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</button>  
             </form>
             @endif
         </div>

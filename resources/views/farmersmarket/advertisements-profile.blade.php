@@ -7,14 +7,6 @@
 			<h1>Advertisement Details </h1>
 		</div>
 		<br>
-		<div class="row">
-			<div class="col-sm-6 col-md-4">
-				<div class="image">
-					<img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
-				</div>
-			</div>
-
-			<br>
 			<div class="row">
 				<div class="col-sm-6 col-md-4">
 					<div class="image">
@@ -22,7 +14,7 @@
 					</div>
 					<h3>Owner Profile</h3>
 					<p><a href="{{route('farmersmarket.user-profile',['id' => $advertisement->user->id])}}">{{$advertisement->user->name}}</a></p>
-
+				</div>
 
 			<div class="col-sm-12 col-md-8">
 				<div class="form-group">

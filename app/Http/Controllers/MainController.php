@@ -92,15 +92,20 @@ class MainController extends Controller
 
     	$advertisements = Advertisement::where('blocked', 0)->with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
 
-        $bids = Bid::orderByRaw("RAND()")->take(8)->get();
-
-    	return view('farmersmarket.farmersmarket',compact(['users','advertisements','bids']));
+    	return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
     }
 
     public function getUserAdvertisements($id)
     {
         $user = User::find($id);
         return view('farmersmarket.user-my-advertisements', compact('user'));
+    }
+
+    public function getUserBids($id)
+    {
+        $bid = Bid::find($id);
+        $user = User::find($id);
+        return view('farmersmarket.user-my-bids',compact(['bid','user']));
     }
 
     public function getTopRatedUsers()
@@ -165,6 +170,32 @@ class MainController extends Controller
 
         return redirect('/');
     }
+
+    public function getAllOffers()
+    {
+        $advertisements = Advertisement::where('blocked', 0)->paginate(8);
+        return view('farmersmarket.offers-all',compact('advertisements'));
+    }
+
+     public function getOfferProfile($id)
+    {
+        
+        $advertisement = Advertisement::with('media')->find($id);
+
+        return view('farmersmarket.offer-profile', compact('advertisement'));
+           
+    }
+
+    public function getOfferDetails($id)
+    {
+        $bid = Bid::find($id);
+
+        return view('farmersmarket.offer-details', compact('bid'));
+    }
+
+
+
+
 
    
     /*

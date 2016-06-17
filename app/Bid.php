@@ -20,6 +20,28 @@ class Bid extends Model
 
     public function advertisement()
     {
-        return $this->hasOne(Advertisement::class, 'id');
+        return $this->belongsTo(Advertisement::class, 'advertisement_id');
+    }
+
+    public function getName()
+    {
+        return $this->user->name;
+    }
+
+    public function getStatus()
+    {
+        if($this->status == 1){
+            return('Pending');
+        }
+        elseif($this->status == 2){
+            return('Refused');
+        }
+        elseif($this->status == 3){
+            return('Accepted');
+        }
+        else{
+            return('Canceled');
+        }
+        
     }
 }
