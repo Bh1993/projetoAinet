@@ -115,9 +115,6 @@ class AdvertisementController extends Controller
     {
         $advertisements = Advertisement::where('blocked', 1)->paginate(8);
         return view('advertisements.list',compact('advertisements'));
-    }
-    
-
-   
+    }  
 
 }

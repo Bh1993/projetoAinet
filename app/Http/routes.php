@@ -12,14 +12,21 @@
 */
 
 
-Route::get('/', 'MainController@getHome');
+Route::group(['middleware' =>['allowed']], function() {
+    Route::get('/', 'MainController@getHome');
+    
+    Route::get('users-all', 'MainController@getAllUsers');
+});
+
+
+
+
 
 Route::get('search', ['as' => 'farmersmarket.search', 'uses' => 'MainController@getSearch' ]);
 
 Route::post('users-orderBy', ['as' => 'users-orderBy',
     'uses' => 'UserController@orderBy']);
 
-Route::get('users-all', 'MainController@getAllUsers');
 
 Route::post('users-all-orderBy', ['as' => 'users-all-orderBy',
     'uses' => 'MainController@orderBy']);
@@ -58,6 +65,16 @@ Route::get('user-create-advertisement', [                               // Only 
     'uses' => 'MainController@getCreate',
     ]);
 
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+
+
 Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
 Route::get('users-toprated', 'MainController@getTopRatedUsers');
@@ -86,6 +103,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+
 Route::auth();
 
 // Login & Register Group
@@ -113,6 +131,8 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
     
 });
+
+
 
 Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
 

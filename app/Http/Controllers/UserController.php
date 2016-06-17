@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Mail;
 
 
 class UserController extends Controller
@@ -61,6 +62,10 @@ class UserController extends Controller
         ]);
 
         $user = new User($request->all());
+        
+        if ($request->profile_photo == '') {
+           $user->profile_photo = 'cenas';
+        }
        
         $user->save();
         return redirect('users');

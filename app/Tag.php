@@ -16,4 +16,9 @@ class Tag extends Model
         'id', 
     ]; 
 
+    public function advertisement()
+    {
+        return $this->belongsToMany(Advertisement::class);
+    }
+
 }

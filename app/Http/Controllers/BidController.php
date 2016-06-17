@@ -60,8 +60,9 @@ class BidController extends Controller
     // 0 Canceled ; 1 Pending ; 2 Refused ; 3 Accepted
     
 
-    public function postAccept(Bid $bid) // status-> 1 - Accepted
+    public function postAccept($id) // status-> 1 - Accepted
     {
+        $bid = Bid::find($id);
         $advertisement = Advertisement::find($bid->advertisement_id);
         $bid->status = 3;
         $bid->save();
@@ -70,24 +71,35 @@ class BidController extends Controller
         return redirect('bids');
     }
 
-    public function postRefuse(Bid $bid)   // status-> 2 - Refused
+    public function postRefuse($id)   // status-> 2 - Refused
     {
+        $bid = Bid::find($id);
         $bid->status = 2;
         $bids->save();
         return redirect('bids');
     }
 
-    public function postCancel(Bid $bid)
+    public function postCancel($id)
     {
+        $bid = Bid::find($id);
         $bid->status = 0;
         $bids->save();
         return redirect('bids');
     }
-
-    public function postCounterOffer(Bid $bid)
+    
+    public function postCounterOffer($id, Request $request)
     {
-        //$bid->status = ;
-        $bids->save();
+        $bid = Bid::find($id);
+
+        $this->validate($request, [
+            'price_cents' => 'required',
+            'quantity' => 'required',
+        ]);
+
+        $bid->price_cents = $request->price_cents
+        $bid->quantity = $request->quantity;
+        $bid->updated_at = date("Y-m-d H:i:s");
+        $bid->save();
         return redirect('bids.counteroffer');
     }
 
@@ -129,10 +141,6 @@ class BidController extends Controller
         $bid->save();
 
         return redirect('bids');
-    }
-
-    
-
-   
+    }   
 
 }
