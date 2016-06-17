@@ -102,7 +102,6 @@ class AdvertisementController extends Controller
             $advertisement->blocked = 0;
         }
 
-
         $advertisement->save();
 
         return redirect('advertisements');

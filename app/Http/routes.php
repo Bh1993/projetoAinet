@@ -34,11 +34,36 @@ Route::post('users-all-orderBy', ['as' => 'users-all-orderBy',
 Route::get('farmersmarket/users/show/{id}', ['as' => 'farmersmarket.user-profile',
     'uses' => 'MainController@getUserProfile', ]);
 
+Route::get('farmersmarket/offers/show/{id}', ['as' => 'farmersmarket.offer-profile',
+    'uses' => 'MainController@getOfferProfile', ]);
+
+Route::get('farmersmarket/offers-details/show/{id}', ['as' => 'farmersmarket.offer-details',
+    'uses' => 'MainController@getOfferDetails', ]);
+
 Route::get('farmersmarket/my-profile/show/{id}', ['as' => 'farmersmarket.user-myprofile',
     'uses' => 'MainController@getMyProfile', ]);
 
 Route::get('farmersmarket/my-advertisements/show/{id}', ['as' => 'farmersmarket.user-my-advertisements',
     'uses' => 'MainController@getUserAdvertisements', ]);
+
+Route::get('farmersmarket/my-bids/show/{id}', ['as' => 'farmersmarket.user-my-bids',
+    'uses' => 'MainController@getUserbids', ]);
+
+ Route::post('bids/accept/{id}', [ 
+        'as' => 'bid.accept',
+        'uses' => 'BidController@postAccept',
+    ]);
+
+ Route::post('bids/decline/{id}', [ 
+        'as' => 'bid.decline',
+        'uses' => 'BidController@postRefuse',
+    ]);
+
+  Route::post('bids/counter/{id}', [ 
+        'as' => 'bid.counter',
+        'uses' => 'BidController@postCounterOffer',
+    ]);
+
 
 Route::get('farmersmarket/edit-profile/{id}', [                 // Edit users, each user can edit himself
     'as' => 'farmersmarket.user-edit-profile',
@@ -65,6 +90,15 @@ Route::get('user-create-advertisement', [                               // Only 
     'uses' => 'MainController@getCreate',
     ]);
 
+<<<<<<< HEAD
+Route::get('farmersmarket/create-bid/show/{id}', [                               // Only users can create ads
+    'as' => 'create-bid',
+    'uses' => 'BidController@getCreate',
+    ]);
+
+Route::post('farmersmarket/create-bid/show/{id}', ['as' => 'create-bid', 
+    'uses' => 'BidController@postCreate']);
+=======
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
@@ -74,6 +108,7 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
+>>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
 
 Route::get('users-view', 'MainController@getUsers');
 Route::get('farmersmarket', 'MainController@getHome');
@@ -83,6 +118,7 @@ Route::get('users-topsellers', 'MainController@getTopSellers');
 Route::get('advertisements-all', 'MainController@getAllAdvertisements');
 Route::get('advertisements-mostrecent', 'MainController@getRecentAdvertisements');
 Route::get('farmersmarket-market-bids', 'MainController@getAllBids');
+Route::get('offers-all', 'MainController@getAllOffers');
 /*
 Route::get('advertisements-bestsellers', 'MainController@getMostSoldAdvertisements');
 Route::get('advertisements-mostviewed', 'MainController@getMostViewedAdvertisements');
@@ -90,8 +126,14 @@ Route::get('advertisements-toprated', 'MainController@getTopRatedAdvertisements'
 */
 Route::get('advertisements', 'AdvertisementController@index');      // Every person can see advertisements
 
+
 Route::post('advertisements/show/{id}', ['as' => 'advertisements.display-advertisement', // Every person can see details
     'uses' => 'AdvertisementController@getShow',]); 
+
+Route::get('bids', 'BidController@index'); 
+
+Route::get('bids/show/{id}', ['as' => 'bids.display-bid', // Every person can see details
+    'uses' => 'BidController@getShow',]); 
 
 
 // Authentication routes...

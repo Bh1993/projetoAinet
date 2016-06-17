@@ -10,6 +10,25 @@
 				</div>
 			</div>
 
+<<<<<<< HEAD
+				<div class="col-sm-6 col-xs-8">
+					<div class="top-account">
+						<ul class="account">
+							@if(!Auth::check())
+							<li><a href="{{url('auth/register')}}"><span class="glyphicon glyphicon-user"></span> Create accout </a></li>
+							<li><a href="{{url('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+							@else
+							<li><a href="{{route('farmersmarket.user-myprofile',['id' => Auth::user()->id])}}"><span class="glyphicon glyphicon-cog"></span> My Profile </a></li>
+							<li><a href="{{route('farmersmarket.user-my-advertisements',['id' => Auth::user()->id])}}"><span class="glyphicon glyphicon-book"></span> My Advertisements </a></li>
+							<li><a href="{{route('farmersmarket.user-my-bids',['id' => Auth::user()->id])}}"><span class="glyphicon glyphicon-shopping-cart"></span> My Bids </a></li>
+							@if(Auth::user()->admin == 1)
+							<li><a href="{{url('users')}}"><span class="glyphicon glyphicon-log-in"></span> Dashboard </a></li>
+							@endif
+							<li><a href="{{url('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>	
+							@endif
+						</ul>
+					</div>
+=======
 			<div class="col-sm-6 col-xs-8">
 				<div class="top-account">
 					<ul class="account">
@@ -26,6 +45,7 @@
 						<li><a href="{{url('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>	
 						@endif
 					</ul>
+>>>>>>> 6e9eb5b0b4c1a2ae4ec3f66b7bd638f1114feb4c
 				</div>
 			</div>
 		</div>

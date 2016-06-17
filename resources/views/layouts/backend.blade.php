@@ -30,6 +30,7 @@
         <li><a href="{{url('advertisements')}}">Advertisements</a></li>
         <li><a href="#">Market</a></li>
         <li><a href="{{url('tags')}}">Tags</a></li>
+        <li><a href="{{url('bids')}}">Market</a></li>
         <li><a href="{{url('comments')}}">Comments</a></li>
         
       </ul>

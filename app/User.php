@@ -48,7 +48,12 @@ class User extends Authenticatable
 
     public function bids()
     {
-        return $this->hasManyThrough(Bids::class, Advertisement::class, 'owner_id', 'advertisement_id');
+        return $this->hasManyThrough(Bid::class, Advertisement::class, 'owner_id', 'advertisement_id');
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Bid::class, 'buyer_id');
     }
 
     public function comments()

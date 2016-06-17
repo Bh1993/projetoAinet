@@ -16,7 +16,6 @@
             <br>
             <div class="row">
             @foreach($users as $user)
-            
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                         <img src="{{$user->profile_photo}}" alt="...">
@@ -27,7 +26,6 @@
                         </div>
                     </div>
                 </div>
-            
             @endforeach    
             </div>
 @include('layouts.pagination-users',['paginator'=>$users])    
