@@ -6,15 +6,15 @@
             <br>
             <br>
             <div class="row">
-                @foreach($users as $user)
+                @foreach($location as $l)
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
-                        <img src="{{$user->profile_photo}}" alt="...">
+                        <img src="{{$l->profile_photo}}" alt="...">
                         <div class="caption">
                             
-                            <h3>{{$user->name}}</h3>
+                            <h3>{{$l->name}}</h3>
                             <p></p>
-                            <p><a href="{{route('farmersmarket.user-profile',['id' => $user->id])}}" class="btn btn-primary" role="button">View Profile</a></p>
+                            <p><a href="{{route('farmersmarket.user-profile',['id' => $l->id])}}" class="btn btn-primary" role="button">View Profile</a></p>
                         </div>
                     </div>
                 </div>
