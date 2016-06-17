@@ -80,4 +80,10 @@ class CommentController extends Controller
         return redirect('comments');
 
     }
+
+    public function getAllBlocked()
+    {
+        $comments = Comment::where('blocked', 1)->paginate(8);
+        return view('comments.list',compact('comments'));
+    }  
 }

@@ -84,16 +84,16 @@
             @if(Auth::check() && Auth::user()->admin == 1 )
             <form action="{{route('users.block', ['id' => $user->id])}}" method="post" class="inline">
                 {{ csrf_field() }}
-                <button type="submit" class="btn btn-primary" href="{{route('users.edit', ['id' => $user->id])}}" name="edit">Edit</button>
+               
                 @if ($user->blocked == 0)
                 <button type="submit" class="btn btn-danger" name="block" >Block User</button>
                 @else
                 <button type="submit" class="btn btn-success" name"block" >Unblock User</button>
                 @endif
-                <button type="submit" class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</button>  
             </form>
             @endif
         </div>
+        <a class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</a>
 
 
     </div>

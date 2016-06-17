@@ -1,0 +1,7 @@
+@extends('layouts.farmersmarket-head')
+@include('layouts.main-nav')
+@include('farmersmarket.farmersmarket-users')
+@include('farmersmarket.farmersmarket-users-location')
+@include('farmersmarket.farmersmarket-products')
+@include('farmersmarket.farmersmarket-products-tag')
+@include('layouts.farmersmarket-footer')

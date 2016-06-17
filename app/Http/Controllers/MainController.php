@@ -9,6 +9,7 @@ use App\User;
 use App\Advertisement;
 use App\Bid;
 use App\Comment;
+use App\Tag;
 use DB;
 
 class MainController extends Controller
@@ -202,24 +203,22 @@ class MainController extends Controller
     {
         $query = $request->input('search');
 
-        if ($query == '') {     
+       /* if ($query == '') {     
             return $this->getHome();
-        }
+        }*/
 
-        //$users = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')->get();
         $users = User::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
+        $location = User::where('location', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
+        $advertisements = Advertisement::where('name', 'like', '%' . $query . '%')->having('blocked', '=', 0)->get();
+        $tag = Tag::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
 
-        $advertisements = Advertisement::where('name', 'like', '%' . $query . '%', 'and' , 'blocked', 0)
-        ->having('blocked', '=', 0)->get();
+   
 
-        $bids = Bid::paginate(8);
+        return view('farmersmarket.farmersmarket-search',compact(['users','location', 'advertisements', 'tag']));   
 
-       // DB::table('advertisements')->where('name', 'LIKE', '%' . $query . '%')->get();
-
-        return view('farmersmarket.farmersmarket',compact(['users','advertisements', 'bids']));
-
-        
     }   
+
+
     /*
      public function getTopRatedAdvertisements()
     {

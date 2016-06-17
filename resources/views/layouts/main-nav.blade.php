@@ -26,9 +26,12 @@
 							@endif
 						</ul>
 					</div>
+
 		     </div>
+
 		</div>
 	</div>
+
 
 	<nav class="navbar navbar-inverse" role="banner">
 		<div class="container">

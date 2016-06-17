@@ -28,18 +28,12 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{url('users')}}">Users<span class="sr-only">(current)</span></a></li>
         <li><a href="{{url('advertisements')}}">Advertisements</a></li>
+        <li><a href="#">Market</a></li>
+        <li><a href="{{url('tags')}}">Tags</a></li>
         <li><a href="{{url('bids')}}">Market</a></li>
-        <li><a href="#">Tags</a></li>
         <li><a href="{{url('comments')}}">Comments</a></li>
         
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
+      
         
         <li><a href="{{url('/')}}">Go back to website</a></li>
         

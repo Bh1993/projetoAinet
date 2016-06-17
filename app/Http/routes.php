@@ -100,8 +100,10 @@ Route::post('farmersmarket/create-bid/show/{id}', ['as' => 'create-bid',
     'uses' => 'BidController@postCreate']);
 
 
+
 Route::get('farmersmarket/counter-offer/show/{id}', ['as' => 'farmersmarket.offers-counter-offer',
     'uses' => 'BidController@getCounterOffer', ]);
+
 
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
@@ -184,6 +186,7 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
 
     Route::get('advertisements', 'AdvertisementController@index');
     Route::get('comments', 'CommentController@index');
+    Route::get('tags', 'TagController@index');
 
 
     Route::get('users/create', [                // View to create users as admin
@@ -228,6 +231,11 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
     ]);
 
 
+    Route::post('tags/block/{tag}', [ // admin block advertisements at dashboard
+        'as' => 'tags.block',
+        'uses' => 'TagController@postDashboardBlock',
+    ]);
+
     Route::get('users/allAdmin', [
         'as' => 'users.allAdmin', 
         'uses' => 'UserController@getAllAdmin'
@@ -244,6 +252,15 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
         'uses' => 'UserController@getAllBlocked',
     ]);
 
+    Route::get('comments/allBLocked', [ 
+        'as' => 'comments.allBlocked',
+        'uses' => 'CommentController@getAllBlocked',
+    ]);
+
+    Route::get('tags/allBLocked', [ 
+        'as' => 'tags.allBlocked',
+        'uses' => 'TagController@getAllBlocked',
+    ]);
 
 
 });

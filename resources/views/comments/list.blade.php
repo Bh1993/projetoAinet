@@ -5,6 +5,10 @@
 @section('content')
 
 @if (count($comments))
+    <div>
+        <a class="btn btn-primary" href="{{url('comments')}}">All Comments</a>
+        <a class="btn btn-primary" href="{{route('comments.allBlocked')}}">List of All Comments Blocked</a>
+    </div>
     <table class="table table-striped">
     <thead>
         <tr>

@@ -82,15 +82,16 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						@if ($user->blocked == 0)
-						<button type="submit" class="btn btn-xs btn-danger" name="block" >Block User</button>
+						<button type="submit" class="btn btn-danger" name="block" >Block User</button>
 						@else
-						<button type="submit" class="btn btn-xs btn-success" name"block" >Unblock User</button>
+						<button type="submit" class="btn btn-success" name"block" >Unblock User</button>
 						@endif
-						<button type="submit" class="btn btn-default" href="{{url('users')}}" name="cancel">Cancel</button>
 					</div>
-					
 				</form>
 					@endif
+				
+					<a class="btn btn-default" href="{{url('farmersmarket')}}" name="cancel">Cancel</a>
+			
 				</div>
     		</div>
     	</div>

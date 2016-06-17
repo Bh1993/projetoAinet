@@ -20,7 +20,7 @@ class AdvertisementController extends Controller
     public function getShow($id) // Não pode mostrar ads que estejam bloqueados
     {
         
-        $advertisement = Advertisement::with('media')->find($id);
+        $advertisement = Advertisement::with('media', 'tags')->find($id);
 
         return view('advertisements.display-advertisement', compact('advertisement'));
            
