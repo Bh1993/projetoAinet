@@ -81,6 +81,7 @@ class MainController extends Controller
  
     public function getAdvertisementProfile($id)
     {
+        
         $advertisement = Advertisement::with('comments')->find($id);
         
         return view('farmersmarket.advertisements-profile',compact('advertisement'));
@@ -92,8 +93,9 @@ class MainController extends Controller
     	$users = User::where('blocked', 0)->orderByRaw("RAND()")->take(8)->get();
 
     	$advertisements = Advertisement::where('blocked', 0)->with('media')->has('media')->orderByRaw("RAND()")->take(8)->get();
+        $bids = Bid::paginate(8);
 
-    	return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
+    	return view('farmersmarket.farmersmarket',compact(['users','advertisements', 'bids']));
     }
 
     public function getUserAdvertisements($id)
@@ -170,15 +172,21 @@ class MainController extends Controller
     {
         $query = $request->input('search');
 
-        if (empty($request->input('search'))) {
-            $this->getHome();
+        if ($query == '') {     
+            return $this->getHome();
         }
 
-        $users = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')->get();
+        //$users = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')->get();
+        $users = User::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
 
-        $advertisements = DB::table('advertisements')->where('name', 'LIKE', '%' . $query . '%')->get();
+        $advertisements = Advertisement::where('name', 'like', '%' . $query . '%', 'and' , 'blocked', 0)
+        ->having('blocked', '=', 0)->get();
 
-        return view('farmersmarket.farmersmarket',compact(['users','advertisements']));
+        $bids = Bid::paginate(8);
+
+       // DB::table('advertisements')->where('name', 'LIKE', '%' . $query . '%')->get();
+
+        return view('farmersmarket.farmersmarket',compact(['users','advertisements', 'bids']));
 
         
     }

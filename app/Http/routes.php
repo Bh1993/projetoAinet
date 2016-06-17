@@ -14,7 +14,7 @@
 
 Route::get('/', 'MainController@getHome');
 
-Route::get('/', ['as' => 'farmersmarket.search', 'uses' => 'MainController@getSearch' ]);
+Route::get('search', ['as' => 'farmersmarket.search', 'uses' => 'MainController@getSearch' ]);
 
 Route::post('users-orderBy', ['as' => 'users-orderBy',
     'uses' => 'UserController@orderBy']);
@@ -132,7 +132,11 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
         'uses' => 'UserController@postDashboardBlock',
     ]);
 
-    
+    Route::post('users/admin/{user}', [ // 
+        'as' => 'users.assignAdmin',
+        'uses' => 'UserController@assignAdmin',
+    ]);
+
 
     Route::post('users/create', 'UserController@postCreate'); // Create users as admin
 
@@ -154,6 +158,16 @@ Route::group(['middleware' => ['auth' , 'admin']], function() { // Admin Route
         'uses' => 'AdvertisementController@postDashboardBlock',
     ]);
 
+    Route::post('comments/block/{comment}', [ // admin block advertisements at dashboard
+        'as' => 'comments.block',
+        'uses' => 'CommentController@postDashboardBlock',
+    ]);
+
+
+    Route::get('users/allAdmin', [
+        'as' => 'users.allAdmin', 
+        'uses' => 'UserController@getAllAdmin'
+        ]);
 
 
     Route::get('advertisements/allBlocked', [

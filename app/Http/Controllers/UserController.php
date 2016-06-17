@@ -163,4 +163,25 @@ class UserController extends Controller
         return view('users.list', compact(['users','options']));
     }
 
+    public function getAllAdmin()
+    {
+        $users = User::where('admin', 1)->orderBy('name', 'asc')->paginate(10);
+        $options = ['name' => 'Name', 'email' => 'Email'];
+
+        return view('users.list', compact(['users', 'options']));
+    }
+
+    public function assignAdmin(User $user)
+    {
+        if ($user->admin == 0 && $user->blocked == 0) {
+            $user->admin = 1;
+        } else {
+            $user->admin = 0;
+        }
+
+        $user->save();
+
+        return redirect('users');
+    }
+
 }

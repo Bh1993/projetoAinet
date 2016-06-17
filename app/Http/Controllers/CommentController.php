@@ -11,8 +11,7 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::where('blocked', 0)
-                                ->paginate(10);
+        $comments = Comment::paginate(10);
 
         return view('comments.list', compact('comments'));
     }
@@ -65,5 +64,20 @@ class CommentController extends Controller
         $comment->save();
         
         return back();
+    }
+
+    public function postDashboardBlock(Comment $comment)
+    {
+        if ($comment->blocked == 0) {
+            $comment->blocked = 1;
+        } else {
+            $comment->blocked = 0;
+        }
+
+
+        $comment->save();
+
+        return redirect('comments');
+
     }
 }
