@@ -26,6 +26,15 @@ class UserController extends Controller
         return view('users.list', compact(['users','options']));
     }
 
+    public function confirmEmail($id)
+    {
+        $user = User::find($id);
+        $user->blocked = 0;
+        $user->save();
+
+        return redirect('/');
+    }
+
     public function getShow($id)
     {
         

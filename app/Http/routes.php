@@ -16,7 +16,7 @@ Route::group(['middleware' =>['allowed']], function() {
     Route::get('/', 'MainController@getHome');
     
     Route::get('users-all', 'MainController@getAllUsers');
-});
+
 
 
 
@@ -280,4 +280,6 @@ Route::get('advertisements/show/{id}', ['as' => 'advertisements.display-advertis
     'uses' => 'UserController@getBids',]);
 
 
+Route::get('verify/{id}/email', ['as' => 'email_confirm', 'uses' => 'UserController@confirmEmail', ]);
 
+});

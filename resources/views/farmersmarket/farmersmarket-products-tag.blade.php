@@ -7,18 +7,18 @@
             <br>
             <div class="row">
             
-                @foreach($tags->advertisements as $advertisement)
+                @foreach($adTags as $adTag)
                     <div class="col-sm-6 col-md-3">
                         <div class="thumbnail" style="border:0; padding:0">
-                        @if($advertisement->media->count() > 0)
-                            <img src="{{$advertisement->media->first()->photo_path}}" alt="photo">
+                        @if($adTag->media->count() > 0)
+                            <img src="{{$adTag->media->first()->photo_path}}" alt="photo">
                         @else
                             <img src="" alt="noImage">
                         @endif   
                             <div class="caption">
-                                <h3>{{$advertisement->name}}</h3>
+                                <h3>{{$adTag->name}}</h3>
                                 <p></p>
-                                <p><a href="{{route('farmersmarket.advertisement-profile',['id' => $advertisement->id])}}" class="btn btn-primary" role="button">View Advertisement</a></p>
+                                <p><a href="{{route('farmersmarket.advertisement-profile',['id' => $adTag->id])}}" class="btn btn-primary" role="button">View Advertisement</a></p>
                             </div>
                         </div>
                     </div>

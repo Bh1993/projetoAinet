@@ -88,36 +88,28 @@ class BidController extends Controller
             'trade_prefs' => 'required_without_all:price_cents,trade_prefs',
         ]);
     
-        $bid = new Bid();
-        $advertisement = Advertisement::find($id);
         
+        $advertisement = Advertisement::find($id);
 
-        $bid->quantity = $advertisement->quantity;
-        $bid->trade_location = $request->trade_location;
-        $bid->advertisement_id = $id;
-        $bid->buyer_id = Auth::user()->id;
+        if ($advertisement->owner_id != Auth::user()->id) {
+            
+            $bid = new Bid();
+            $bid->quantity = $advertisement->quantity;
+            $bid->trade_location = $request->trade_location;
+            $bid->advertisement_id = $id;
+            $bid->buyer_id = Auth::user()->id;
 
-        $bid->trade_prefs = $request->trade_prefs;
-        $bid->price_cents = $request->price_cents;
-        $bid->save();
+            $bid->trade_prefs = $request->trade_prefs;
+            $bid->price_cents = $request->price_cents;
+
+            $bid->save();
+
+        }
         
         return back();
     }
 
-    public function postBlock(Advertisement $bid)
-    {
-        if ($bid->blocked == 0) {
-            $bid->blocked = 1;
-        } else {
-            $bid->blocked = 0;
-        }
-
-        $bid->save();
-
-        return redirect('bids');
-    }
-
-    }
+  
 
 
     // 0 Canceled ; 1 Pending ; 2 Refused ; 3 Accepted

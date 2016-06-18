@@ -11,8 +11,7 @@ class AdvertisementController extends Controller
 {
     public function index()
     {
-        $advertisements = Advertisement::where('blocked', 0)
-                                        ->paginate(10);
+        $advertisements = Advertisement::paginate(10);
 
         return view('advertisements.list', compact('advertisements'));
     }
