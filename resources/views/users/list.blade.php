@@ -54,7 +54,7 @@
                 <form action="{{route('users.block', ['id' => $user->id])}}" method="post" class="inline">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        @if ($user->blocked == 0 && $user->admin == 0)
+                        @if ($user->blocked == 0 || $user->admin == 0)
                         <button type="submit" class="btn btn-xs btn-danger" name="block" >Block User</button>
                         @else
                         <button type="submit" class="btn btn-xs btn-success" name"block" >Unblock User</button>
