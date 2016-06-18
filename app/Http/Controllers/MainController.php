@@ -264,14 +264,31 @@ class MainController extends Controller
         $users = User::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
         $location = User::where('location', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
         $advertisements = Advertisement::where('name', 'like', '%' . $query . '%')->having('blocked', '=', 0)->get();
-        $tag = Tag::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
+        $tags = Tag::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
+        
+      
+       
+        /*$tags = Tag::join('advertisement_tag','advertisement_tag.tag_id','=','tags.id')
+        ->select('advertisement_tag.advertisement_id')
+        ->where('tags.name', 'like','%' . $query . '%')
+        ->get();
+
+        $advs = Advertisement::join('advertisement_tag', 'advertisements.id', '=', 'advertisement_tag.advertisement_id')
+        ->select('advertisements.id')
+        ->where('advertisements.id', '=', $tags)
+        ->get();*/
+
+      
+
+        /*$ads = Advertisement::join('advertisement', 'id', '=', 'ad.id')
+                            ->join('advertisement_tag', 'advertisement_id', 'a_t.id')*/
 
     
+
 
         return view('farmersmarket.farmersmarket-search',compact(['users','location', 'advertisements', 'tag']));   
 
     }   
-
 
     /*
      public function getTopRatedAdvertisements()
