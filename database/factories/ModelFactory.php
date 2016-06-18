@@ -80,10 +80,6 @@ $factory->define(App\Bid::class, function(Faker\Generator $faker){
 });
 
 
-
-
-
-/*
 $factory->define(App\Tag::class, function(Faker\Generator $faker){
     $tags = App\Advertisement::all();
     

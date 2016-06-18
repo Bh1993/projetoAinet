@@ -1,7 +1,7 @@
 @extends('layouts.farmersmarket-head')
 @include('layouts.main-nav')
 
-<section id="main-page-news" style="height:100%">
+<section id="main-page-news">
         <div class="container">
             <div class="news-header" style="padding-top:20px">
                 <h1>My Advertisements</h1>

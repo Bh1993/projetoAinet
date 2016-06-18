@@ -10,7 +10,7 @@ use App\Advertisement;
 use App\Bid;
 use App\Comment;
 use App\Tag;
-use DB;
+
 
 class MainController extends Controller
 {
@@ -28,6 +28,15 @@ class MainController extends Controller
         $options = ['name' => 'Name','created_at' => 'Date','email' => 'Email','location' => 'Location']; 
         return view('farmersmarket.users-all', compact(['users','options']));
     }
+
+    public function orderByProducts(Request $request)
+    {
+        $advertisements = Advertisement::orderBy($request->input('options'),'asc')->paginate(8);
+
+        $options = ['name' => 'Name','available_on' => 'Date', 'price_cents' => 'Price'];
+        return view('farmersmarket.advertisements-all', compact(['advertisements','options']));
+    }
+
 
 
     public function getAllUsers()
@@ -49,6 +58,49 @@ class MainController extends Controller
         $user = User::find($id);
         return view('farmersmarket.user-edit-profile', compact('user'));
     }
+
+    public function getEdit($id)
+    {
+        $advertisement = Advertisement::find($id);
+        return view('farmersmarket.edit-advertisement',compact('advertisement'));
+    }
+
+
+    public function postEdit(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'available_on' => '',
+            'available_until' => '',
+            'price_cents' => '',
+            'blocked' => ' ',
+
+        ]);
+
+        $advertisement = Advertisement::find($request->id);
+
+        $advertisement->name = $request->name;
+        $advertisement->description = $request->description;
+        $advertisement->available_on = $request->available_on;
+        $advertisement->available_until = $request->available_until;
+        $advertisement->price_cents = $request->price_cents;
+        
+
+        $advertisement->save();
+        return redirect('/');
+    }
+
+    public function postDelete($id)
+    {
+        $advertisement = Advertisement::find($id);
+        $advertisement->delete();
+        
+        return redirect('/');
+        
+
+    }
+    
 
     public function postEditProfile(Request $request)
     {
@@ -133,8 +185,10 @@ class MainController extends Controller
 
     public function getAllAdvertisements()
     {
-    	$advertisements = Advertisement::where('blocked', 0)->paginate(8);
-    	return view('farmersmarket.advertisements-all',compact('advertisements'));
+    	$advertisements = Advertisement::where('blocked', 0)->orderBy('name','asc')->paginate(8);
+        $options = ['name' => 'Name','available_on' => 'Date', 'price_cents' => 'Price'];
+
+    	return view('farmersmarket.advertisements-all', compact(['advertisements','options']));
     }
 
     public function getRecentAdvertisements()
@@ -212,7 +266,7 @@ class MainController extends Controller
         $advertisements = Advertisement::where('name', 'like', '%' . $query . '%')->having('blocked', '=', 0)->get();
         $tag = Tag::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
 
-   
+    
 
         return view('farmersmarket.farmersmarket-search',compact(['users','location', 'advertisements', 'tag']));   
 

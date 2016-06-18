@@ -58,6 +58,15 @@ class Advertisement extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function delete()
+    {
+        $this->comments()->delete();
+        $this->media()->delete();
+        $this->bids()->delete();
+
+        return parent::delete();
+    }
+
 }
 
 

@@ -9,21 +9,10 @@
     <a class="btn btn-primary" href="{{url('advertisements')}}">All Advertisements</a>
     <a class="btn btn-primary" href="{{route('advertisements.allBlocked')}}">List of All Ads Blocked</a>
     <div class="pull-right"> 
-     <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Order By
-            <span class="caret">
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Description</a></li>
-                <li><a href="#">Start Date</a></li>
-                <li><a href="#">End Date</a></li>
-                <li><a href="#">Price</a></li>
-                <li><a href="#">Quantity</a></li>
-                <li><a href="#">Media Content</a></li>
-                <li><a href="#">Tags</a></li>
-            </ul>
-        </div>
+     {!!Form::open(['route' => 'advertisements-orderBy'])!!}
+     {!!Form::select('options', $options)!!} 
+     {!!Form::submit('Order')!!}
+     {!!Form::close()!!}
 
     </div>
 </div>

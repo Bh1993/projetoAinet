@@ -11,10 +11,18 @@ class AdvertisementController extends Controller
 {
     public function index()
     {
-        $advertisements = Advertisement::where('blocked', 0)
-                                        ->paginate(10);
+        $advertisements = Advertisement::orderBy('name','asc')->paginate(10);
+        $options = ['name' => 'Name','available_on' => 'Date', 'price_cents' => 'Price'];
 
-        return view('advertisements.list', compact('advertisements'));
+        return view('advertisements.list', compact(['advertisements','options']));
+    }
+
+    public function orderBy(Request $request)
+    {
+        $advertisements = Advertisement::orderBy($request->input('options'),'asc')->paginate(8);
+
+        $options = ['name' => 'Name','available_on' => 'Date', 'price_cents' => 'Price'];
+        return view('advertisements.list', compact(['advertisements','options']));
     }
 
     public function getShow($id) // Não pode mostrar ads que estejam bloqueados
@@ -54,6 +62,7 @@ class AdvertisementController extends Controller
         ]);
 
         $advertisement = new Advertisement($request->all());
+        $advertisement->owner_id = Auth::user()->id;
         
         $advertisement->save();
         return redirect('advertisements');

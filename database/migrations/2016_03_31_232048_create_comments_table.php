@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->string('comment');
 
-            $table->integer('advertisement_id')->unsigned();
+            $table->integer('advertisement_id')->unsigned()->nulable();
             $table->foreign('advertisement_id')->references('id')->on('advertisements');
 
             // set if this comment is a response

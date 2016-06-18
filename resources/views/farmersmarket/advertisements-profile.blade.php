@@ -69,6 +69,17 @@
 					<p> {{ $advertisement->tags }} </p>
 				</div>
 
+				@if(Auth::check() && Auth::user()->id == $advertisement->owner_id)
+					<a class="btn btn-xs btn-primary" href="{{route('farmersmarket.edit-advertisement', ['id' => $advertisement->id])}}">Edit</a>
+					 <form action="{{route('farmersmarket.delete-advertisement', ['id' => $advertisement->id])}}" method="post" class="inline">
+               			 {{ csrf_field() }}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-xs btn-primary">Delete</button>
+                    </div>
+
+                	</form>
+				@endif
+
 
 				@if(Auth::check() && Auth::user()->admin == 1 )
 				<form action="{{route('advertisements.block', ['id' => $advertisement->id])}}" method="post" class="inline">

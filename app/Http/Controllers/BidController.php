@@ -117,7 +117,7 @@ class BidController extends Controller
         return redirect('bids');
     }
 
-    }
+    
 
 
     // 0 Canceled ; 1 Pending ; 2 Refused ; 3 Accepted
