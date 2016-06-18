@@ -76,9 +76,9 @@
     					<label for="inputSellsCount">Buys Count</label>
     						<p> {{ Auth::user()->buys_count }}</p>
 					</div>
-					
+					@if(Auth::User()->id == $user->id)
 					<a class="btn btn-primary" href="{{route('farmersmarket.user-edit-profile', ['id' => Auth::user()->id])}}">Edit Profile</a>
-					
+					@endif
 				</div>
     		</div>
     	</div>

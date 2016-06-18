@@ -41,6 +41,7 @@
             <td> {{ $advertisement->price_cents }} </td>
             <td> {{ $advertisement->getStatus() }} </td>
         <td>
+        @if(Auth::user()->id == $advertisement->owner_id)
             <a class="btn btn-xs btn-primary" href="{{route('advertisements.edit', ['id' => $advertisement->id])}}">Edit</a>
             <form action="{{route('advertisements.delete', ['id' => $advertisement->id])}}" method="post" class="inline">
                 {{ csrf_field() }}
@@ -48,6 +49,7 @@
                     <button type="submit" class="btn btn-xs btn-danger">Delete</button>
                 </div>
             </form>
+            @endif
             <form action="{{route('advertisements.block', ['id' => $advertisement->id])}}" method="post" class="inline">
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -59,6 +61,7 @@
                 </div>
       
             </form>
+
         </td>
     </tr>
     @endforeach

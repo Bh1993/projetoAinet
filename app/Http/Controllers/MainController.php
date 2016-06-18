@@ -155,12 +155,19 @@ class MainController extends Controller
     public function getUserAdvertisements($id)
     {
         $user = User::find($id);
+        if (Auth::User()->id != $id) {
+            return redirect('/');
+        }
         return view('farmersmarket.user-my-advertisements', compact('user'));
     }
 
     public function getUserBids($id)
     {
+
         $bid = Bid::find($id);
+        if (Auth::User()->id != $id) {
+                return redirect('/');
+        }
         $user = User::find($id);
         return view('farmersmarket.user-my-bids',compact(['bid','user']));
     }
