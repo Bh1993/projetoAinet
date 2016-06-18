@@ -7,14 +7,14 @@
 			<h1>Advertisement Details </h1>
 		</div>
 		<br>
-			<div class="row">
-				<div class="col-sm-6 col-md-4">
-					<div class="image">
-						<img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
-					</div>
-					<h3>Owner Profile</h3>
-					<p><a href="{{route('farmersmarket.user-profile',['id' => $advertisement->user->id])}}">{{$advertisement->user->name}}</a></p>
+		<div class="row">
+			<div class="col-sm-6 col-md-4">
+				<div class="image">
+					<img src="{{$advertisement->media->first()->photo_path}}" alt="Mountain View" style="width:304px;height:228px;" >
 				</div>
+				<h3>Owner Profile</h3>
+				<p><a href="{{route('farmersmarket.user-profile',['id' => $advertisement->user->id])}}">{{$advertisement->user->name}}</a></p>
+			</div>
 
 			<div class="col-sm-12 col-md-8">
 				<div class="form-group">
@@ -54,19 +54,23 @@
 				</div>
 
 
-					<div class="form-group">
-    					<label for="inputTradePrefs">Trade Preferences</label>
-    					<p> {{ $advertisement->trade_prefs }} </p>
-					</div>
+				<div class="form-group">
+					<label for="inputTradePrefs">Trade Preferences</label>
+					<p> {{ $advertisement->trade_prefs }} </p>
+				</div>
 
-					<div class="form-group">
-    					<label for="inputMediaContent">Media Content</label>
-    					<p>{{ $advertisement->media->first()->media_url }}</p>
-					</div>
+				<div class="form-group">
+					<label for="inputMediaContent">Media Content</label>
+					<p>{{ $advertisement->media->first()->media_url }}</p>
+				</div>
 
 				<div class="form-group">
 					<label for="inputTags">Tags</label>
-					<p> {{ $advertisement->tags }} </p>
+					@foreach($advertisement->tags as $tag)
+					@if($tag->blocked == 0)
+					<p> {{ $tag->name }} </p>
+					@endif
+					@endforeach
 				</div>
 
 				@if(Auth::check() && Auth::user()->id == $advertisement->owner_id)
@@ -97,7 +101,7 @@
 				@endif
 
 
-					@include('layouts.farmersmarket-advertisement-comments')
+				@include('layouts.farmersmarket-advertisement-comments')
 				<a class="btn btn-default" href="{{url('farmersmarket')}}" name="cancel">Cancel</a>
 			</div>
 		</div>

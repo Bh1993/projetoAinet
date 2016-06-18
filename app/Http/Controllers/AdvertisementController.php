@@ -11,6 +11,7 @@ class AdvertisementController extends Controller
 {
     public function index()
     {
+
         $advertisements = Advertisement::orderBy('name','asc')->paginate(10);
         $options = ['name' => 'Name','available_on' => 'Date', 'price_cents' => 'Price'];
 

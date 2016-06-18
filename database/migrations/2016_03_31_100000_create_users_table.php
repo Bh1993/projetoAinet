@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('presentation')->nullable();
             $table->timestamps();
             $table->boolean('admin')->default(false);
-            $table->boolean('blocked')->default(false);
+            $table->boolean('blocked')->default(true);
 
             $table->integer('sells_evals')->default(0);
             $table->integer('sells_count')->default(0);

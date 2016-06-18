@@ -155,12 +155,19 @@ class MainController extends Controller
     public function getUserAdvertisements($id)
     {
         $user = User::find($id);
+        if (Auth::User()->id != $id) {
+            return redirect('/');
+        }
         return view('farmersmarket.user-my-advertisements', compact('user'));
     }
 
     public function getUserBids($id)
     {
+
         $bid = Bid::find($id);
+        if (Auth::User()->id != $id) {
+                return redirect('/');
+        }
         $user = User::find($id);
         return view('farmersmarket.user-my-bids',compact(['bid','user']));
     }
@@ -255,38 +262,25 @@ class MainController extends Controller
 
     public function getSearch(Request $request)
     {
-        $query = $request->input('search');
+        $query = trim($request->input('search'));
 
-       /* if ($query == '') {     
-            return $this->getHome();
-        }*/
 
         $users = User::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
+
         $location = User::where('location', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
+
         $advertisements = Advertisement::where('name', 'like', '%' . $query . '%')->having('blocked', '=', 0)->get();
-        $tags = Tag::where('name', 'like' ,'%' . $query . '%')->having('blocked', '=', 0)->get();
-        
-      
+
+
+        $tags = Tag::where('name', 'like', '%' . $query . '%')->having('blocked', '=', 0)->get();
+        $adTags = [];
+        if(count($tags)){
+            $adTags = $tags[0]->advertisements;
+
+        }
        
-        /*$tags = Tag::join('advertisement_tag','advertisement_tag.tag_id','=','tags.id')
-        ->select('advertisement_tag.advertisement_id')
-        ->where('tags.name', 'like','%' . $query . '%')
-        ->get();
 
-        $advs = Advertisement::join('advertisement_tag', 'advertisements.id', '=', 'advertisement_tag.advertisement_id')
-        ->select('advertisements.id')
-        ->where('advertisements.id', '=', $tags)
-        ->get();*/
-
-      
-
-        /*$ads = Advertisement::join('advertisement', 'id', '=', 'ad.id')
-                            ->join('advertisement_tag', 'advertisement_id', 'a_t.id')*/
-
-    
-
-
-        return view('farmersmarket.farmersmarket-search',compact(['users','location', 'advertisements', 'tag']));   
+        return view('farmersmarket.farmersmarket-search',compact(['users','location', 'advertisements', 'adTags']));   
 
     }   
 

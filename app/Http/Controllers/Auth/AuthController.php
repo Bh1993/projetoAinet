@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 
 use Validator;
+use Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -66,22 +67,28 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            //'location' => $data['location'],
+            'location' => $data['location'],
             'admin' => 0, // Verificar se aqui é 0 ou '0'
-            'blocked' => 0, // Verificar se aqui é 0 ou '0'
+            'blocked' => 1, // Verificar se aqui é 0 ou '0'
         ]);
+
+        $user->save();
+
+        Mail::send('auth.emails.verify', ['user' => $user], function($message) use ($user)
+        {
+        $message->from('farmersmarketbbj@gmail.com', "Farmers Market");
+        $message->subject("Farmers Market - Confirm your account");
+        $message->to($user->email);
+        });
+
+        return $user;
     }
 
-    public function authenticate()
-    {
-        if (Auth::attempt()) {
-            
-        }
-    }
+    
 
 }
     /*

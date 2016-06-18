@@ -16,6 +16,7 @@
             <br>
             <div class="row">
             @foreach($advertisements as $advertisement)
+                @if($advertisement->blocked == 0)
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail" style="border:0; padding:0">
                     @if($advertisement->media->count() > 0)
@@ -30,6 +31,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach    
             </div>
 @include('layouts.pagination-advertisements',['paginator'=>$advertisements])    
