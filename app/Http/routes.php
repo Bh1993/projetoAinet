@@ -27,6 +27,25 @@ Route::get('search', ['as' => 'farmersmarket.search', 'uses' => 'MainController@
 Route::post('users-orderBy', ['as' => 'users-orderBy',
     'uses' => 'UserController@orderBy']);
 
+Route::post('advertisements-orderBy', ['as' => 'advertisements-orderBy',
+    'uses' => 'AdvertisementController@orderBy']);
+
+Route::post('advertisements-all-orderBy', ['as' => 'advertisements-all-orderBy',
+    'uses' => 'MainController@orderByProducts']);
+
+Route::get('farmersmarket/edit-advertisement/{id}', [                            // Each user can edit it's ads
+        'as' => 'farmersmarket.edit-advertisement',
+        'uses' => 'MainController@getEdit', ]);
+
+Route::post('farmersmarket/edit-advertisement/{id}', [
+        'as' => 'farmersmarket.edit-advertisement',
+        'uses' => 'MainController@postEdit']);
+
+ Route::post('farmersmarket/delete-advertisement/{id}', [                         // Each user can delete it's ads
+        'as' => 'farmersmarket.delete-advertisement',
+        'uses' => 'MainController@postDelete',
+    ]);
+
 
 Route::post('users-all-orderBy', ['as' => 'users-all-orderBy',
     'uses' => 'MainController@orderBy']);

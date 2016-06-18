@@ -6,6 +6,12 @@
             <div class="news-header" style="padding-top:20px">
                 <h1>All Advertisements</h1>
             </div>
+            <div class="pull-right"> 
+            {!!Form::open(['route' => 'advertisements-all-orderBy'])!!}
+            {!!Form::select('options', $options)!!}
+            {!!Form::submit('Order')!!}
+            {!!Form::close()!!}
+            </div>
             <br>
             <br>
             <div class="row">

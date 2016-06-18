@@ -1,6 +1,6 @@
 @extends('layouts.farmersmarket-head')
 @include('layouts.main-nav')
-@include('farmersmarket.farmersmarket-users')
+@include('farmersmarket.users-all')
 @include('farmersmarket.farmersmarket-users-location')
 @include('farmersmarket.farmersmarket-products')
 @include('farmersmarket.farmersmarket-products-tag')

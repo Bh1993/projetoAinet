@@ -109,7 +109,7 @@ class BidController extends Controller
         return back();
     }
 
-  
+
 
 
     // 0 Canceled ; 1 Pending ; 2 Refused ; 3 Accepted
